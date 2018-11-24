@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['signup.page.scss'],
 })
 export class SignupPage {
-
+  step = 1;
 }
