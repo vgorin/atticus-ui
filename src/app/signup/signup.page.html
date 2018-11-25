@@ -10,8 +10,8 @@
 						</div>
 						<div class="signup-indicator">
 							<ul>
-								<li class="active"><a href="javascript:void(0);" (click)="step = 1">1</a></li>
-								<li><a href="javascript:void(0);" (click)="step = 2">2</a></li>
+								<li class="active"><a href="javascript:void(0);" (click)="setStep(1)">1</a></li>
+								<li><a href="javascript:void(0);" (click)="setStep(2)">2</a></li>
 							</ul>
 						</div>
 						<div class="signup-title">
@@ -34,8 +34,8 @@
 							</div>
 						</div>
 						<div class="page-buttons">
-							<button class="btn btn-grey btn-half">Cancel</button>
-							<button class="btn btn-primary btn-half" (click)="step = 2">Next</button>
+							<a class="btn btn-grey btn-half" href="/welcome">Cancel</a>
+							<button class="btn btn-primary btn-half" (click)="setStep(2)">Next</button>
 						</div>
 					</div>
 				</div>
@@ -53,8 +53,8 @@
 						</div>
 						<div class="signup-indicator">
 							<ul>
-								<li><a href="javascript:void(0);" (click)="step = 1">1</a></li>
-								<li class="active"><a href="javascript:void(0);" (click)="step = 2">2</a></li>
+								<li><a href="javascript:void(0);" (click)="setStep(1)">1</a></li>
+								<li class="active"><a href="javascript:void(0);" (click)="setStep(2)">2</a></li>
 							</ul>
 						</div>
 						<div class="signup-title">
@@ -108,7 +108,7 @@
 							</div>
 						</div>
 						<div class="page-buttons">
-							<button class="btn btn-grey btn-half">Cancel</button>
+							<a class="btn btn-grey btn-half" href="/welcome">Cancel</a>
 							<button class="btn btn-primary btn-half js-modal" data-modal="modalSignupSuccess" (click)="getUser()">Create</button>
 						</div>
 					</div>

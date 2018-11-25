@@ -25,6 +25,28 @@ export class SignupPage implements OnInit {
 
   constructor(private http: HttpClient, public alertController: AlertController) {}
 
+  async displayEmptyEmailAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      subHeader: 'Empty Email',
+      message: 'Please provide your email address.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async displayEmptyPasswordAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      subHeader: 'Empty Password',
+      message: 'Please fill in your password.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
   async displayPasswordMismatchAlert() {
     const alert = await this.alertController.create({
       header: 'Error',
@@ -34,6 +56,26 @@ export class SignupPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async setStep(step) {
+    if(this.step === 1 && step === 2) {
+      if(!this.email) {
+        await this.displayEmptyEmailAlert();
+      }
+      else if(!this.password) {
+        await this.displayEmptyPasswordAlert();
+      }
+      else if(this.password !== this.verifyPassword) {
+        await this.displayPasswordMismatchAlert();
+      }
+      else {
+        this.step = 2;
+      }
+    }
+    else if(this.step === 2 && step === 1) {
+      this.step = 1;
+    }
   }
 
   getUser() {
