@@ -63,7 +63,7 @@ export class UserAccount {
         })
         .catch((error) => {
           console.log('HTTP_ERROR:', {method, args, options, error});
-          thow(error);
+          throw(error);
         });
   }
 
