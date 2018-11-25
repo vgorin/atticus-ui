@@ -67,10 +67,12 @@ export class UserAccount {
   }
 
   private _update(user_data) {
-    if (!user_data) { return null; }
+    if (!user_data) {
+      return null;
+    }
     const ok = Object.keys(user_data);
     for (let i = 0; i < ok.length; i++) {
-      this[ ok[i] ] = user_data[ ok[i] ];
+      this[ok[i]] = user_data[ok[i]];
     }
   }
 
@@ -81,7 +83,7 @@ export class UserAccount {
 
   getUser() {
     const self = this;
-    this._request('/account/1', 'get', null, null)
+    return this._request('/account/1', 'get', null, null)
         .then(data => {
           self._update(data);
           self._clearPass(data);
@@ -92,7 +94,7 @@ export class UserAccount {
     const self = this;
     const {email, username, password, legal_name, language_code, country_code, timezone} = this;
     const params = {email, username, password, legal_name, language_code, country_code, timezone};
-    this._request('/account', 'post', params, null)
+    return this._request('/account', 'post', params, null)
         .then(data => {
           self._update(data);
           self._clearPass(data);

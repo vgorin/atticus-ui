@@ -66,11 +66,17 @@ export class SignupPage implements OnInit {
   }
 
   getUser() {
-    this.user_account.getUser();
+    this.user_account.getUser()
+        .catch(error => {
+          console.log('Vasia error2!', error);
+        });
   }
 
   createUser() {
-    this.user_account.createUser();
+    this.user_account.createUser()
+        .catch(error => {
+          console.log('Vasia error1!', error);
+        });
   }
 
   ngOnInit(): void {
