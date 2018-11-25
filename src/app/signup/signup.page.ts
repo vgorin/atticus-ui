@@ -9,19 +9,20 @@ import {HttpClient} from '@angular/common/http';
 export class SignupPage implements OnInit {
   public step: number = 1;
 
+  public accountId: number;
+
   public email: string;
   public password: string;
   public verifyPassword: string;
 
-  public name: string;
+  public legalName: string;
   public username: string;
 
-  public id: string;
+  public countryCode: string = "US";
+  public languageCode: string = "eng";
+  public timezone: string = "America/Los_Angeles";
 
-  constructor(
-      private http: HttpClient
-  ) {
-  }
+  constructor(private http: HttpClient) {}
 
   getUser() {
     const url = 'http://192.168.1.236:8080/account/user/despotix';
@@ -36,7 +37,7 @@ export class SignupPage implements OnInit {
 
     const self = this;
     setTimeout((() => {
-      console.log(this.id, self.id);
+      console.log(this.accountId, self.accountId);
     }), 5555);
   }
 
@@ -65,10 +66,9 @@ export class SignupPage implements OnInit {
 
     const self = this;
     setTimeout((() => {
-      console.log(this.id, self.id);
+      console.log(this.accountId, self.accountId);
     }), 5555);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
