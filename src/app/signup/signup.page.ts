@@ -29,9 +29,14 @@ export class SignupPage implements OnInit {
                 'Content-Type': 'application/json'
             }
         };
-        return this.http.get(url, options).subscribe(data => {
+        this.http.get(url, options).subscribe(data => {
             console.log('my data: ', data);
         });
+
+        const self = this;
+        setTimeout( ( () => {
+            console.log(this.id, self.id);
+        }), 5555);
     }
 
     createUser() {
@@ -61,5 +66,8 @@ export class SignupPage implements OnInit {
         setTimeout( ( () => {
             console.log(this.id, self.id);
         }), 5555);
+    }
+
+    ngOnInit(): void {
     }
 }
