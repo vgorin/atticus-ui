@@ -63,6 +63,7 @@ export class UserAccount {
         })
         .catch((error) => {
           console.log('HTTP_ERROR:', {method, args, options, error});
+          thow(error);
         });
   }
 
@@ -87,6 +88,7 @@ export class UserAccount {
         .then(data => {
           self._update(data);
           self._clearPass();
+          return data;
         });
   }
 
@@ -98,6 +100,7 @@ export class UserAccount {
         .then(data => {
           self._update(data);
           self._clearPass();
+          return data;
         });
   }
 }
