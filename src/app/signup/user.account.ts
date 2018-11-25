@@ -67,6 +67,7 @@ export class UserAccount {
   }
 
   private _update(user_data) {
+    if (!user_data) { return null; }
     const ok = Object.keys(user_data);
     for (let i = 0; i < ok.length; i++) {
       this[ ok[i] ] = user_data[ ok[i] ];
