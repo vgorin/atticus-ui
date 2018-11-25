@@ -76,7 +76,7 @@ export class UserAccount {
     }
   }
 
-  private _clearPass(user_data) {
+  private _clearPass() {
     this.password = '';
     this.verify_password = '';
   }
@@ -86,7 +86,7 @@ export class UserAccount {
     return this._request('/account/1', 'get', null, null)
         .then(data => {
           self._update(data);
-          self._clearPass(data);
+          self._clearPass();
         });
   }
 
@@ -97,7 +97,7 @@ export class UserAccount {
     return this._request('/account', 'post', params, null)
         .then(data => {
           self._update(data);
-          self._clearPass(data);
+          self._clearPass();
         });
   }
 }
