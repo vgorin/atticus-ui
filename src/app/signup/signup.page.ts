@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: 'signup.page.html',
-  styleUrls: ['signup.page.scss'],
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
   public step: number = 1;
@@ -22,7 +23,18 @@ export class SignupPage implements OnInit {
   public languageCode: string = "eng";
   public timezone: string = "America/Los_Angeles";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public alertController: AlertController) {}
+
+  async displayPasswordMismatchAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      subHeader: 'Password Mismatch',
+      message: 'Your password and confirmation password do not match.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 
   getUser() {
     const url = 'http://192.168.1.236:8080/account/user/despotix';
