@@ -83,23 +83,21 @@ export class UserAccount {
   }
 
   getUser() {
-    const self = this;
     return this._request('/account/1', 'get', null, null)
         .then(data => {
-          self._update(data);
-          self._clearPass();
+          this._update(data);
+          this._clearPass();
           return data;
         });
   }
 
   createUser() {
-    const self = this;
     const {email, username, password, legal_name, language_code, country_code, timezone} = this;
     const params = {email, username, password, legal_name, language_code, country_code, timezone};
     return this._request('/account', 'post', params, null)
         .then(data => {
-          self._update(data);
-          self._clearPass();
+          this._update(data);
+          this._clearPass();
           return data;
         });
   }
