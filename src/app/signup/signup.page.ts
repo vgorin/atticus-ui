@@ -46,15 +46,23 @@ export class SignupPage implements OnInit {
   }
 
   async displayUserRegisteredToast() {
+    const toast = await this.toastController.create({
+      message: 'Your account has been successfully created!',
+      duration: 2000
+    });
 
+    toast.present();
   }
 
   async displayUserRegistrationFailedError() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      subHeader: 'Registration Failed',
+      message: 'Account with specified username/email already exists!',
+      buttons: ['OK']
+    });
 
-  }
-
-  async loginFailedError() {
-
+    await alert.present();
   }
 
   async setStep(step) {
@@ -79,13 +87,6 @@ export class SignupPage implements OnInit {
       public toastController: ToastController
   ) {
     this.user_account = new UserAccount(this.http);
-  }
-
-  getUser() {
-    this.user_account.getUser()
-        .catch(error => {
-          this.loginFailedError();
-        });
   }
 
   createUser() {

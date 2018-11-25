@@ -84,7 +84,7 @@ export class UserAccount {
 
   getUser() {
     const self = this;
-    return this._request('/account/1', 'get', null, null)
+    return this._request('/account/email/' + this.email, 'get', null, null)
         .then(data => {
           self._update(data);
           self._clearPass();
