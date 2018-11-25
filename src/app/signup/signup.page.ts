@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -16,58 +16,59 @@ export class SignupPage implements OnInit {
   public name: string;
   public username: string;
 
-    public id: string;
+  public id: string;
 
-    constructor(
-        private http: HttpClient
-    ) { }
+  constructor(
+      private http: HttpClient
+  ) {
+  }
 
-    getUser() {
-        const url = 'http://192.168.1.236:8080/account/user/despotix';
-        const options =  {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-        this.http.get(url, options).subscribe(data => {
-            console.log('my data: ', data);
-        });
+  getUser() {
+    const url = 'http://192.168.1.236:8080/account/user/despotix';
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    this.http.get(url, options).subscribe(data => {
+      console.log('my data: ', data);
+    });
 
-        const self = this;
-        setTimeout( ( () => {
-            console.log(this.id, self.id);
-        }), 5555);
-    }
+    const self = this;
+    setTimeout((() => {
+      console.log(this.id, self.id);
+    }), 5555);
+  }
 
-    createUser() {
-        console.log(1, this, arguments);
+  createUser() {
+    console.log(1, this, arguments);
 
-        const url = 'http://192.168.1.236:8080/account/user/despotix';
-        const options =  {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-        const json = {
-            account_id : 1,
-            email : 'despotix3@gmail.com',
-            username : 'Despotix3',
-            password : 'test1',
-            legal_name : 'Legal',
-            language_code : 'eng',
-            country_code : 'US',
-            timezone : 'America/Los_Angeles'
-        };
-        this.http.post(url, json, options).subscribe(data => {
-            console.log('my data: ', data);
-        });
+    const url = 'http://192.168.1.236:8080/account/user/despotix';
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const json = {
+      account_id: 1,
+      email: 'despotix3@gmail.com',
+      username: 'Despotix3',
+      password: 'test1',
+      legal_name: 'Legal',
+      language_code: 'eng',
+      country_code: 'US',
+      timezone: 'America/Los_Angeles'
+    };
+    this.http.post(url, json, options).subscribe(data => {
+      console.log('my data: ', data);
+    });
 
-        const self = this;
-        setTimeout( ( () => {
-            console.log(this.id, self.id);
-        }), 5555);
-    }
+    const self = this;
+    setTimeout((() => {
+      console.log(this.id, self.id);
+    }), 5555);
+  }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
+  }
 }
