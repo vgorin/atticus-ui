@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {AlertController} from '@ionic/angular';
-import {HttpClient} from '@angular/common/http';
-import {UserAccount} from './user.account';
+import { Component, OnInit } from '@angular/core';
+import { AlertController, ToastController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { UserAccount } from './user.account';
 
 @Component({
   selector: 'app-signup',
@@ -45,6 +45,18 @@ export class SignupPage implements OnInit {
     await alert.present();
   }
 
+  async displayUserRegisteredToast() {
+
+  }
+
+  async displayUserRegistrationFailedError() {
+
+  }
+
+  async loginFailedError() {
+
+  }
+
   async setStep(step) {
     if (this.step === 1 && step === 2) {
       if (!this.user_account.email) {
@@ -61,21 +73,28 @@ export class SignupPage implements OnInit {
     }
   }
 
-  constructor(private http: HttpClient, public alertController: AlertController) {
+  constructor(
+      private http: HttpClient,
+      public alertController: AlertController,
+      public toastController: ToastController
+  ) {
     this.user_account = new UserAccount(this.http);
   }
 
   getUser() {
     this.user_account.getUser()
         .catch(error => {
-          console.log('Vasia error2!', error);
+          this.loginFailedError();
         });
   }
 
   createUser() {
     this.user_account.createUser()
+        .then(data => {
+          this.displayUserRegisteredToast();
+        })
         .catch(error => {
-          console.log('Vasia error1!', error);
+          this.displayUserRegistrationFailedError();
         });
   }
 
