@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['signup.page.scss'],
 })
 export class SignupPage {
-  step = 1;
+  public step: number = 1;
+
+  public email: string;
+  public password: string;
+  public verifyPassword: string;
+
+  public name: string;
+  public username: string;
+
 }
