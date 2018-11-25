@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-signup',
   templateUrl: 'signup.page.html',
   styleUrls: ['signup.page.scss'],
 })
-export class SignupPage {
+export class SignupPage implements OnInit {
   public step: number = 1;
 
   public email: string;
@@ -14,5 +14,10 @@ export class SignupPage {
 
   public name: string;
   public username: string;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
 
 }

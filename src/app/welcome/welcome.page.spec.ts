@@ -1,7 +1,7 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { WelcomePage } from './welcome.page';
+import {WelcomePage} from './welcome.page';
 
 describe('WelcomePage', () => {
   let component: WelcomePage;
@@ -9,10 +9,10 @@ describe('WelcomePage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomePage ],
+      declarations: [WelcomePage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
-      .compileComponents();
+        .compileComponents();
   }));
 
   beforeEach(() => {
