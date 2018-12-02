@@ -9,6 +9,10 @@ export class ContractsPage implements OnInit {
 
   constructor() { }
 
+  addContract() {
+
+  }
+
   ngOnInit() {
   }
 
