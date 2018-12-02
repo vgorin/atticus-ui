@@ -85,7 +85,8 @@
 
           <div id="accordion">
             <div class="tab">
-              <h3><a href="contract-status-alt"><img src="./assets/images/profile-nick.png"> Consultant Agreement</a></h3>
+              <h3 *ngFor="let contract of contracts"><a href="contract-status-alt"><img src="./assets/images/profile-nick.png"> {{contract}}</a></h3>
+<!--
               <h3><a href="contract-status-alt"><img src="./assets/images/profile.png"> Rental Agreement</a></h3>
               <h3><a href="contract-status-alt"><img src="./assets/images/profile-charles.png"> Software Dev Agreement</a></h3>
               <h3><a href="contract-status-alt"><img src="./assets/images/profile-andreas.png"> 3-Party bet</a></h3>
@@ -95,6 +96,7 @@
               <h3><a href="contract-status-alt"><img src="./assets/images/profile-charles.png"> Software Dev Agreement</a></h3>
               <h3><a href="contract-status-alt"><img src="./assets/images/profile-andreas.png"> 3-Party bet</a></h3>
               <h3><a href="contract-status-alt"><img src="./assets/images/profile-roger.png"> Dice Roll Bet</a></h3>
+-->
             </div>
           </div>
 
