@@ -1,0 +1,130 @@
+<ion-content padding>
+
+  <!-- Begin: App -->
+
+  <div id="app">
+
+    <!-- Begin: Header -->
+
+    <header>
+
+      <section id="top">
+        <div>
+          <section>
+            <nav>
+              <ul>
+                <li><a href="menu" class="js-mobile-menu"><i class="fas fa-bars"></i></a></li>
+                <li><a href="dashboard"><i class="fas fa-home"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+        <div>
+          <div>
+            <img src="./assets/images/logo.png" alt="Atticus" style="height: 2rem;">
+          </div>
+        </div>
+        <div>
+          <section>
+            <nav>
+              <ul>
+                <li><a href="notifications"><i class="far fa-envelope"></i></a></li>
+                <li><a href="settings"><i class="fas fa-cog"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+      </section>
+
+
+      <section>
+        <nav id="main">
+          <ul>
+            <li>
+              <a href="templates">
+                <span>9</span>
+                <span><i class="fas fa-file-alt"></i></span>
+                <span>Templates</span>
+              </a>
+            </li>
+            <li>
+              <a href="drafts">
+                <span>9</span>
+                <span><i class="fas fa-file"></i></span>
+                <span>Drafts</span>
+              </a>
+            </li>
+            <li>
+              <a href="proposals">
+                <span>9</span>
+                <span><i class="far fa-file"></i></span>
+                <span>Proposals</span>
+              </a>
+            </li>
+            <li>
+              <a href="contracts" class="active">
+                <span>9</span>
+                <span><i class="far fa-file-alt"></i></span>
+                <span>Contracts</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+
+    <!--   End: Header -->
+    <!-- Begin: Main -->
+
+    <main>
+
+      <section id="view">
+        <div>
+
+
+          <form>
+            <fieldset>
+              <h4>Contract Info</h4>
+              <p>
+                <label for="name">Contract Name</label>
+                <input id="name" type="text" placeholder="Enter text" value="Baseball Bet" disabled="disabled">
+
+              </p>
+              <p>
+                <label for="text">Contract Text</label>
+                <textarea id="text" disabled="disabled">{{parties.client.nam}} (informtaion)
+
+(“Client”) enggages
+
+{{ parties.vendor.name}} (“vendor”) (collectively “Parties”) for technology consulting services.
+
+The intent captured within this memorandum (‘Amendement”) is to amend the existing signed agreement between parties signed on { contract fate_signed}}(Agreement”}.</textarea>
+              </p>
+              <h4>Betting Parties</h4>
+              <p>
+                <label for="b1">Better 1</label>
+                <input id="b1" type="text" placeholder="Better 1" disabled="disabled">
+              </p>
+              <p>
+                <label for="b2">Better 2</label>
+                <input id="b2" type="text" placeholder="Better 2" disabled="disabled">
+              </p>
+              <h4>Fact Finder</h4>
+              <p>
+                <label for="fact">Fact Source</label>
+                <input id="fact" type="text" name="fact" placeholder="Fact Finder" value="Yahoo Sports Feed" disabled="disabled">
+              </p>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!--   End: Main -->
+
+  </div>
+
+  <!--   End: App -->
+
+</ion-content>
