@@ -1,33 +1,69 @@
 <ion-content padding>
-  <div class="app">
-    <div class="main-content full-content">
-      <section class="page-section">
-        <div class="container entry-container">
-          <div class="modal-close-button js-modal-close"><span class="icon-menu-close"></span></div>
-          <div class="modal-body">
-            <div class="modal-login-image"><img src="./assets/images/logo.svg"></div>
-            <div class="modal-login-form">
-              <div class="form-wrapper">
-                <div class="form-group">
-                  <label>Email</label>
-                  <input [(ngModel)]="user_account.email" class="form-control" type="text" placeholder="Enter your email address">
-                </div>
-                <div class="form-group">
-                  <label>Password</label>
-                  <input [(ngModel)]="user_account.password" class="form-control" type="password" placeholder="Enter your password">
-                </div>
-                <div class="form-group"><a href="#">Forgot your password?</a></div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="modal-footer-buttons">
-              <a class="btn btn-transparent btn-half js-modal-close" href="/welcome">Cancel</a>
-              <button class="btn btn-primary btn-half" (click)="login()">Login</button>
-            </div>
+  <!-- Begin: App -->
+
+  <div id="app">
+
+    <!-- Begin: Main -->
+
+    <main id="intro">
+
+      <section>
+        <div>
+          <div>
+            <img src="./assets/images/logo-white.png">
+            <h1>Atticus</h1>
+
           </div>
         </div>
       </section>
+
+    </main>
+
+
+    <div id="modal" class="alert">
+      <form id="start">
+        <div>
+          <section>
+            <fieldset>
+              <h4>Sign In Information</h4>
+              <p>
+                <label for="email">Email</label>
+                <input [(ngModel)]="user_account.email" id="email" type="email" name="email">
+
+              </p>
+              <p>
+                <label for="password">Password</label>
+                <input [(ngModel)]="user_account.password" id="password" type="password" name="password">
+              </p>
+              <p><a href="#">Forgot your password?</a></p>
+            </fieldset>
+            <nav id="action">
+              <ul>
+                <li class="new">
+                  <a href="start">
+                    <span><i class="fas fa-arrow-left"></i></span>
+                    <span>Cancel</span>
+                  </a>
+                </li>
+                <li class="new">
+                  <button (click)="login()" class="active">
+                    <span><i class="fas fa-sign-in-alt"></i></span>
+                    <span>Sign In</span>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+
+          </section>
+        </div>
+      </form>
     </div>
+
+    <!--   End: Main -->
+
+
+
   </div>
+
+  <!--   End: App -->
 </ion-content>
