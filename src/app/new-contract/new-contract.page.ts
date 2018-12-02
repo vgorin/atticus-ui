@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {HttpClient} from '@angular/common/http';
 import {UserAccount} from '../signup/user.account';
-import {ToastController} from '@ionic/angular';
+import {AlertController, ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-new-contract',
@@ -19,25 +19,42 @@ export class NewContractPage implements OnInit {
   constructor(
       private storage: Storage,
       private http: HttpClient,
-      public toastController: ToastController
+      public toastController: ToastController,
+      public alertController: AlertController,
   ) {
     this.account = new UserAccount(this.http);
   }
 
   async proposeContract() {
-    console.log(this.user, this.memo, this.body, this.to);
-    const contract = await this.account.addContract(this.user, this.memo, this.body, this.to);
-    console.log('NewContractPage - addContract', contract);
-    this.displayContractAdded();
+    try {
+      console.log(this.user, this.memo, this.body, this.to);
+      const contract = await this.account.addContract(this.user, this.memo, this.body, this.to);
+      console.log('NewContractPage - addContract', contract);
+      this.messageOk('Contract Successfully Added!');
+    } catch (e) {
+      console.log('error', e);
+      this.messageFail( e.message || e );
+    }
   }
 
-  async displayContractAdded() {
+  async messageOk(msg) {
     const toast = await this.toastController.create({
-      message: 'Contract Successfully Added!',
+      message: msg,
       duration: 2000
     });
 
     toast.present();
+  }
+
+  async messageFail(msg) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      subHeader: 'Failed',
+      message: 'Contract creation error:' + msg,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   async ngOnInit() {
