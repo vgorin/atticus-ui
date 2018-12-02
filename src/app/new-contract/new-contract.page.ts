@@ -8,8 +8,15 @@ import { Storage } from '@ionic/storage';
 })
 export class NewContractPage implements OnInit {
   private user: string;
+  private memo: string;
+  private body: string;
+  private to: number;
 
   constructor(private storage: Storage) { }
+
+  async proposeContract() {
+    console.log(this.user, this.memo, this.body, this.to);
+  }
 
   async ngOnInit() {
     const str = await this.storage.get('user');

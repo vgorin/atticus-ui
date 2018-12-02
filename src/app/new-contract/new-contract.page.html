@@ -85,15 +85,15 @@
               <h4>Contract Info</h4>
               <p>
                 <label for="name">Contract Name</label>
-                <input id="name" type="text" placeholder="Enter text" value="Baseball Bet">
+                <input [(ngModel)]="memo" id="name" type="text" placeholder="Contract Name / Deal Memo" value="" name="name">
               </p>
               <p>
                 <label for="text">Contract Text</label>
-                <textarea id="text">Some contract text</textarea>
+                <textarea [(ngModel)]="body" id="text"></textarea>
               </p>
               <p>
-                <label for="sendto">Send To</label>
-                <input id="sendto" type="text" placeholder="Better" value="sendto@atticus.com">
+                <label for="to">Send To</label>
+                <input [(ngModel)]="to" id="to" type="text" placeholder="Account ID" value="" name="to">
               </p>
             </fieldset>
           </form>
@@ -103,7 +103,22 @@
     </main>
 
     <!--   End: Main -->
+    <!-- Begin: Footer -->
 
+    <footer>
+      <nav id="action">
+        <ul>
+          <li class="new">
+            <button (click)="proposeContract()" class="active">
+              <span><i class="fas fa-plus"></i></span>
+              <span>New Contract</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <!--   End: Footer -->
   </div>
 
   <!--   End: App -->
