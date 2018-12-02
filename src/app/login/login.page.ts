@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { AlertController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { UserAccount } from '../signup/user.account';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginPage implements OnInit {
       private http: HttpClient,
       public modalController: ModalController,
       public alertController: AlertController,
-      public toastController: ToastController
+      public toastController: ToastController,
+      private router: Router
   ) {
     this.user_account = new UserAccount(this.http);
   }
@@ -53,7 +55,8 @@ export class LoginPage implements OnInit {
   login() {
     this.user_account.getUser()
         .then(data => {
-          this.displayAuthSuccessfulToast();
+          //this.displayAuthSuccessfulToast();
+          this.router.navigateByUrl('/contracts');
         })
         .catch(error => {
           this.displayAuthFailureAlert();
