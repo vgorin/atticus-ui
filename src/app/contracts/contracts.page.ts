@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserAccount } from '../signup/user.account';
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-contracts',
@@ -12,15 +12,8 @@ export class ContractsPage implements OnInit {
   private contracts: Array<Object>;
   private account: UserAccount;
 
-  constructor(
-      private http: HttpClient,
-      private storage: Storage
-  ) {
+  constructor(private http: HttpClient, private storage: Storage) {
     this.account = new UserAccount(this.http);
-  }
-
-  addContract() {
-
   }
 
   async ngOnInit() {
