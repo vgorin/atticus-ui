@@ -1,9 +1,126 @@
-<ion-content padding>
-  <h1>hi</h1>
+<ion-content>
+  <!-- Begin: App -->
 
-  <button (click)="addContract()" class="active">
-    <span><i class="fas fa-sign-in-alt"></i></span>
-    <span>Add contract</span>
-  </button>
+  <div id="app">
 
+    <!-- Begin: Header -->
+
+    <header>
+
+      <section id="top">
+        <div>
+          <section>
+            <nav>
+              <ul>
+                <li><a href="menu" class="js-mobile-menu"><i class="fas fa-bars"></i></a></li>
+                <li><a href="dashboard"><i class="fas fa-home"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+        <div>
+          <div>
+            <img src="./assets/images/logo.png" alt="Atticus" style="height: 2rem;">
+          </div>
+        </div>
+        <div>
+          <section>
+            <nav>
+              <ul>
+                <li><a href="notifications"><i class="far fa-envelope"></i></a></li>
+                <li><a href="settings"><i class="fas fa-cog"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+      </section>
+
+
+      <section>
+        <nav id="main">
+          <ul>
+            <li>
+              <a href="templates">
+                <span>9</span>
+                <span><i class="fas fa-file-alt"></i></span>
+                <span>Templates</span>
+              </a>
+            </li>
+            <li>
+              <a href="drafts">
+                <span>9</span>
+                <span><i class="fas fa-file"></i></span>
+                <span>Drafts</span>
+              </a>
+            </li>
+            <li>
+              <a href="proposals">
+                <span>9</span>
+                <span><i class="far fa-file"></i></span>
+                <span>Proposals</span>
+              </a>
+            </li>
+            <li>
+              <a href="contracts" class="active">
+                <span>9</span>
+                <span><i class="far fa-file-alt"></i></span>
+                <span>Contracts</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+
+    <!--   End: Header -->
+    <!-- Begin: Main -->
+
+    <main>
+
+      <!-- Begin: Intro -->
+
+      <section id="contracts" class="list stack">
+        <div>
+
+
+          <div id="accordion">
+            <div class="tab">
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile-nick.png"> Consultant Agreement</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile.png"> Rental Agreement</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile-charles.png"> Software Dev Agreement</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile-andreas.png"> 3-Party bet</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile-roger.png"> Dice Roll Bet</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile-nick.png"> Consultant Agreement</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile.png"> Rental Agreement</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile-charles.png"> Software Dev Agreement</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile-andreas.png"> 3-Party bet</a></h3>
+              <h3><a href="contract-status-alt"><img src="./assets/images/profile-roger.png"> Dice Roll Bet</a></h3>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!--   End: Main -->
+    <!-- Begin: Footer -->
+
+    <footer>
+      <nav id="action">
+        <ul>
+          <li class="new">
+            <a href="new-contract" class="active">
+              <span><i class="fas fa-plus"></i></span>
+              <span>New Contract</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <!--   End: Footer -->
+
+  </div>
+
+  <!--   End: App -->
 </ion-content>
