@@ -1,119 +1,163 @@
 <ion-content padding>
-	<div class="app" [hidden]="step != 1">
-		<div class="main-content full-content">
-			<section class="page-section">
-				<div class="container signup-container">
-					<div class="page-wrapper signup-wrapper">
-						<div class="page-header">
-							<h1>Account Settings</h1>
-							<div class="page-close-button"><a href="/welcome"><span class="icon-menu-close"></span></a></div>
-						</div>
-						<div class="signup-indicator">
-							<ul>
-								<li class="active"><a href="javascript:void(0);" (click)="setStep(1)">1</a></li>
-								<li><a href="javascript:void(0);" (click)="setStep(2)">2</a></li>
-							</ul>
-						</div>
-						<div class="signup-title">
-							<h2>Authentication Information</h2>
-						</div>
-						<div class="signup-form">
-							<div class="form-wrapper">
-								<div class="form-group">
-									<label>Email</label>
-									<ion-input [(ngModel)]="user_account.email" class="form-control" type="text" placeholder="Enter your email address"></ion-input>
-								</div>
-								<div class="form-group">
-									<label>Password</label>
-									<input [(ngModel)]="user_account.password" class="form-control" type="password" placeholder="Enter your password">
-								</div>
-								<div class="form-group">
-									<label>Re-Password</label>
-									<input [(ngModel)]="user_account.verify_password" class="form-control" type="password" placeholder="Enter your password">
-								</div>
-							</div>
-						</div>
-						<div class="page-buttons">
-							<a class="btn btn-grey btn-half" href="/welcome">Cancel</a>
-							<button class="btn btn-primary btn-half" (click)="setStep(2)">Next</button>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
-	<div class="app" [hidden]="step != 2">
-		<div class="main-content">
-			<section class="page-section">
-				<div class="container signup-container">
-					<div class="page-wrapper signup-wrapper">
-						<div class="page-header">
-							<h1>Account Settings</h1>
-							<div class="page-close-button"><a href="/welcome"><span class="icon-menu-close"></span></a></div>
-						</div>
-						<div class="signup-indicator">
-							<ul>
-								<li><a href="javascript:void(0);" (click)="setStep(1)">1</a></li>
-								<li class="active"><a href="javascript:void(0);" (click)="setStep(2)">2</a></li>
-							</ul>
-						</div>
-						<div class="signup-title">
-							<h2>Personal Information</h2>
-						</div>
-						<div class="signup-profile">
-							<div class="profile-image"><img src="./assets/images/profile.png">
-								<button class="btn profile-image-add"><span class="icon-add-image"></span></button>
-							</div>
-							<div class="profile-detail">
-								<h3>Glade Stella</h3>
-								<p>+3533-34534-45</p><a class="btn btn-outline-primary btn-profile" href="#">Your File</a>
-							</div>
-						</div>
-						<div class="content-section">
-							<h3>Profile</h3>
-							<div class="form-wrapper">
-								<div class="form-group">
-									<label>Legal Name</label>
-									<input [(ngModel)]="user_account.legal_name" class="form-control" type="text" placeholder="Enter your legal name">
-								</div>
-								<div class="form-group">
-									<label>Username</label>
-									<input [(ngModel)]="user_account.username" class="form-control" type="text" placeholder="Enter your username">
-								</div>
-								<div class="form-group">
-									<label>Country</label>
-									<select class="form-control">
-										<option value="default" disabled selected>Select your country</option>
-										<option value="">Indonesia</option>
-										<option value="">Japan</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="content-section">
-							<h3>Settings</h3>
-							<div class="form-wrapper">
-								<div class="content-menu">
-									<div class="form-group">
-										<label>Language</label>
-										<div class="form-url"><a href="#">English <span class="icon-arrow-right"></span></a></div>
-									</div>
-								</div>
-								<div class="content-menu">
-									<div class="form-group">
-										<label>Time Zone</label>
-										<div class="form-url"><a href="#">America/Los_Angeles (GMT -08:00) <span class="icon-arrow-right"></span></a></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="page-buttons">
-							<button class="btn btn-grey btn-half">Cancel</button>
-							<button class="btn btn-primary btn-half js-modal" data-modal="modalSignupSuccess" (click)="createUser()">Create</button>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
+  <!-- Begin: App -->
+
+  <div id="app" [hidden]="step != 1">
+
+
+    <header class="heading">
+      <section>
+        <div>
+          <div>
+            <h1>Signup Step #1</h1>
+          </div>
+        </div>
+        <div>
+                <span class="close">
+                    <a href=""><i class="fas fa-times"></i></a>
+                </span>
+        </div>
+      </section>
+    </header>
+
+    <!-- Begin: Main -->
+
+    <main id="start">
+
+      <section>
+        <div>
+          <form>
+            <fieldset>
+              <h4>Sign In Information</h4>
+              <p>
+                <label for="email">Email</label>
+                <input [(ngModel)]="user_account.email" id="email" type="email" name="email">
+
+              </p>
+              <p>
+                <label for="password">Password</label>
+                <input [(ngModel)]="user_account.password" id="password" type="password" name="password">
+              </p>
+              <p>
+                <label for="password">Password (again)</label>
+                <input [(ngModel)]="user_account.verify_password" id="password" type="password" name="password">
+              </p>
+
+              <nav id="action">
+                <ul>
+                  <li class="new">
+                    <a href="start">
+                      <span><i class="fas fa-arrow-left"></i></span>
+                      <span>Back</span>
+                    </a>
+                  </li>
+                  <li class="new">
+                    <button (click)="setStep(2)">
+                      <span><i class="fas fa-arrow-right"></i></span>
+                      <span>Next</span>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!--   End: Main -->
+
+
+
+  </div>
+
+  <!--   End: App -->
+
+  <!-- Begin: App -->
+
+  <div id="app" [hidden]="step != 2">
+
+    <header class="heading">
+      <section>
+        <div>
+          <div>
+            <h1>Signup Step #2</h1>
+          </div>
+        </div>
+        <div>
+                <span class="close">
+                    <a href=""><i class="fas fa-times"></i></a>
+                </span>
+        </div>
+      </section>
+    </header>
+
+    <!-- Begin: Main -->
+
+    <main>
+      <form>
+        <fieldset>
+          <h4>Sign In Information</h4>
+          <p>
+            <label for="username">User Name</label>
+            <input [(ngModel)]="user_account.username" id="username" type="text" name="username">
+
+          </p>
+          <p>
+            <label for="legalname">Legal Name</label>
+            <input [(ngModel)]="user_account.legal_name" id="legalname" type="text" name="legalname">
+
+          </p>
+          <p>
+            <label for="language">Language</label>
+            <select id="language">
+              <option>Japanese</option>
+              <option>Russian</option>
+              <option>English</option>
+            </select>
+          </p>
+          <p>
+            <label for="country">Country</label>
+            <select id="country">
+              <option>Japan</option>
+              <option>Ukraine</option>
+              <option>United States</option>
+            </select>
+          </p>
+          <p>
+            <label for="timezone">Timezone</label>
+            <select id="timezone">
+              <option>Time 1</option>
+              <option>Time 1</option>
+              <option>Time 1</option>
+            </select>
+          </p>
+          <nav id="action">
+            <ul>
+              <li class="new">
+                <button (click)="setStep(1)">
+                  <span><i class="fas fa-arrow-left"></i></span>
+                  <span>Back</span>
+                </button>
+              </li>
+              <li class="new">
+                <button (click)="createUser()" href="signup-success">
+                  <span><i class="fas fa-check"></i></span>
+                  <span>Finish</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </fieldset>
+      </form>
+    </main>
+
+    <!--   End: Main -->
+
+
+
+  </div>
+
+  <!--   End: App -->
+
 </ion-content>
