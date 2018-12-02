@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 export class UserAccount {
   private backend_url = 'http://192.168.1.236:28081';
@@ -98,6 +98,13 @@ export class UserAccount {
         .then(data => {
           this._update(data);
           this._clearPass();
+          return data;
+        });
+  }
+
+  getContracts(user) {
+    return this._request('/contract/list/' + user.account_id, 'get', null, null)
+        .then(data => {
           return data;
         });
   }
