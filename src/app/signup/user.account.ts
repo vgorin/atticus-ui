@@ -109,7 +109,7 @@ export class UserAccount {
         });
   }
 
-  addContract(user, memo, body, to_user) {
+  addContract(user, memo, body, to_account_id) {
     console.log('addContract', arguments);
     const { account_id } = user;
     const contract_body = { account_id, memo, body };
@@ -122,7 +122,7 @@ export class UserAccount {
           ];
           const parties = [
             { account_id, contract_id },
-            { account_id : to_user.account_id, contract_id },
+            { account_id : to_account_id, contract_id },
           ];
           const deal_body = { account_id, title : memo, dialog, parties };
           return this._request('/deal/', 'post', deal_body, null);
