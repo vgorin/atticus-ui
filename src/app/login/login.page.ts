@@ -4,6 +4,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { UserAccount } from '../signup/user.account';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginPage implements OnInit {
       public modalController: ModalController,
       public alertController: AlertController,
       public toastController: ToastController,
-      private router: Router
+      private router: Router,
+      private storage: Storage
   ) {
     this.user_account = new UserAccount(this.http);
   }
@@ -56,7 +58,10 @@ export class LoginPage implements OnInit {
     this.user_account.getUser()
         .then(data => {
           //this.displayAuthSuccessfulToast();
-          this.router.navigateByUrl('/contracts');
+          console.log('login - user - data', data);
+          return this.storage.set('user', JSON.stringify(data));
+        }).then( (key) => {
+          return this.router.navigateByUrl('/contracts');
         })
         .catch(error => {
           this.displayAuthFailureAlert();

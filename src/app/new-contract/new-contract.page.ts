@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-new-contract',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-contract.page.scss'],
 })
 export class NewContractPage implements OnInit {
+  private user: string;
 
-  constructor() { }
+  constructor(private storage: Storage) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const str = await this.storage.get('user');
+    this.user = JSON.parse(str);
+    console.log('NewContractPage-user', this.user);
   }
 
 }
