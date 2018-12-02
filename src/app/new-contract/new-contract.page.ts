@@ -13,7 +13,6 @@ export class NewContractPage implements OnInit {
   private account: UserAccount;
   private memo: string;
   private body: string;
-  private to_account_id: string;
   private to: number;
 
   constructor(
@@ -25,16 +24,13 @@ export class NewContractPage implements OnInit {
 
   async proposeContract() {
     console.log(this.user, this.memo, this.body, this.to);
+    const contract = await this.account.addContract(this.user, this.memo, this.body, this.to);
+    console.log('NewContractPage - addContract', contract);
   }
 
   async ngOnInit() {
     const str = await this.storage.get('user');
     this.user = JSON.parse(str);
     console.log('NewContractPage-user', this.user);
-  }
-
-  async addContract() {
-    const contract = await this.account.addContract(this.user, this.memo, this.body, this.to_account_id);
-    console.log('NewContractPage - addContract', contract);
   }
 }
