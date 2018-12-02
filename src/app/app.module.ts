@@ -22,12 +22,15 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(),
-    AppRoutingModule],
+    AppRoutingModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,
-    Storage, // todo - do we need
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })
