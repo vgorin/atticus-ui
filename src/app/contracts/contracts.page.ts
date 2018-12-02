@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contracts.page.scss'],
 })
 export class ContractsPage implements OnInit {
+  private contracts: Array;
 
   constructor() { }
 
