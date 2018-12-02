@@ -108,4 +108,24 @@ export class UserAccount {
           return data;
         });
   }
+
+  addContract(user, memo, body, to_user) {
+    console.log('addContract', arguments);
+    const { account_id } = user;
+    const contract_body = { account_id, memo, body };
+    return this._request('/contract/', 'post', contract_body, null)
+        .then(data => {
+          console.log('addContract-data', data);
+          const { contract_id } = data;
+          const dialog = [
+            { account_id, contract_id }
+          ];
+          const parties = [
+            { account_id, contract_id },
+            { account_id : to_user.account_id, contract_id },
+          ];
+          const deal_body = { account_id, title : memo, dialog, parties };
+          return this._request('/deal/', 'post', deal_body, null);
+        });
+  }
 }
