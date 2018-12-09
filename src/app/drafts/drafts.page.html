@@ -1,0 +1,124 @@
+<ion-content>
+  <!-- Begin: App -->
+
+  <div id="app">
+
+    <!-- Begin: Header -->
+
+    <header>
+
+
+      <section id="top">
+        <div>
+          <section>
+            <nav>
+              <ul>
+                <li><a href="menu" class="js-mobile-menu"><i class="fas fa-bars"></i></a></li>
+                <li><a href="dashboard"><i class="fas fa-home"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+        <div>
+          <div>
+            <img src="./assets/images/logo.png" alt="Atticus" style="height: 2rem;">
+          </div>
+        </div>
+        <div>
+          <section>
+            <nav>
+              <ul>
+                <li><a href="notifications"><i class="far fa-envelope"></i></a></li>
+                <li><a href="settings"><i class="fas fa-cog"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+      </section>
+
+
+
+      <section>
+        <nav id="main">
+          <ul>
+            <li>
+              <a href="templates">
+                <span>9</span>
+                <span><i class="fas fa-file-alt"></i></span>
+                <span>Templates</span>
+              </a>
+            </li>
+            <li>
+              <a href="drafts" class="active">
+                <span>9</span>
+                <span><i class="fas fa-file"></i></span>
+                <span>Drafts</span>
+              </a>
+            </li>
+            <li>
+              <a href="proposals">
+                <span>9</span>
+                <span><i class="far fa-file"></i></span>
+                <span>Proposals</span>
+              </a>
+            </li>
+            <li>
+              <a href="contracts">
+                <span>9</span>
+                <span><i class="far fa-file-alt"></i></span>
+                <span>Contracts</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+
+    </header>
+
+    <!--   End: Header -->
+    <!-- Begin: Main -->
+
+    <main>
+
+      <!-- Begin: Intro -->
+
+      <section id="drafts" class="list stack">
+        <div>
+
+
+
+          <div id="accordion">
+            <div class="tab" *ngFor="let draft of drafts">
+              <h3><a href="view-draft"><i class="fas fa-file"></i> {{ draft }}</a></h3>
+            </div>
+          </div>
+
+
+
+        </div>
+      </section>
+    </main>
+
+    <!--   End: Main -->
+    <!-- Begin: Footer -->
+
+    <footer>
+      <nav id="action">
+        <ul>
+          <li class="new">
+            <a href="new-draft" class="active">
+              <span><i class="fas fa-plus"></i></span>
+              <span>New</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <!--   End: Footer -->
+
+  </div>
+
+  <!--   End: App -->
+
+</ion-content>
