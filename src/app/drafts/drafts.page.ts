@@ -7,20 +7,24 @@ import { UserAccountModule } from '../user.account.module';
   styleUrls: ['./drafts.page.scss'],
 })
 export class DraftsPage implements OnInit {
+  public viewMode: ViewMode = ViewMode.List;
 
-  public drafts = [
-    "Baseball Bet",
-    "Consultant Agreement",
-    "Software Dev Agreement",
-    "3-Party bet",
-    "Rental Agreement"
-  ];
+  public drafts;
+  public currentDraft;
 
   constructor(private account: UserAccountModule) {}
 
   async ngOnInit() {
     const list = await this.account.listDrafts();
     console.log('DraftsPage -> ngOnInit', list);
+    this.drafts = list;
   }
 
+}
+
+enum ViewMode {
+  List = 1,
+  View,
+  Edit,
+  New
 }
