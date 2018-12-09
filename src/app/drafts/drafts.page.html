@@ -84,7 +84,7 @@
         <div>
           <div id="accordion">
             <div class="tab" *ngFor="let draft of drafts">
-              <h3><button (click)="viewMode = 2"><i class="fas fa-file"></i> {{ draft.memo }}</button></h3>
+              <h3><a href="drafts"><i class="fas fa-file"></i> {{ draft.memo }}</a></h3>
             </div>
           </div>
         </div>
@@ -113,29 +113,24 @@
     <!--   End: Main -->
     <!-- Begin: Footer -->
 
-    <footer [hidden]="viewMode != 1">
-      <nav id="action">
-        <ul>
-          <li class="new">
-            <a href="new-draft" class="active">
-              <span><i class="fas fa-plus"></i></span>
-              <span>New</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </footer>
-
-
-    <footer [hidden]="viewMode != 4">
+    <footer>
       <section>
         <nav id="action">
-          <ul>
+          <ul [hidden]="viewMode != 1">
+            <li class="new">
+              <button (click)="viewMode = 4" class="active">
+                <span><i class="fas fa-plus"></i></span>
+                <span>New</span>
+              </button>
+            </li>
+          </ul>
+
+          <ul [hidden]="viewMode != 4">
             <li class="delete">
-              <a href="drafts">
+              <button (click)="viewMode = 1">
                 <span><i class="fas fa-times"></i></span>
                 <span>Cancel</span>
-              </a>
+              </button>
             </li>
             <li class="save">
               <a href="drafts-saved">
@@ -144,15 +139,8 @@
               </a>
             </li>
           </ul>
-        </nav>
-      </section>
-    </footer>
 
-
-    <footer [hidden]="viewMode != 3">
-      <section>
-        <nav id="action">
-          <ul>
+          <ul [hidden]="viewMode != 3">
             <li class="save">
               <a href="drafts-saved">
                 <span><i class="fas fa-save"></i></span>
@@ -172,20 +160,13 @@
               </a>
             </li>
           </ul>
-        </nav>
-      </section>
-    </footer>
 
-
-    <footer [hidden]="viewMode != 2">
-      <section>
-        <nav id="action">
-          <ul>
+          <ul [hidden]="viewMode != 2">
             <li class="edit">
-              <a href="drafts-edit">
+              <button (click)="viewMode = 3">
                 <span><i class="fas fa-pencil-alt"></i></span>
                 <span>Edit</span>
-              </a>
+              </button>
             </li>
             <li class="delete">
               <a href="drafts-delete">
@@ -203,7 +184,6 @@
         </nav>
       </section>
     </footer>
-
 
     <!--   End: Footer -->
 

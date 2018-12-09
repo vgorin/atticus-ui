@@ -10,7 +10,7 @@ export class DraftsPage implements OnInit {
   public viewMode: ViewMode = ViewMode.List;
 
   public drafts;
-  public currentDraft;
+  public currentDraft = {};
 
   constructor(private account: UserAccountModule) {}
 
