@@ -187,6 +187,8 @@ export class UserAccountModule {
         });
   }
 
+  // *** DRAFTS LOGIC *** //
+
   listDrafts() {
     return this._request('/contract/list?type=draft', 'get', null, null);
   }
@@ -198,8 +200,28 @@ export class UserAccountModule {
   }
 
   saveDraft(draft) {
-    return this._request('/contract/1', 'put', draft, null).then( () => {
+    return this._request('/contract/' + this.account_id, 'put', draft, null).then( () => {
       return this.listDrafts();
     });
   }
+
+  // *** TEMPLATES LOGIC *** //
+
+  listTemplates() {
+    return this._request('/template/list', 'get', null, null);
+  }
+
+  saveNewTemplate(template) {
+    return this._request('/template/', 'post', template, null).then( () => {
+      return this.listTemplates();
+    });
+  }
+
+  saveTemplate(template) {
+    return this._request('/template/' + this.account_id, 'put', template, null).then( () => {
+      return this.listTemplates();
+    });
+  }
+
+  // *** TODO LOGIC *** //
 }
