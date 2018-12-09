@@ -7,8 +7,7 @@
 
     <header>
 
-
-      <section id="top">
+      <section id="top" [hidden]="viewMode != 1">
         <div>
           <section>
             <nav>
@@ -35,7 +34,6 @@
           </section>
         </div>
       </section>
-
 
 
       <section>
@@ -82,27 +80,40 @@
 
       <!-- Begin: Intro -->
 
-      <section id="drafts" class="list stack">
+      <section id="drafts" class="list stack" [hidden]="viewMode != 1">
         <div>
-
-
-
           <div id="accordion">
             <div class="tab" *ngFor="let draft of drafts">
-              <h3><a href="view-draft"><i class="fas fa-file"></i> {{ draft }}</a></h3>
+              <h3><button (click)="viewMode = 2"><i class="fas fa-file"></i> {{ draft.memo }}</button></h3>
             </div>
           </div>
-
-
-
         </div>
       </section>
+
+      <section id="edit" [hidden]="viewMode == 1">
+        <div>
+          <form>
+            <fieldset>
+              <h4>Draft Info</h4>
+              <p>
+                <label for="name">Draft Name</label>
+                <input [(ngModel)]="currentDraft.memo" id="name" type="text" placeholder="Enter text" [disabled]="viewMode != 3 && viewMode != 4" name="name">
+              </p>
+              <p>
+                <label for="text">Draft Text</label>
+                <textarea [(ngModel)]="currentDraft.body" id="text" [disabled]="viewMode != 3 && viewMode != 4" name="text"></textarea>
+              </p>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
     </main>
 
     <!--   End: Main -->
     <!-- Begin: Footer -->
 
-    <footer>
+    <footer [hidden]="viewMode != 1">
       <nav id="action">
         <ul>
           <li class="new">
@@ -114,6 +125,85 @@
         </ul>
       </nav>
     </footer>
+
+
+    <footer [hidden]="viewMode != 4">
+      <section>
+        <nav id="action">
+          <ul>
+            <li class="delete">
+              <a href="drafts">
+                <span><i class="fas fa-times"></i></span>
+                <span>Cancel</span>
+              </a>
+            </li>
+            <li class="save">
+              <a href="drafts-saved">
+                <span><i class="fas fa-save"></i></span>
+                <span>Save</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </footer>
+
+
+    <footer [hidden]="viewMode != 3">
+      <section>
+        <nav id="action">
+          <ul>
+            <li class="save">
+              <a href="drafts-saved">
+                <span><i class="fas fa-save"></i></span>
+                <span>Save</span>
+              </a>
+            </li>
+            <li class="delete">
+              <a href="drafts-delete">
+                <span><i class="fas fa-trash-alt"></i></span>
+                <span>Delete</span>
+              </a>
+            </li>
+            <li class="new">
+              <a href="drafts-invite">
+                <span><i class="far fa-user"></i></span>
+                <span>Propose</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </footer>
+
+
+    <footer [hidden]="viewMode != 2">
+      <section>
+        <nav id="action">
+          <ul>
+            <li class="edit">
+              <a href="drafts-edit">
+                <span><i class="fas fa-pencil-alt"></i></span>
+                <span>Edit</span>
+              </a>
+            </li>
+            <li class="delete">
+              <a href="drafts-delete">
+                <span><i class="fas fa-trash-alt"></i></span>
+                <span>Delete</span>
+              </a>
+            </li>
+            <li class="new">
+              <a href="drafts-invite">
+                <span><i class="far fa-user"></i></span>
+                <span>Propose</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </footer>
+
 
     <!--   End: Footer -->
 
