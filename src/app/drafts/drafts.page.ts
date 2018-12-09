@@ -13,6 +13,8 @@ export class DraftsPage implements OnInit {
   public drafts;
   public currentDraft = {};
 
+  public sendTo;
+
   constructor(private account: UserAccountModule) {
     this.drafts = [];
   }
@@ -34,6 +36,10 @@ export class DraftsPage implements OnInit {
   async save() {
     this.drafts = await this.account.saveDraft(this.currentDraft);
     this.viewMode = ViewMode.Success;
+  }
+
+  async sendProposal() {
+    // TODO: POST /deal?contract_id={{currentDraft.contract_id}}&to_account_id={{sendTo}}&deal_title={{currentDraft.memo}}
   }
 
 }

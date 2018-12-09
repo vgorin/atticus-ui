@@ -247,16 +247,63 @@
                   </button>
                 </li>
                 <li class="new">
-                  <a href="drafts-invite">
+                  <button (click)="viewMode = 6">
                     <span><i class="far fa-user"></i></span>
                     <span>OK &amp; Propose</span>
-                  </a>
+                  </button>
                 </li>
               </ul>
             </nav>
           </section>
         </div>
       </section>
+    </div>
+
+    <div id="modal" class="alert" [hidden]="viewMode != 6">
+
+      <form>
+        <div>
+          <div>
+            <h1>Send Invitation</h1>
+            <p>Invite to: Baseball Bet v6</p>
+          </div>
+          <section>
+            <div>
+              <fieldset>
+                <h4>User Info</h4>
+                <p>
+                  <label for="user">User Name or Email</label>
+                  <input [(ngModel)]="sendTo" id="user" type="text" placeholder="" value="" name="user">
+                </p>
+                <h4>Is This Proposal Negotiable?</h4>
+                <p class="onoffswitch">
+                  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+                  <label class="onoffswitch-label" for="myonoffswitch">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                  </label>
+                </p>
+                <nav id="action">
+                  <ul>
+                    <li class="ok">
+                      <button (click)="viewMode = 1">
+                        <span><i class="fas fa-check"></i></span>
+                        <span>Save &amp; Exit</span>
+                      </button>
+                    </li>
+                    <li class="propose">
+                      <button (click)="sendProposal()">
+                        <span><i class="fas fa-paper-plane"></i></span>
+                        <span>Save &amp; Send</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </fieldset>
+            </div>
+          </section>
+        </div>
+      </form>
     </div>
 
     <!--   End: Footer -->
