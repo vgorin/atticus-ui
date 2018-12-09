@@ -229,6 +229,36 @@
       </section>
     </footer>
 
+
+    <div id="modal" class="alert" [hidden]="viewMode != 5">
+      <section>
+        <div>
+          <div>
+            <h1>Saved Successfully!</h1>
+            <p>Baseball Bet v6</p>
+          </div>
+          <section>
+            <nav id="action">
+              <ul>
+                <li class="new">
+                  <button (click)="viewMode = 1">
+                    <span><i class="fas fa-check"></i></span>
+                    <span>OK &amp; Exit</span>
+                  </button>
+                </li>
+                <li class="new">
+                  <a href="drafts-invite">
+                    <span><i class="far fa-user"></i></span>
+                    <span>OK &amp; Propose</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+      </section>
+    </div>
+
     <!--   End: Footer -->
 
   </div>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { UserAccountModule } from '../user.account.module';
-import { ViewMode } from "../view_mode";
+import {Component, OnInit} from '@angular/core';
+import {UserAccountModule} from '../user.account.module';
+import {ViewMode} from "../view_mode";
 
 @Component({
   selector: 'app-drafts',
@@ -26,12 +26,12 @@ export class DraftsPage implements OnInit {
 
   async saveNew() {
     this.drafts = await this.account.saveNewDraft(this.currentDraft);
-    this.viewMode = 1;
+    this.viewMode = ViewMode.Success;
   }
 
   async save() {
     this.drafts = await this.account.saveDraft(this.currentDraft);
-    this.viewMode = 1;
+    this.viewMode = ViewMode.Success;
   }
 
 }
