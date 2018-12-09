@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class UserAccountModule {
   private backend_host = 'http://46.219.125.69:5000';
 
+  public check_user : boolean;
+
   public auth;
 
   public account_id: string;
@@ -33,51 +35,7 @@ export class UserAccountModule {
   }
 
   public init() {
-    return this._restore();
-  }
-
-  private _restore() {
-    console.log('UserAccountModule -> _restore');
-    return this.storage.get('user')
-      .then( (str) => {
-        const user = JSON.parse(str) || {};
-        console.log('RESTORED', str);
-
-        this.account_id = user.account_id;
-        this.email = user.email;
-        this.password = user.password;
-        this.verify_password = user.verify_password;
-        this.name = user.name;
-        this.username = user.username;
-        this.legal_name = user.legal_name;
-        this.country_code = user.country_code;
-        this.language_code = user.language_code;
-        this.timezone = user.timezone;
-        this.contracts = user.contracts;
-
-        if (!this.contracts) {
-          return this.getContracts();
-        }
-      })
-      .catch( (err) => {
-        console.log('ERROR: UserAccountModule -> _restore', err);
-      });
-  }
-
-  private _store() {
-    return this.storage.set('user', JSON.stringify({
-      account_id : this.account_id,
-      email : this.email,
-      password : this.password,
-      verify_password : this.verify_password,
-      name : this.name,
-      username : this.username,
-      legal_name : this.legal_name,
-      country_code : this.country_code,
-      language_code : this.language_code,
-      timezone : this.timezone,
-      contracts : this.contracts
-    }));
+    return this.getUser();
   }
 
   private _request(sub_url, method, json, options) {
@@ -86,11 +44,14 @@ export class UserAccountModule {
       .then( (auth_str) => {
         const auth = JSON.parse(auth_str || '{}');
         if (!auth.email) {
-          throw(new Error('NOT_LOGGED_IN'));
+          throw(new Error('NOT_LOGGED_IN1'));
         }
         this.auth = auth;
         if (!this.account_id) {
-          return this._restore();
+          // throw(new Error('NOT_LOGGED_IN2'));
+          if (!this.check_user) {
+            return this.logIn(auth.email, auth.password);
+          }
         }
       })
       .then( () => {
@@ -136,7 +97,6 @@ export class UserAccountModule {
           ].join(': '));
         }
         console.log('HTTP_RESPONSE:', {method, options, response});
-        this._store();
         return response;
       })
       .catch((error) => {
@@ -145,38 +105,52 @@ export class UserAccountModule {
       });
   }
 
-  private _update(user_data) {
-    if (!user_data) {
+  getUser() {
+    if ( this.account_id ) {
       return null;
     }
-    const ok = Object.keys(user_data);
-    for (let i = 0; i < ok.length; i++) {
-      this[ok[i]] = user_data[ok[i]];
-    }
-  }
-
-  getUser() {
+    this.check_user = true;
     console.log('UserAccountModule->getUser');
     return this._request('/account/auth/', 'get', null, null)
-        .then(data => {
-          this._update(data);
-          return data;
+        .then( (user) => {
+          if ( !user.account_id ) {
+            throw(new Error('FAILED_TO_LOGIN'));
+          }
+
+          this.account_id = user.account_id;
+          this.email = user.email;
+          this.password = user.password;
+          this.verify_password = user.verify_password;
+          this.name = user.name;
+          this.username = user.username;
+          this.legal_name = user.legal_name;
+          this.country_code = user.country_code;
+          this.language_code = user.language_code;
+          this.timezone = user.timezone;
+          this.contracts = user.contracts;
+
+          console.log( this.account_id );
+
+          return user;
+        })
+        .finally( () => {
+          this.check_user = false;
         });
   }
 
   createUser() {
-    const {account_id, email, username, password, legal_name, language_code, country_code, timezone} = this;
+    const { account_id, email, username, password, legal_name, language_code, country_code, timezone } = this;
     const params = {account_id, email, username, password, legal_name, language_code, country_code, timezone};
     return this._request('/account', 'post', params, null)
-        .then(data => {
-          this._update(data);
-          return data;
+        .then( () => {
+          return this.getUser();
         });
   }
 
-  logIn(email, password) {
+  async logIn(email, password) {
     this.auth = { email, password };
-    return this.storage.set('auth', JSON.stringify({email, password}));
+    await this.storage.set('auth', JSON.stringify({email, password}));
+    return await this.getUser();
   }
 
   async logOut() {
