@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   }
 
   dismiss() {
-    console.log("login modal dismiss()");
+    console.log('login modal dismiss()');
     this.modalController.dismiss();
   }
 
@@ -52,9 +52,8 @@ export class LoginPage implements OnInit {
   login() {
     this.account.getUser(this.email, this.password)
         .then(data => {
-          this.displayAuthSuccessfulToast();
           console.log('login - user - data', data);
-          //return true;
+          this.displayAuthSuccessfulToast();
         }).then( (key) => {
           return this.router.navigateByUrl('/contracts');
         })

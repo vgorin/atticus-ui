@@ -1,11 +1,10 @@
-import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class UserAccountModule implements OnInit {
+export class UserAccountModule {
   private backend_host = 'http://46.219.125.69:5000';
 
   public auth_user: string;
@@ -32,13 +31,8 @@ export class UserAccountModule implements OnInit {
     this.timezone = 'America/Los_Angeles';
   }
 
-  async ngOnInit() {
-    console.log('UserAccountModule -> ngOnInit');
-    await this._restore();
-  }
-
   private _restore() {
-    console.log('UserAccountModule->ngOnInit');
+    console.log('UserAccountModule -> _restore');
     return this.storage.get('user')
       .then( (str) => {
         const user = JSON.parse(str);
@@ -62,7 +56,7 @@ export class UserAccountModule implements OnInit {
         }
       })
       .catch( (err) => {
-        console.log('ERROR', err);
+        console.log('ERROR: UserAccountModule -> _restore', err);
       });
   }
 
@@ -84,6 +78,11 @@ export class UserAccountModule implements OnInit {
   }
 
   private _request(sub_url, method, json, options) {
+    if (!this.auth_user) {
+      return this._restore().then( () => {
+        return this._request(sub_url, method, json, options);
+      });
+    }
     const url = [
         this.backend_host.replace(/\/+$/, ''),
         sub_url.replace(/^\/+/, '')
@@ -98,10 +97,9 @@ export class UserAccountModule implements OnInit {
     if (!options.headers['Content-Type']) {
       options.headers['Content-Type'] = {};
     }
-    // options.headers['Authorization'] = 'Basic ' + btoa([this.auth_user, this.auth_pass].join(':'));
     options.headers['Authorization'] = 'Basic ' + btoa(unescape(encodeURIComponent(this.auth_user + ':' + this.auth_pass)));
     options.headers['Content-Type'] = 'application/json';
-    method = method.toLowerCase();
+    method = (method || 'get').toLowerCase();
     switch (method) {
       case 'get' : {
         args = args.concat([options]);
@@ -144,11 +142,6 @@ export class UserAccountModule implements OnInit {
     }
   }
 
-  private _clearPass() {
-    this.password = '';
-    this.verify_password = '';
-  }
-
   getUser(email, password) {
     console.log('UserAccountModule->getUser', email, password);
     this.auth_user = email || this.auth_user;
@@ -156,7 +149,6 @@ export class UserAccountModule implements OnInit {
     return this._request('/account/auth/', 'get', null, null)
         .then(data => {
           this._update(data);
-          this._clearPass();
           return data;
         });
   }
@@ -167,7 +159,6 @@ export class UserAccountModule implements OnInit {
     return this._request('/account', 'post', params, null)
         .then(data => {
           this._update(data);
-          this._clearPass();
           return data;
         });
   }
@@ -200,23 +191,7 @@ export class UserAccountModule implements OnInit {
         });
   }
 
-  // http://46.219.125.69:5001/contract/list?type=draft
-  /*
-  [
-    {
-      memo: "First Deal Contract",
-      body: "Lets have our first deal!",
-      modified: 1544365491000,
-      created: 1544365490000,
-      contract_id: 1,
-      account_id: 1
-    }
-  ]
-  */
   listDrafts() {
-    console.log('liftDrafts');
-    return this._restore().then( () => {
-      return this._request('/contract/list?type=draft', 'get');
-    });
+    return this._request('/contract/list?type=draft', 'get', null, null);
   }
 }
