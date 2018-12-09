@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccountModule } from '../user.account.module';
+import { ViewMode } from "../view_mode";
 
 @Component({
   selector: 'app-drafts',
@@ -20,11 +21,19 @@ export class DraftsPage implements OnInit {
     this.drafts = list;
   }
 
-}
+  async viewDraft(index) {
+    console.log("viewing draft " + index);
+    this.currentDraft = this.drafts[index];
+  }
 
-enum ViewMode {
-  List = 1,
-  View,
-  Edit,
-  New
+  async saveNew() {
+    console.log("saving new draft", this.currentDraft);
+
+  }
+
+  async save() {
+    console.log("saving existing draft", this.currentDraft);
+
+  }
+
 }
