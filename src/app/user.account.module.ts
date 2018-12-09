@@ -27,11 +27,16 @@ export class UserAccountModule {
 
   private contracts: Array<Object>;
 
+  public drafts;
+  public templates;
+
   constructor(private http: HttpClient, private storage: Storage) {
     console.log('UserAccountModule->constructor');
     this.country_code = 'US';
     this.language_code = 'eng';
     this.timezone = 'America/Los_Angeles';
+    this.drafts = [];
+    this.templates = [];
   }
 
   public init() {
@@ -150,7 +155,10 @@ export class UserAccountModule {
   async logIn(email, password) {
     this.auth = { email, password };
     await this.storage.set('auth', JSON.stringify({email, password}));
-    return await this.getUser();
+    const user = await this.getUser();
+    await this.listDrafts();
+    await this.listTemplates();
+    return user;
   }
 
   async logOut() {
@@ -189,8 +197,9 @@ export class UserAccountModule {
 
   // *** DRAFTS LOGIC *** //
 
-  listDrafts() {
-    return this._request('/contract/list?type=draft', 'get', null, null);
+  async listDrafts() {
+    this.drafts = await this._request('/contract/list?type=draft', 'get', null, null);
+    return this.drafts;
   }
 
   saveNewDraft(draft) {
@@ -207,8 +216,9 @@ export class UserAccountModule {
 
   // *** TEMPLATES LOGIC *** //
 
-  listTemplates() {
-    return this._request('/template/list', 'get', null, null);
+  async listTemplates() {
+    this.templates = await this._request('/template/list', 'get', null, null);
+    return this.templates;
   }
 
   saveNewTemplate(template) {
