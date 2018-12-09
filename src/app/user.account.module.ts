@@ -10,6 +10,8 @@ export class UserAccountModule {
   public auth_user: string;
   public auth_pass: string;
 
+  public account_id: string;
+
   public email: string;
   public password: string;
   public verify_password: string;
@@ -44,6 +46,8 @@ export class UserAccountModule {
 
         this.auth_user = user.auth_user;
         this.auth_pass = user.auth_pass;
+
+        this.account_id = user.account_id;
         this.email = user.email;
         this.password = user.password;
         this.verify_password = user.verify_password;
@@ -68,6 +72,8 @@ export class UserAccountModule {
     return this.storage.set('user', JSON.stringify({
       auth_user : this.auth_user,
       auth_pass : this.auth_pass,
+
+      account_id : this.account_id,
       email : this.email,
       password : this.password,
       verify_password : this.verify_password,
@@ -82,7 +88,7 @@ export class UserAccountModule {
   }
 
   private _request(sub_url, method, json, options) {
-    if (!this.auth_user) {
+    if (!this.account_id) {
       return this._restore().then( () => {
         return this._request(sub_url, method, json, options);
       });
@@ -158,8 +164,8 @@ export class UserAccountModule {
   }
 
   createUser() {
-    const {email, username, password, legal_name, language_code, country_code, timezone} = this;
-    const params = {email, username, password, legal_name, language_code, country_code, timezone};
+    const {account_id, email, username, password, legal_name, language_code, country_code, timezone} = this;
+    const params = {account_id, email, username, password, legal_name, language_code, country_code, timezone};
     return this._request('/account', 'post', params, null)
         .then(data => {
           this._update(data);
@@ -175,9 +181,9 @@ export class UserAccountModule {
         });
   }
 
-  addContract(user, memo, body, to_account_id) {
+  addContract(memo, body, to_account_id) {
     console.log('addContract', arguments);
-    const { account_id } = user;
+    const { account_id } = this;
     const contract_body = { account_id, memo, body };
     return this._request('/contract/', 'post', contract_body, null)
         .then(data => {
