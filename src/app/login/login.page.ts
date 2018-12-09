@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AlertController, ToastController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
-import { UserAccount } from '../signup/user.account';
+import { UserAccountModule } from '../user.account.module';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -12,19 +10,16 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public user_account: UserAccount;
+  public email: string;
+  public password: string;
 
   constructor(
-      private http: HttpClient,
       public modalController: ModalController,
       public alertController: AlertController,
       public toastController: ToastController,
       private router: Router,
-      private storage: Storage
-  ) {
-    this.user_account = new UserAccount(this.http);
-  }
-
+      public account: UserAccountModule
+  ) { }
 
   ngOnInit() {
   }
@@ -55,15 +50,16 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.user_account.getUser()
+    this.account.getUser(this.email, this.password)
         .then(data => {
-          //this.displayAuthSuccessfulToast();
+          this.displayAuthSuccessfulToast();
           console.log('login - user - data', data);
-          return this.storage.set('user', JSON.stringify(data));
+          //return true;
         }).then( (key) => {
           return this.router.navigateByUrl('/contracts');
         })
         .catch(error => {
+          console.log('fail - login - user - data', error);
           this.displayAuthFailureAlert();
         });
   }

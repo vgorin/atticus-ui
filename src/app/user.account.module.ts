@@ -1,7 +1,15 @@
+import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 
-export class UserAccount {
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class UserAccountModule implements OnInit {
   private backend_url = 'http://46.219.125.69:5000';
+
+  public auth_user: string;
+  public auth_pass: string;
 
   public email: string;
   public password: string;
@@ -15,10 +23,63 @@ export class UserAccount {
   public language_code: string;
   public timezone: string;
 
-  constructor(private http: HttpClient) {
+  private contracts: Array<Object>;
+
+  constructor(private http: HttpClient, private storage: Storage) {
+    console.log('UserAccountModule->constructor');
     this.country_code = 'US';
     this.language_code = 'eng';
     this.timezone = 'America/Los_Angeles';
+  }
+
+  async ngOnInit() {
+    await this._restore();
+  }
+
+  private _restore() {
+    console.log('UserAccountModule->ngOnInit');
+    this.storage.get('user')
+    .then( (str) => {
+      const user = JSON.parse(str);
+      console.log('RESTORED', str);
+
+      this.auth_user = user.auth_user;
+      this.auth_pass = user.auth_pass;
+      this.email = user.email;
+      this.password = user.password;
+      this.verify_password = user.verify_password;
+      this.name = user.name;
+      this.username = user.username;
+      this.legal_name = user.legal_name;
+      this.country_code = user.country_code;
+      this.language_code = user.language_code;
+      this.timezone = user.timezone;
+      this.contracts = user.contracts;
+
+      if (!this.contracts) {
+        return this.getContracts();
+      }
+    })
+    .catch( (err) => {
+      console.log('ERROR', err);
+    });
+  }
+
+  private _store() {
+    return this.storage.set('user', JSON.stringify({
+      auth_user : this.auth_user,
+      auth_pass : this.auth_pass,
+      email : this.email,
+      password : this.password,
+      verify_password : this.verify_password,
+      name : this.name,
+      username : this.username,
+      legal_name : this.legal_name,
+      country_code : this.country_code,
+      language_code : this.language_code,
+      timezone : this.timezone,
+      contracts : this.contracts
+    }));
   }
 
   private _request(sub_url, method, json, options) {
@@ -34,6 +95,7 @@ export class UserAccount {
     if (!options.headers['Content-Type']) {
       options.headers['Content-Type'] = {};
     }
+    options.headers['Authorization'] = 'Basic ' + btoa([this.auth_user, this.auth_pass].join(':'));
     options.headers['Content-Type'] = 'application/json';
     method = method.toLowerCase();
     switch (method) {
@@ -59,6 +121,7 @@ export class UserAccount {
             ].join(': '));
           }
           console.log('HTTP_RESPONSE:', {method, args, options, response});
+          this._store();
           return response;
         })
         .catch((error) => {
@@ -82,8 +145,10 @@ export class UserAccount {
     this.verify_password = '';
   }
 
-  getUser() {
-    return this._request('/account/email/'+this.email, 'get', null, null)
+  getUser(email, password) {
+    this.auth_user = email;
+    this.auth_pass = password;
+    return this._request('/account/auth/', 'get', null, null)
         .then(data => {
           this._update(data);
           this._clearPass();
@@ -102,9 +167,10 @@ export class UserAccount {
         });
   }
 
-  getContracts(user) {
-    return this._request('/contract/list/' + user.account_id, 'get', null, null)
+  getContracts() {
+    return this._request('/contract/list/', 'get', null, null)
         .then(data => {
+          this.contracts = data;
           return data;
         });
   }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
-import { UserAccount } from './user.account';
+import { UserAccountModule } from '../user.account.module';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +9,6 @@ import { UserAccount } from './user.account';
 })
 export class SignupPage implements OnInit {
   public step = 1;
-  public user_account: UserAccount;
 
   async displayEmptyEmailAlert() {
     const alert = await this.alertController.create({
@@ -82,12 +80,10 @@ export class SignupPage implements OnInit {
   }
 
   constructor(
-      private http: HttpClient,
       public alertController: AlertController,
-      public toastController: ToastController
-  ) {
-    this.user_account = new UserAccount(this.http);
-  }
+      public toastController: ToastController,
+      private user_account: UserAccountModule
+  ) { }
 
   createUser() {
     this.user_account.createUser()
