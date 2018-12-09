@@ -74,6 +74,7 @@ export class UserAccountModule {
         if (!options.headers['Content-Type']) {
           options.headers['Content-Type'] = {};
         }
+        // todo - http.useBasicAuth(username, password)
         options.headers['Authorization'] = 'Basic ' + btoa(
             unescape(encodeURIComponent(this.auth.email + ':' + this.auth.password))
         );
@@ -158,6 +159,7 @@ export class UserAccountModule {
     const user = await this.getUser();
     await this.listDrafts();
     await this.listTemplates();
+    console.log('Logged In:', user);
     return user;
   }
 
@@ -203,8 +205,11 @@ export class UserAccountModule {
   }
 
   saveNewDraft(draft) {
-    return this._request('/contract/', 'post', draft, null).then( () => {
-      return this.listDrafts();
+    return this._request('/contract/', 'post', draft, null).then( (contract_id) => {
+      const ret = Object.assign(draft, { contract_id : contract_id });
+      return this.listDrafts().then( () => {
+        return ret;
+      });
     });
   }
 
@@ -212,6 +217,17 @@ export class UserAccountModule {
     return this._request('/contract/' + this.account_id, 'put', draft, null).then( () => {
       return this.listDrafts();
     });
+  }
+
+  async getSendTo(keys) {
+    return await this._request('/account/search?q=' + keys, 'get', null, null);
+  }
+
+  async sendProposal(sendToAccount, currentDraft) {
+    console.log('sendProposal', {currentDraft, sendToAccount});
+    return await this._request(
+        `/deal?contract_id=${currentDraft.contract_id}&to_account_id=${sendToAccount.account_id}&deal_title=${currentDraft.memo}`,
+        'post', null, null);
   }
 
   // *** TEMPLATES LOGIC *** //

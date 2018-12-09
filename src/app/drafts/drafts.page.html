@@ -278,7 +278,7 @@
                 <h4>User Info</h4>
                 <p>
                   <label for="user">User Name or Email</label>
-                  <input [(ngModel)]="sendTo" id="user" type="text" placeholder="" value="" name="user">
+                  <input [(ngModel)]="sendTo" id="user" type="text" (keypress)="onChange($event)" placeholder="" value="" name="user">
                 </p>
                 <h4>Is This Proposal Negotiable?</h4>
                 <p class="onoffswitch">
