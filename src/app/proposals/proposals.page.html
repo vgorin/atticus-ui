@@ -3,9 +3,8 @@
 
     <!-- Begin: Header -->
 
-    <header>
-
-
+    <!-- proposals.html -->
+    <header [hidden]="viewMode != 1">
       <section id="top">
         <div>
           <section>
@@ -33,8 +32,6 @@
           </section>
         </div>
       </section>
-
-
 
       <section>
         <nav id="main">
@@ -70,8 +67,26 @@
           </ul>
         </nav>
       </section>
-
     </header>
+    <!-- proposals.html -->
+
+    <!-- proposals-new.html -->
+    <header class="heading" [hidden]="viewMode != 4">
+      <section>
+        <div>
+          <div>
+            <h1><a href="proposals">Proposals</a> <i class="fas fa-angle-right"></i> New Proposal</h1>
+          </div>
+        </div>
+        <div>
+          <span class="close">
+            <a href="proposals"><i class="fas fa-times"></i></a>
+          </span>
+        </div>
+      </section>
+    </header>
+    <!-- proposals-new.html -->
+
 
     <!--   End: Header -->
     <!-- Begin: Main -->
@@ -80,91 +95,35 @@
 
       <!-- Begin: Intro -->
 
-      <section id="proposals" class="list stack">
+      <section id="proposals" class="list stack" [hidden]="viewMode != 1">
         <div>
           <div id="accordion">
             <div class="tab">
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile-nick.png"> Consultant Agreement</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile.png"> Rental Agreement</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile-charles.png"> Software Dev Agreement</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile-andreas.png"> 3-Party bet</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile-roger.png"> Dice Roll Bet</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile-nick.png"> Consultant Agreement</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile.png"> Rental Agreement</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile-charles.png"> Software Dev Agreement</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile-andreas.png"> 3-Party bet</a></h3>
-              <h3><a href="proposal-status-alt"><img src="./assets/images/profile-roger.png"> Dice Roll Bet</a></h3>
+              <h3 *ngFor="let proposal of proposals; let i = index" [attr.data-index]="i">
+                <a href="deal"><img src="./assets/images/profile-nick.png"> {{proposal.title}}</a>
+              </h3>
             </div>
           </div>
-          <!--
-
-                                  <div id="accordion">
-                                      <div class="tab">
-                                          <h3><a href="proposals-view"><img src="images/profile.png"> Consultant Agreement</a></h3>
-                                          <input id="a1" type="checkbox" name="tabs">
-                                          <label for="a1">&nbsp;</label>
-                                          <div class="tab-content">
-
-                                          </div>
-                                      </div>
-                                      <div class="tab">
-                                          <h3><a href="proposals-view"><img src="images/profile-nick.png"> Rental Agreement</a></h3>
-                                          <input id="a2" type="checkbox" name="tabs">
-                                          <label for="a2">&nbsp;</label>
-                                          <div class="tab-content">
-                                              <ul>
-                                                  <li><a href="proposals-view">Rental Agreement v3</a></li>
-                                                  <li><a href="proposals-view">Rental Agreement v2</a></li>
-                                                  <li><a href="proposals-view">Rental Agreement v1</a></li>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                      <div class="tab">
-                                          <h3><a href="proposals-view"><img src="images/profile-charles.png"> Software Dev Agreement</a></h3>
-                                          <input id="a3" type="checkbox" name="tabs">
-                                          <label for="a3">&nbsp;</label>
-                                          <div class="tab-content">
-                                              <ul>
-                                                  <li><a href="proposals-view">Software Dev Agreement v3</a></li>
-                                                  <li><a href="proposals-view">Software Dev Agreement v2</a></li>
-                                                  <li><a href="proposals-view">Software Dev Agreement v1</a></li>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                      <div class="tab">
-                                          <h3><a href="proposals-view"><img src="images/profile-roger.png"> 3-Party bet</a></h3>
-                                          <input id="a4" type="checkbox" name="tabs">
-                                          <label for="a4">&nbsp;</label>
-                                          <div class="tab-content">
-                                              <ul>
-                                                  <li><a href="proposals-view">3-Party bet v3</a></li>
-                                                  <li><a href="proposals-view">3-Party bet v2</a></li>
-                                                  <li><a href="proposals-view">3-Party bet v1</a></li>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                      <div class="tab">
-                                          <h3><a href="templates-view"><img src="images/profile-andreas.png"> Dice Roll Bet</a></h3>
-                                          <input id="a5" type="checkbox" name="tabs">
-                                          <label for="a5">&nbsp;</label>
-                                          <div class="tab-content">
-                                              <ul>
-                                                  <li><a href="proposals-view">Dice Roll Bet v6</a></li>
-                                                  <li><a href="proposals-view">Dice Roll Bet v5</a></li>
-                                                  <li><a href="proposals-view">Dice Roll Bet v4</a></li>
-                                                  <li><a href="proposals-view">Dice Roll Bet v3</a></li>
-                                                  <li><a href="proposals-view">Dice Roll Bet v2</a></li>
-                                                  <li><a href="proposals-view">Dice Roll Bet v1</a></li>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                  </div>
-
-          -->
-
         </div>
       </section>
 
+      <section id="edit" [hidden]="viewMode == 1">
+        <div>
+          <form>
+            <fieldset>
+              <h4>Proposal Info</h4>
+              <p>
+                <label for="name">Proposal Name</label>
+                <input id="name" type="text" placeholder="" value="">
+              </p>
+              <p>
+                <label for="text">Proposal Text</label>
+                <textarea id="text"></textarea>
+              </p>
+            </fieldset>
+          </form>
+        </div>
+      </section>
 
     </main>
 
@@ -175,10 +134,10 @@
       <nav id="action">
         <ul>
           <li class="new">
-            <a href="proposals-new" class="active">
+            <button (click)="viewMode = 4" class="active">
               <span><i class="fas fa-plus"></i></span>
               <span>New</span>
-            </a>
+            </button>
           </li>
         </ul>
       </nav>

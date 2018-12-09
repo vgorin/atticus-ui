@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'proposals', loadChildren: './proposals/proposals.module#ProposalsPageModule' },
   { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' },
   { path: 'templates', loadChildren: './templates/templates.module#TemplatesPageModule' },
+  { path: 'deal', loadChildren: './deal/deal.module#DealPageModule' },
 ];
 
 @NgModule({

@@ -57,7 +57,7 @@ export class DraftsPage implements OnInit {
   sendProposal() {
     this.account.sendProposal(this.sendToAccount, this.currentDraft)
         .then( () => {
-          this.viewMode = 7;
+          this.viewMode = ViewMode.ModalInvitationSent;
         })
         .catch( (e) => {
           this.displayAuthFailureAlert(e);
