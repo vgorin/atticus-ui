@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    return this.account.getUser(this.email, this.password)
+    return this.account.logIn(this.email, this.password)
         .then(data => {
           console.log('login - user - data', data);
           return this.displayAuthSuccessfulToast();
