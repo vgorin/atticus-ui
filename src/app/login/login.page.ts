@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
           console.log('login - user - data', data);
           return this.displayAuthSuccessfulToast();
         }).then( (key) => {
-          return this.router.navigateByUrl('/contracts');
+          return this.router.navigateByUrl('/drafts');
         })
         .catch(error => {
           console.log('fail - login - user - data', error);
