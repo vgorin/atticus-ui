@@ -40,7 +40,7 @@ export class UserAccountModule {
     console.log('UserAccountModule -> _restore');
     return this.storage.get('user')
       .then( (str) => {
-        const user = JSON.parse(str);
+        const user = JSON.parse(str) || {};
         console.log('RESTORED', str);
 
         this.account_id = user.account_id;
@@ -179,8 +179,10 @@ export class UserAccountModule {
     return this.storage.set('auth', JSON.stringify({email, password}));
   }
 
-  logOut() {
-    return this.storage.remove('user');
+  async logOut() {
+    await this.storage.remove('auth');
+    await this.storage.remove('user');
+    return null;
   }
 
   getContracts() {
