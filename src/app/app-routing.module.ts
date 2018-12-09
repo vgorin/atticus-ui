@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'drafts', loadChildren: './drafts/drafts.module#DraftsPageModule' },
   { path: 'proposals', loadChildren: './proposals/proposals.module#ProposalsPageModule' },
   { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' },
+  { path: 'templates', loadChildren: './templates/templates.module#TemplatesPageModule' },
 ];
 
 @NgModule({
