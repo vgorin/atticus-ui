@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 
 export class UserAccount {
-  private backend_url = 'http://localhost:28081';
+  private backend_url = 'http://46.219.125.69:5000';
 
   public email: string;
   public password: string;
