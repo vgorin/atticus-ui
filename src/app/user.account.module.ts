@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class UserAccountModule {
   private backend_host = 'http://46.219.125.69:5000';
 
-  public check_user : boolean;
+  public check_user: boolean;
 
   public auth;
 
@@ -189,5 +189,17 @@ export class UserAccountModule {
 
   listDrafts() {
     return this._request('/contract/list?type=draft', 'get', null, null);
+  }
+
+  saveNewDraft(draft) {
+    return this._request('/contract/', 'post', draft, null).then( () => {
+      return this.listDrafts();
+    });
+  }
+
+  saveDraft(draft) {
+    return this._request('/contract/1', 'put', draft, null).then( () => {
+      return this.listDrafts();
+    });
   }
 }

@@ -16,24 +16,23 @@ export class DraftsPage implements OnInit {
   constructor(private account: UserAccountModule) {}
 
   async ngOnInit() {
-    const list = await this.account.listDrafts();
-    console.log('DraftsPage -> ngOnInit', list);
-    this.drafts = list;
+    this.drafts = await this.account.listDrafts();
+    console.log('DraftsPage -> ngOnInit', this.drafts);
   }
 
   async viewDraft(index) {
-    console.log("viewing draft " + index);
+    console.log("viewing draft ", index, this.drafts[index]);
     this.currentDraft = this.drafts[index];
   }
 
   async saveNew() {
-    console.log("saving new draft", this.currentDraft);
-
+    this.drafts = await this.account.saveNewDraft(this.currentDraft);
+    this.viewMode = 1;
   }
 
   async save() {
-    console.log("saving existing draft", this.currentDraft);
-
+    this.drafts = await this.account.saveDraft(this.currentDraft);
+    this.viewMode = 1;
   }
 
 }
