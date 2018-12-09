@@ -7,8 +7,7 @@ import { Injectable } from '@angular/core';
 export class UserAccountModule {
   private backend_host = 'http://46.219.125.69:5000';
 
-  public auth_user: string;
-  public auth_pass: string;
+  public auth;
 
   public account_id: string;
 
@@ -44,9 +43,6 @@ export class UserAccountModule {
         const user = JSON.parse(str);
         console.log('RESTORED', str);
 
-        this.auth_user = user.auth_user;
-        this.auth_pass = user.auth_pass;
-
         this.account_id = user.account_id;
         this.email = user.email;
         this.password = user.password;
@@ -70,9 +66,6 @@ export class UserAccountModule {
 
   private _store() {
     return this.storage.set('user', JSON.stringify({
-      auth_user : this.auth_user,
-      auth_pass : this.auth_pass,
-
       account_id : this.account_id,
       email : this.email,
       password : this.password,
@@ -88,58 +81,68 @@ export class UserAccountModule {
   }
 
   private _request(sub_url, method, json, options) {
-    if (!this.account_id) {
-      return this._restore().then( () => {
-        return this._request(sub_url, method, json, options);
-      });
-    }
-    const url = [
-        this.backend_host.replace(/\/+$/, ''),
-        sub_url.replace(/^\/+/, '')
-    ].join('/');
-    let args = [url];
-    if (!options) {
-      options = {};
-    }
-    if (!options.headers) {
-      options.headers = {};
-    }
-    if (!options.headers['Content-Type']) {
-      options.headers['Content-Type'] = {};
-    }
-    options.headers['Authorization'] = 'Basic ' + btoa(unescape(encodeURIComponent(this.auth_user + ':' + this.auth_pass)));
-    options.headers['Content-Type'] = 'application/json';
-    method = (method || 'get').toLowerCase();
-    switch (method) {
-      case 'get' : {
-        args = args.concat([options]);
-        break;
-      }
-      case 'post' : {
-        args = args.concat([json, options]);
-        break;
-      }
-    }
-    if (!this.http[method]) {
-      console.log('Error: No such HTTP method :', {url, method, json, options});
-    }
-    return this.http[method].apply(this.http, args)
-        .toPromise()
-        .then((response) => {
-          if ((response.error || {}).message) {
-            throw new Error([
-              response.error.code,
-              response.error.message
-            ].join(': '));
+    return this
+      .storage.get('auth')
+      .then( (auth_str) => {
+        const auth = JSON.parse(auth_str || '{}');
+        if (!auth.email) {
+          throw(new Error('NOT_LOGGED_IN'));
+        }
+        this.auth = auth;
+        if (!this.account_id) {
+          return this._restore();
+        }
+      })
+      .then( () => {
+        const url = [
+          this.backend_host.replace(/\/+$/, ''),
+          sub_url.replace(/^\/+/, '')
+        ].join('/');
+        let args = [url];
+        if (!options) {
+          options = {};
+        }
+        if (!options.headers) {
+          options.headers = {};
+        }
+        if (!options.headers['Content-Type']) {
+          options.headers['Content-Type'] = {};
+        }
+        options.headers['Authorization'] = 'Basic ' + btoa(
+            unescape(encodeURIComponent(this.auth.email + ':' + this.auth.password))
+        );
+        options.headers['Content-Type'] = 'application/json';
+        method = (method || 'get').toLowerCase();
+        switch (method) {
+          case 'get' : {
+            args = args.concat([options]);
+            break;
           }
-          console.log('HTTP_RESPONSE:', {method, args, options, response});
-          this._store();
-          return response;
-        })
-        .catch((error) => {
-          console.log('HTTP_ERROR:', {method, args, options, error});
-          throw(error);
-        });
+          case 'post' : {
+            args = args.concat([json, options]);
+            break;
+          }
+        }
+        if (!this.http[method]) {
+          console.log('Error: No such HTTP method :', {url, method, json, options});
+        }
+        return this.http[method].apply(this.http, args).toPromise();
+      })
+      .then((response) => {
+        if ((response.error || {}).message) {
+          throw new Error([
+            response.error.code,
+            response.error.message
+          ].join(': '));
+        }
+        console.log('HTTP_RESPONSE:', {method, options, response});
+        this._store();
+        return response;
+      })
+      .catch((error) => {
+        console.log('HTTP_ERROR:', {method, options, error});
+        throw(error);
+      });
   }
 
   private _update(user_data) {
@@ -152,10 +155,8 @@ export class UserAccountModule {
     }
   }
 
-  getUser(email, password) {
-    console.log('UserAccountModule->getUser', email, password);
-    this.auth_user = email || this.auth_user;
-    this.auth_pass = password || this.auth_pass;
+  getUser() {
+    console.log('UserAccountModule->getUser');
     return this._request('/account/auth/', 'get', null, null)
         .then(data => {
           this._update(data);
@@ -171,6 +172,15 @@ export class UserAccountModule {
           this._update(data);
           return data;
         });
+  }
+
+  logIn(email, password) {
+    this.auth = { email, password };
+    return this.storage.set('auth', JSON.stringify({email, password}));
+  }
+
+  logOut() {
+    return this.storage.remove('user');
   }
 
   getContracts() {
