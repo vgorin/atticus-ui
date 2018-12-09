@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAccountModule } from '../user.account.module';
 
 @Component({
   selector: 'app-drafts',
@@ -15,9 +16,11 @@ export class DraftsPage implements OnInit {
     "Rental Agreement"
   ];
 
-  constructor() { }
+  constructor(private account: UserAccountModule) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    const list = await this.account.listDrafts();
+    console.log('DraftsPage -> ngOnInit', list);
   }
 
 }

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserAccountModule implements OnInit {
-  private backend_url = 'http://46.219.125.69:5000';
+  private backend_host = 'http://46.219.125.69:5000';
 
   public auth_user: string;
   public auth_pass: string;
@@ -33,36 +33,37 @@ export class UserAccountModule implements OnInit {
   }
 
   async ngOnInit() {
+    console.log('UserAccountModule -> ngOnInit');
     await this._restore();
   }
 
   private _restore() {
     console.log('UserAccountModule->ngOnInit');
-    this.storage.get('user')
-    .then( (str) => {
-      const user = JSON.parse(str);
-      console.log('RESTORED', str);
+    return this.storage.get('user')
+      .then( (str) => {
+        const user = JSON.parse(str);
+        console.log('RESTORED', str);
 
-      this.auth_user = user.auth_user;
-      this.auth_pass = user.auth_pass;
-      this.email = user.email;
-      this.password = user.password;
-      this.verify_password = user.verify_password;
-      this.name = user.name;
-      this.username = user.username;
-      this.legal_name = user.legal_name;
-      this.country_code = user.country_code;
-      this.language_code = user.language_code;
-      this.timezone = user.timezone;
-      this.contracts = user.contracts;
+        this.auth_user = user.auth_user;
+        this.auth_pass = user.auth_pass;
+        this.email = user.email;
+        this.password = user.password;
+        this.verify_password = user.verify_password;
+        this.name = user.name;
+        this.username = user.username;
+        this.legal_name = user.legal_name;
+        this.country_code = user.country_code;
+        this.language_code = user.language_code;
+        this.timezone = user.timezone;
+        this.contracts = user.contracts;
 
-      if (!this.contracts) {
-        return this.getContracts();
-      }
-    })
-    .catch( (err) => {
-      console.log('ERROR', err);
-    });
+        if (!this.contracts) {
+          return this.getContracts();
+        }
+      })
+      .catch( (err) => {
+        console.log('ERROR', err);
+      });
   }
 
   private _store() {
@@ -83,8 +84,10 @@ export class UserAccountModule implements OnInit {
   }
 
   private _request(sub_url, method, json, options) {
-    const url = [this.backend_url, sub_url].join('/')
-        .replace(/([^:])\/{2,}/g, '$1/');
+    const url = [
+        this.backend_host.replace(/\/+$/, ''),
+        sub_url.replace(/^\/+/, '')
+    ].join('/');
     let args = [url];
     if (!options) {
       options = {};
@@ -95,7 +98,8 @@ export class UserAccountModule implements OnInit {
     if (!options.headers['Content-Type']) {
       options.headers['Content-Type'] = {};
     }
-    options.headers['Authorization'] = 'Basic ' + btoa([this.auth_user, this.auth_pass].join(':'));
+    // options.headers['Authorization'] = 'Basic ' + btoa([this.auth_user, this.auth_pass].join(':'));
+    options.headers['Authorization'] = 'Basic ' + btoa(unescape(encodeURIComponent(this.auth_user + ':' + this.auth_pass)));
     options.headers['Content-Type'] = 'application/json';
     method = method.toLowerCase();
     switch (method) {
@@ -146,8 +150,9 @@ export class UserAccountModule implements OnInit {
   }
 
   getUser(email, password) {
-    this.auth_user = email;
-    this.auth_pass = password;
+    console.log('UserAccountModule->getUser', email, password);
+    this.auth_user = email || this.auth_user;
+    this.auth_pass = password || this.auth_pass;
     return this._request('/account/auth/', 'get', null, null)
         .then(data => {
           this._update(data);
@@ -193,5 +198,25 @@ export class UserAccountModule implements OnInit {
           const deal_body = { account_id, title : memo, dialog, parties };
           return this._request('/deal/', 'post', deal_body, null);
         });
+  }
+
+  // http://46.219.125.69:5001/contract/list?type=draft
+  /*
+  [
+    {
+      memo: "First Deal Contract",
+      body: "Lets have our first deal!",
+      modified: 1544365491000,
+      created: 1544365490000,
+      contract_id: 1,
+      account_id: 1
+    }
+  ]
+  */
+  listDrafts() {
+    console.log('liftDrafts');
+    return this._restore().then( () => {
+      return this._request('/contract/list?type=draft', 'get');
+    });
   }
 }
