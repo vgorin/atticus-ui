@@ -50,16 +50,16 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.account.getUser(this.email, this.password)
+    return this.account.getUser(this.email, this.password)
         .then(data => {
           console.log('login - user - data', data);
-          this.displayAuthSuccessfulToast();
+          return this.displayAuthSuccessfulToast();
         }).then( (key) => {
           return this.router.navigateByUrl('/contracts');
         })
         .catch(error => {
           console.log('fail - login - user - data', error);
-          this.displayAuthFailureAlert();
+          return this.displayAuthFailureAlert();
         });
   }
 }

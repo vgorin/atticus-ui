@@ -31,6 +31,10 @@ export class UserAccountModule {
     this.timezone = 'America/Los_Angeles';
   }
 
+  public init() {
+    return this._restore();
+  }
+
   private _restore() {
     console.log('UserAccountModule -> _restore');
     return this.storage.get('user')
