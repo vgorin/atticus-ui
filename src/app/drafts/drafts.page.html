@@ -128,7 +128,7 @@
         <div>
           <div id="accordion">
             <div class="tab" *ngFor="let draft of drafts; let i = index" [attr.data-index]="i">
-              <h3><a href="drafts"><i class="fas fa-file"></i> {{ draft.memo }}</a></h3>
+              <h3><button (click)="viewDraft(i)"><i class="fas fa-file"></i> {{ draft.memo }}</button></h3>
             </div>
           </div>
         </div>
@@ -198,10 +198,10 @@
               </a>
             </li>
             <li class="new">
-              <a href="drafts-invite">
+              <button (click)="viewMode = 6">
                 <span><i class="far fa-user"></i></span>
                 <span>Propose</span>
-              </a>
+              </button>
             </li>
           </ul>
 
@@ -219,10 +219,10 @@
               </a>
             </li>
             <li class="new">
-              <a href="drafts-invite">
+              <button (click)="viewMode = 6">
                 <span><i class="far fa-user"></i></span>
                 <span>Propose</span>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>

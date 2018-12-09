@@ -25,7 +25,9 @@ export class DraftsPage implements OnInit {
   }
 
   async viewDraft(index) {
+    console.log("viewDraft", index);
     this.currentDraft = this.drafts[index];
+    this.viewMode = ViewMode.View;
   }
 
   async saveNew() {

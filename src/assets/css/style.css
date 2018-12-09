@@ -1375,15 +1375,17 @@ th {
     background: #fff;
     border-radius: .5rem;
 }
-#accordion .tab h3 a {
+#accordion .tab h3 a, #accordion .tab h3 button {
     /* border-bottom: .1rem solid #eee; */
     color: #333;
     font-size: 1.6rem;
     padding: 1.5rem;
     text-decoration: none;
     display: flex;
+    width: 100%;
+    border-radius: 0.5rem;
 }
-#accordion .tab h3 a > img {
+#accordion .tab h3 a > img, #accordion .tab h3 button > img {
     border-radius: 50%;
     display: inline-block;
     height: 2.4rem;
@@ -1391,12 +1393,12 @@ th {
     padding: .2rem;
     width: 2.4rem;
 }
-#accordion .tab h3 a i {
+#accordion .tab h3 a i, #accordion .tab h3 button i {
     color: #ccc;
     font-size: 1.2rem;
     margin-right: 1rem;
 }
-#accordion .tab h3 a:hover {
+#accordion .tab h3 a:hover, #accordion .tab h3 button:hover {
     color: #000;
 }
 #accordion .tab input {
