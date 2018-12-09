@@ -13,7 +13,9 @@ export class TemplatesPage implements OnInit {
   public templates;
   public currentTemplate = {};
 
-  constructor(private account: UserAccountModule) {}
+  constructor(private account: UserAccountModule) {
+    this.templates = [];
+  }
 
   async ngOnInit() {
     this.templates = await this.account.listTemplates();

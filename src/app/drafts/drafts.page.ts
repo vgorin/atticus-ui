@@ -13,7 +13,9 @@ export class DraftsPage implements OnInit {
   public drafts;
   public currentDraft = {};
 
-  constructor(private account: UserAccountModule) {}
+  constructor(private account: UserAccountModule) {
+    this.drafts = [];
+  }
 
   async ngOnInit() {
     this.drafts = await this.account.listDrafts();
