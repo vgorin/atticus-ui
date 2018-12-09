@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserAccountModule} from '../user.account.module';
-import {ViewMode} from "../view_mode";
 
 @Component({
   selector: 'app-drafts',
@@ -32,16 +31,26 @@ export class DraftsPage implements OnInit {
 
   async saveNew() {
     this.drafts = await this.account.saveNewDraft(this.currentDraft);
-    this.viewMode = ViewMode.Success;
+    this.viewMode = ViewMode.ModalSaved;
   }
 
   async save() {
     this.drafts = await this.account.saveDraft(this.currentDraft);
-    this.viewMode = ViewMode.Success;
+    this.viewMode = ViewMode.ModalSaved;
   }
 
   async sendProposal() {
     // TODO: POST /deal?contract_id={{currentDraft.contract_id}}&to_account_id={{sendTo}}&deal_title={{currentDraft.memo}}
   }
 
+}
+
+enum ViewMode {
+  List = 1,
+  View,
+  Edit,
+  New,
+  ModalSaved,
+  ModalSendInvite,
+  ModalInvitationSent
 }
