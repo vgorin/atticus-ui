@@ -281,6 +281,6 @@ export class UserAccountModule {
   async loadProposals() {
     // /deal/received-proposals -> proposals
     this.proposals = await this._request('/deal/received-proposals', 'get', null, null);
-    console.log(this.proposals);
+    console.log('loadProposals', this.proposals);
   }
 }
