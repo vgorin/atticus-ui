@@ -291,7 +291,7 @@ export class UserAccountModule {
     this.proposals = await this._request('/deal/received-proposals', 'get', null, null);
     this.proposals = this.proposals.map( (x) => {
           x.contracter_id = x.parties.filter( (y) => {
-            return y.account_id !== x.account_id;
+            return y.account_id !== this.account_id;
           })[0].account_id;
           return x;
         });
