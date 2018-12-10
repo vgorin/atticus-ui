@@ -276,11 +276,17 @@ export class UserAccountModule {
     });
   }
 
-  // *** TODO LOGIC *** //
+  // *** PROPOSALS LOGIC *** //
 
   async loadProposals() {
     // /deal/received-proposals -> proposals
     this.proposals = await this._request('/deal/received-proposals', 'get', null, null);
     console.log('loadProposals', this.proposals);
+  }
+
+  // *** DEAL LOGIC *** //
+
+  async setDealToView(deal) {
+    await this.storage.set( [ this.account_id, 'deal' ].join(':'), deal );
   }
 }
