@@ -100,7 +100,7 @@
           <div id="accordion">
             <div class="tab">
               <h3 *ngFor="let proposal of proposals; let i = index" [attr.data-index]="i">
-                <button (click)="openDeal(i)"><img src="./assets/images/profile-nick.png"> {{proposal.title}}</button>
+                <button (click)="openDeal(i)"><img src="./assets/images/{{proposal.contracter_id}}.png"> {{proposal.title}}</button>
               </h3>
             </div>
           </div>

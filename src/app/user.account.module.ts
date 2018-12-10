@@ -203,7 +203,12 @@ export class UserAccountModule {
     return this._request('/deal/active-deals/', 'get', null, null)
         .then(data => {
           this.contracts = data;
-          return data;
+          return data.map( (x) => {
+            x.contracter_id = x.parties.filter( (y) => {
+              return y.account_id !== x.account_id;
+            })[0].account_id;
+            return x;
+          });
         });
   }
 
@@ -284,6 +289,12 @@ export class UserAccountModule {
   async loadProposals() {
     // /deal/received-proposals -> proposals
     this.proposals = await this._request('/deal/received-proposals', 'get', null, null);
+    this.proposals = this.proposals.map( (x) => {
+          x.contracter_id = x.parties.filter( (y) => {
+            return y.account_id !== x.account_id;
+          })[0].account_id;
+          return x;
+        });
     console.log('loadProposals', this.proposals);
   }
 
