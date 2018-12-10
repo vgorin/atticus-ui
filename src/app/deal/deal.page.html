@@ -33,7 +33,7 @@
     <!-- Begin: Main -->
 
     <main>
-      <section id="edit">
+      <section id="edit" [hidden]="viewMode == 4">
         <div>
           <section id="timeline">
             <div>
@@ -63,22 +63,22 @@
                 <nav id="action">
                   <ul>
                     <li class="sign">
-                      <a href="proposal-deal">
+                      <button (click)="viewMode = 2">
                         <span><i class="fas fa-pen"></i></span>
                         <span>Sign</span>
-                      </a>
+                      </button>
                     </li>
                     <li class="decline">
-                      <a href="proposal-decline">
+                      <button (click)="viewMode = 3">
                         <span><i class="fas fa-times"></i></span>
                         <span>Decline</span>
-                      </a>
+                      </button>
                     </li>
                     <li class="counter">
-                      <a href="proposal-counter-success">
+                      <button (click)="viewMode = 4">
                         <span><i class="fas fa-sync-alt"></i></span>
                         <span>Counter</span>
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </nav>
@@ -87,8 +87,121 @@
           </section>
         </div>
       </section>
+
+      <section id="edit" [hidden]="viewMode == 1">
+        <div>
+          <section id="timeline">
+            <div>
+              <section>
+                <div>
+                  <p><img src="./assets/images/profile-craig.png"></p>
+                </div>
+                <div>
+                  <h3>Counter Proposal</h3>
+                  <p>Let's be realistic here... Who else is going to ever make an offer like this. Just man up, Sam.</p>
+                  <p>Terms: $5,000,000 USD</p>
+                  <p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>
+                </div>
+              </section>
+              <section>
+                <div>
+                  <p><img src="./assets/images/profile-sam.png"></p>
+                </div>
+                <div>
+                  <h3>Counter Proposal</h3>
+                </div>
+              </section>
+              <form>
+                <fieldset>
+                  <h4>Terms</h4>
+                  <p>
+                    <label for="amount">Amount (USD)</label>
+                    <input id="amount" type="text" value="$10,000">
+                  </p>
+                  <p>
+                    <label for="amount">Memo (optional)</label>
+                    <textarea>Nice try, Craig! You know damn well I would never sell out that cheap... Try this.</textarea>
+                  </p>
+                </fieldset>
+              </form>
+
+              <section>
+                <nav id="action">
+                  <ul>
+                    <li class="delete">
+                      <button (click)="viewMode = 1">
+                        <span><i class="fas fa-times"></i></span>
+                        <span>Cancel</span>
+                      </button>
+                    </li>
+                    <li class="counter">
+                      <button (click)="viewMode = 5">
+                        <span><i class="fas fa-sync-alt"></i></span>
+                        <span>Counter</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </section>
+            </div>
+          </section>
+        </div>
+      </section>
+
     </main>
 
+  <!--   End: Main -->
+
+    <div id="modal" class="alert" [hidden]="viewMode != 2">
+      <section>
+        <div>
+          <div>
+            <h1>You Have A Deal!</h1>
+            <p>{{deal.title}}</p>
+            <p>A notification has been sent to Craig Wright. Your contract is in effect.</p>
+          </div>
+          <section>
+            <nav id="action">
+              <ul>
+                <li class="new">
+                  <a href="proposals">
+                    <span><i class="fas fa-check"></i></span>
+                    <span>OK &amp; Exit</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div id="modal" class="alert" [hidden]="viewMode != 5">
+      <section>
+        <div>
+          <div>
+            <h1>Counter Proposal Declined</h1>
+            <p>{{deal.title}}</p>
+            <p>A notification has been sent to Craig Wright.</p>
+          </div>
+          <section>
+            <nav id="action">
+              <ul>
+                <li class="new">
+                  <a href="proposals">
+                    <span><i class="fas fa-check"></i></span>
+                    <span>OK &amp; Exit</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+      </section>
+    </div>
+
   </div>
+
+  <!--   End: App -->
 
 </ion-content>

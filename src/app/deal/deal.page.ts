@@ -7,6 +7,8 @@ import {UserAccountModule} from '../user.account.module';
   styleUrls: ['./deal.page.scss'],
 })
 export class DealPage implements OnInit {
+  public viewMode: ViewMode = ViewMode.DealView;
+
   public deal;
 
   constructor(private account: UserAccountModule) {
@@ -19,4 +21,15 @@ export class DealPage implements OnInit {
     console.log("deal to view", this.deal);
   }
 
+  async sign() {
+
+  }
+}
+
+enum ViewMode {
+  DealView = 1,
+  ModalProposalSigned,
+  ModalProposalDeclined,
+  CounterView,
+  ModalCounterSent
 }
