@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserAccountModule} from '../user.account.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proposals',
@@ -11,7 +12,10 @@ export class ProposalsPage implements OnInit {
 
   public proposals;
 
-  constructor(private account: UserAccountModule) {
+  constructor(
+      private account: UserAccountModule,
+      private router: Router
+  ) {
     this.proposals = [];
   }
 
@@ -21,8 +25,10 @@ export class ProposalsPage implements OnInit {
     console.log("viewMode", this.viewMode);
   }
 
-  async viewDeal(index) {
-
+  async openDeal(index) {
+    const deal = this.proposals[index];
+    await this.account.setDealToView(deal);
+    this.router.navigateByUrl('/deal');
   }
 }
 

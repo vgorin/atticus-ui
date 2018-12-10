@@ -30,7 +30,7 @@ export class UserAccountModule {
   public proposals;
   private contracts;
 
-  private dealToView;
+  public dealToView;
 
   constructor(private http: HttpClient, private storage: Storage) {
     console.log('UserAccountModule->constructor');
