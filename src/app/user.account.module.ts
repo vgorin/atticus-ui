@@ -30,6 +30,8 @@ export class UserAccountModule {
   public proposals;
   private contracts;
 
+  private dealToView;
+
   constructor(private http: HttpClient, private storage: Storage) {
     console.log('UserAccountModule->constructor');
     this.country_code = 'US';
@@ -39,6 +41,7 @@ export class UserAccountModule {
     this.templates = [];
     this.proposals = [];
     this.contracts = [];
+    this.dealToView = {};
   }
 
   public init() {
@@ -287,6 +290,17 @@ export class UserAccountModule {
   // *** DEAL LOGIC *** //
 
   async setDealToView(deal) {
-    await this.storage.set( [ this.account_id, 'deal' ].join(':'), deal );
+    this.dealToView = deal;
+    await this.storage.set( [ this.account_id, 'deal' ].join(':'), JSON.stringify(deal) );
+  }
+
+  async getDealToView() {
+    const str = await this.storage.get( [ this.account_id, 'deal' ].join(':') );
+    this.dealToView = JSON.parse(str);
+  }
+
+  async removeDealToView() {
+    const str = await this.storage.remove( [ this.account_id, 'deal' ].join(':') );
+    this.dealToView = JSON.parse(str);
   }
 }
