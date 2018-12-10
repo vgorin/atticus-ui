@@ -7,11 +7,11 @@ import { UserAccountModule } from '../user.account.module';
   styleUrls: ['./contracts.page.scss'],
 })
 export class ContractsPage implements OnInit {
-  private contracts: Array<Object>;
+  private deals: Array<Object>;
 
   constructor(private account: UserAccountModule) {}
 
   async ngOnInit() {
-    this.contracts = await this.account.getContracts();
+    this.deals = await this.account.getActiveDeals();
   }
 }

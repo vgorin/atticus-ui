@@ -180,6 +180,14 @@ export class UserAccountModule {
         });
   }
 
+  getActiveDeals() {
+    return this._request('/deal/active-deals/', 'get', null, null)
+        .then(data => {
+          this.contracts = data;
+          return data;
+        });
+  }
+
   addContract(memo, body, to_account_id) {
     console.log('addContract', arguments);
     const { account_id } = this;

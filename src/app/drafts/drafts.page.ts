@@ -11,7 +11,7 @@ export class DraftsPage implements OnInit {
   public viewMode: ViewMode = ViewMode.List;
 
   public drafts;
-  public currentDraft = {};
+  public currentDraft;
 
   public sendTo;
   public sendToAccount;
@@ -21,8 +21,7 @@ export class DraftsPage implements OnInit {
       public alertController: AlertController,
   ) {
     this.drafts = [];
-    this.sendTo = '';
-    this.sendToAccount = {};
+    this.currentDraft = {};
   }
 
   async onChange(r) {
