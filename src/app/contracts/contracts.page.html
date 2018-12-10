@@ -41,28 +41,28 @@
           <ul>
             <li>
               <a href="templates">
-                <span>{{account.templates.length}}</span>
+                <span>{{account.newTemplatesCount()}}</span>
                 <span><i class="fas fa-file-alt"></i></span>
                 <span>Templates</span>
               </a>
             </li>
             <li>
               <a href="drafts">
-                <span>{{account.drafts.length}}</span>
+                <span>{{account.newDraftsCount()}}</span>
                 <span><i class="fas fa-file"></i></span>
                 <span>Drafts</span>
               </a>
             </li>
             <li>
               <a href="proposals">
-                <span>{{account.proposals.length}}</span>
+                <span>{{account.newProposalsCount()}}</span>
                 <span><i class="far fa-file"></i></span>
                 <span>Proposals</span>
               </a>
             </li>
             <li>
               <a href="contracts" class="active">
-                <span>0</span>
+                <span>{{account.newActiveDealsCount()}}</span>
                 <span><i class="far fa-file-alt"></i></span>
                 <span>Contracts</span>
               </a>

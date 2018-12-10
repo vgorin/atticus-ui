@@ -15,6 +15,7 @@ export class ProposalsPage implements OnInit {
 
   async ngOnInit() {
     this.proposals = await this.account.loadProposals();
+    console.log("viewMode", this.viewMode);
   }
 
   async viewDeal(index) {
