@@ -45,6 +45,22 @@ export class UserAccountModule {
     return this.getUser();
   }
 
+  public newTemplatesCount(): number {
+    return this.drafts? this.drafts.length: 0;
+  }
+
+  public newDraftsCount(): number {
+    return this.drafts? this.drafts.length: 0;
+  }
+
+  public newProposalsCount(): number {
+    return this.proposals? this.proposals.length: 0;
+  }
+
+  public newActiveDealsCount(): number {
+    return this.proposals? this.proposals.length: 0;
+  }
+
   private _request(sub_url, method, json, options) {
     return this
       .storage.get('auth')
