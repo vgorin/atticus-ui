@@ -9,7 +9,9 @@ import {UserAccountModule} from '../user.account.module';
 export class DealPage implements OnInit {
   public deal;
 
-  constructor(private account: UserAccountModule) { }
+  constructor(private account: UserAccountModule) {
+    this.deal = {};
+  }
 
   async ngOnInit() {
     await this.account.getDealToView();

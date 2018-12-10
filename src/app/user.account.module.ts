@@ -290,6 +290,7 @@ export class UserAccountModule {
   // *** DEAL LOGIC *** //
 
   async setDealToView(deal) {
+    console.log('setDealToView', deal);
     await this.getUser();
     this.dealToView = deal;
     await this.storage.set( [ this.account_id, 'deal' ].join(':'), JSON.stringify(deal) );
@@ -299,6 +300,12 @@ export class UserAccountModule {
     await this.getUser();
     const str = await this.storage.get( [ this.account_id, 'deal' ].join(':') );
     this.dealToView = JSON.parse(str);
+    const secondPatry = (this.dealToView.parties || []).filter( (x) => {
+      return x.account_id !== this.account_id;
+    })[0];
+    if ( secondPatry.account_id ) {
+      this.dealToView.secondPatry = await this._request('/account/' + secondPatry.account_id, 'get', null, null);
+    }
   }
 
   async removeDealToView() {
