@@ -56,7 +56,7 @@
                 <div>
                   <figure><img src="./assets/images/profile-sam-lg.png"></figure>
                   <h3><strong>Action Required</strong></h3>
-                  <p>{{(deal.secondPatry||{}).name}}</p>
+                  <p>{{(deal.secondPatry || {}).legal_name || (deal.secondPatry || {}).username || (deal.secondPatry || {}).email}}</p>
                 </div>
               </section>
               <section>
