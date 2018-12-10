@@ -13,8 +13,8 @@ export class ProposalsPage implements OnInit {
 
   constructor(private account: UserAccountModule) { }
 
-  ngOnInit() {
-    // TODO: GET http://localhost:28081/deal/received-proposals -> proposals
+  async ngOnInit() {
+    this.proposals = await this.account.loadProposals();
   }
 
   async viewDeal(index) {

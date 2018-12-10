@@ -29,6 +29,7 @@ export class UserAccountModule {
 
   public drafts;
   public templates;
+  public proposals;
 
   constructor(private http: HttpClient, private storage: Storage) {
     console.log('UserAccountModule->constructor');
@@ -159,6 +160,7 @@ export class UserAccountModule {
     const user = await this.getUser();
     await this.listDrafts();
     await this.listTemplates();
+    await this.loadProposals();
     console.log('Logged In:', user);
     return user;
   }
@@ -250,4 +252,10 @@ export class UserAccountModule {
   }
 
   // *** TODO LOGIC *** //
+
+  async loadProposals() {
+    // /deal/received-proposals -> proposals
+    this.proposals = await this._request('/deal/received-proposals', 'get', null, null);
+    console.log(this.proposals);
+  }
 }
