@@ -21,14 +21,19 @@ export class DraftsPage implements OnInit {
       public alertController: AlertController,
   ) {
     this.drafts = [];
+    this.sendTo = '';
+    this.sendToAccount = {};
   }
 
   async onChange(r) {
-    const arr = await this.account.getSendTo(this.sendTo);
-    console.log('---', r, this.sendTo, arr);
-    if (1 === arr.length) {
-      this.sendToAccount = arr[0];
-      this.sendTo = arr[0].email;
+    const input = this.sendTo + r.key;
+    if ( input.length > 0 ) {
+      const arr = await this.account.getSendTo(input);
+      console.log('---', r, this.sendTo, input, arr);
+      this.sendToAccount = arr[0] || {};
+      if ( this.sendToAccount.email ) {
+        this.sendTo = arr[0].email;
+      }
     }
   }
 
@@ -54,7 +59,11 @@ export class DraftsPage implements OnInit {
     this.viewMode = ViewMode.ModalSaved;
   }
 
-  sendProposal() {
+  async sendProposal() {
+    await this.onChange({key: ''});
+    if ( !this.sendToAccount.email ) {
+      return this.displayAuthFailureAlert('NO_SUCH_RECIPIENT');
+    }
     this.account.sendProposal(this.sendToAccount, this.currentDraft)
         .then( () => {
           this.viewMode = ViewMode.ModalInvitationSent;

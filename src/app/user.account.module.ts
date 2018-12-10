@@ -25,11 +25,10 @@ export class UserAccountModule {
   public language_code: string;
   public timezone: string;
 
-  private contracts: Array<Object>;
-
   public drafts;
   public templates;
   public proposals;
+  private contracts;
 
   constructor(private http: HttpClient, private storage: Storage) {
     console.log('UserAccountModule->constructor');
@@ -38,6 +37,8 @@ export class UserAccountModule {
     this.timezone = 'America/Los_Angeles';
     this.drafts = [];
     this.templates = [];
+    this.proposals = [];
+    this.contracts = [];
   }
 
   public init() {
@@ -228,7 +229,7 @@ export class UserAccountModule {
   async sendProposal(sendToAccount, currentDraft) {
     console.log('sendProposal', {currentDraft, sendToAccount});
     return await this._request(
-        `/deal?contract_id=${currentDraft.contract_id}&to_account_id=${sendToAccount.account_id}&deal_title=${currentDraft.memo}`,
+        `/deal?contract_id=${currentDraft.contract_id}&to_account_id=${sendToAccount.account_id}&deal_title=${currentDraft.memo}&email=${sendToAccount.email}`,
         'post', null, null);
   }
 
