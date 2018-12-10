@@ -176,7 +176,7 @@
       </section>
     </div>
 
-    <div id="modal" class="alert" [hidden]="viewMode != 5">
+    <div id="modal" class="alert" [hidden]="viewMode != 3">
       <section>
         <div>
           <div>
@@ -189,6 +189,30 @@
               <ul>
                 <li class="new">
                   <a href="proposals">
+                    <span><i class="fas fa-check"></i></span>
+                    <span>OK &amp; Exit</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div id="modal" class="alert" [hidden]="viewMode != 5">
+      <section>
+        <div>
+          <div>
+            <h1>Counter Proposal Sent!</h1>
+            <p>{{deal.title}}</p>
+            <p>A notification has been sent to Craig Wright.</p>
+          </div>
+          <section>
+            <nav id="action">
+              <ul>
+                <li class="new">
+                  <a href="contracts">
                     <span><i class="fas fa-check"></i></span>
                     <span>OK &amp; Exit</span>
                   </a>
