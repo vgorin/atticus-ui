@@ -303,7 +303,7 @@ export class UserAccountModule {
 
   async removeDealToView() {
     await this.getUser();
-    const str = await this.storage.remove( [ this.account_id, 'deal' ].join(':') );
+    await this.storage.remove( [ this.account_id, 'deal' ].join(':') );
     this.dealToView = {};
   }
 }
