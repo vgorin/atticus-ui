@@ -49,7 +49,7 @@ export class UserAccountModule {
   }
 
   public newTemplatesCount(): number {
-    return this.drafts? this.drafts.length: 0;
+    return this.templates? this.templates.length: 0;
   }
 
   public newDraftsCount(): number {
@@ -61,7 +61,7 @@ export class UserAccountModule {
   }
 
   public newActiveDealsCount(): number {
-    return this.proposals? this.proposals.length: 0;
+    return this.contracts? this.contracts.length: 0;
   }
 
   private _request(sub_url, method, json, options) {
