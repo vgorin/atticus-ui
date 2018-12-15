@@ -1,0 +1,122 @@
+<ion-content>
+
+  <!-- Begin: App -->
+
+  <div id="app">
+
+    <!-- Begin: Header -->
+
+    <header>
+
+      <section id="top">
+        <div>
+          <section>
+            <nav>
+              <ul>
+                <li><a href="menu" class="js-mobile-menu"><i class="fas fa-bars"></i></a></li>
+                <li><a href="dashboard"><i class="fas fa-home"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+        <div>
+          <div>
+            <img src="./assets/images/logo.png" alt="Atticus" style="height: 2rem;">
+          </div>
+        </div>
+        <div>
+          <section>
+            <nav>
+              <ul>
+                <li><a href="notifications"><i class="far fa-envelope"></i></a></li>
+                <li><a href="settings"><i class="fas fa-cog"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+      </section>
+
+
+      <section>
+        <nav id="main">
+          <ul>
+            <li>
+              <a href="templates">
+                <span>{{account.newTemplatesCount()}}</span>
+                <span><i class="fas fa-file-alt"></i></span>
+                <span>Templates</span>
+              </a>
+            </li>
+            <li>
+              <a href="drafts">
+                <span>{{account.newDraftsCount()}}</span>
+                <span><i class="fas fa-file"></i></span>
+                <span>Drafts</span>
+              </a>
+            </li>
+            <li>
+              <a href="proposals">
+                <span>{{account.newProposalsCount()}}</span>
+                <span><i class="far fa-file"></i></span>
+                <span>Proposals</span>
+              </a>
+            </li>
+            <li>
+              <a href="contracts" class="active">
+                <span>{{account.newActiveDealsCount()}}</span>
+                <span><i class="far fa-file-alt"></i></span>
+                <span>Contracts</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+
+    <!--   End: Header -->
+    <!-- Begin: Main -->
+
+    <main>
+
+      <section id="view">
+        <div>
+          <form>
+            <fieldset>
+              <h4>Template Info</h4>
+              <p>
+                <label for="name">Template Title</label>
+                <input [(ngModel)]="memo" id="name" type="text" placeholder="Template Title" value="" name="title">
+              </p>
+              <p>
+                <label for="text">Template Text</label>
+                <textarea [(ngModel)]="body" id="text" name="text"></textarea>
+              </p>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!--   End: Main -->
+    <!-- Begin: Footer -->
+
+    <footer>
+      <nav id="action">
+        <ul>
+          <li class="new">
+            <button (click)="saveTemplate()" class="active">
+              <span><i class="fas fa-plus"></i></span>
+              <span>New Template</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <!--   End: Footer -->
+  </div>
+
+  <!--   End: App -->
+
+</ion-content>
