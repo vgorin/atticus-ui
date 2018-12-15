@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserAccountModule {
-  private backend_host = 'http://46.219.125.69:5000';
+  private backend_host = 'http://172.104.123.14:28081';
 
   public check_user: boolean;
 
@@ -267,6 +267,20 @@ export class UserAccountModule {
 
   // *** TEMPLATES LOGIC *** //
 
+  addTemplate(title, body) {
+    console.log('addTemplate', arguments);
+    const { account_id } = this;
+    const template_body = { account_id, title, body };
+    return this._request('/template/', 'post', template_body, null)
+        .then(data => {
+	  console.log('addTemplate-data', data);
+	  const { template_id } = data;
+	  const dialog = [
+	    { account_id, template_id }
+	  ];
+	});
+  }
+  
   async listTemplates() {
     this.templates = await this._request('/template/list', 'get', null, null);
     return this.templates;

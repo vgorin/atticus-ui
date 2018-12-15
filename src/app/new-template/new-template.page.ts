@@ -7,10 +7,10 @@ import { AlertController, ToastController } from '@ionic/angular';
   templateUrl: './new-template.page.html',
   styleUrls: ['./new-template.page.scss'],
 })
-export class NewContractPage implements OnInit {
-  private memo: string;
+export class NewTemplatePage implements OnInit {
+  private title: string;
+  //private version: string;
   private body: string;
-  private to: number;
 
   constructor(
       public toastController: ToastController,
@@ -18,10 +18,10 @@ export class NewContractPage implements OnInit {
       private account: UserAccountModule
   ) {}
 
-  async proposeTemplate() {
+  async saveTemplate() {
     try {
-      const template = await this.account.addTemplate(this.memo, this.body, this.to);
-      console.log('NewContractPage - addContract', template);
+      const template = await this.account.addTemplate(this.title, this.body);
+      console.log('NewContractPage - addTemplate', template);
       this.messageOk('Template Successfully Added!');
     } catch (e) {
       console.log('error', e);
