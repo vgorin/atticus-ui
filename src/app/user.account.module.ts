@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
-import { Injectable } from '@angular/core';
+//import { Injectable } from '@angular/core';
+import { Injector } from '@angular/core';
 
-@Injectable()
+//@Injectable()
 export class UserAccountModule {
   private backend_host = 'http://46.219.125.69:5000';
 
@@ -32,8 +33,14 @@ export class UserAccountModule {
 
   public dealToView;
 
-  constructor(private http: HttpClient, private storage: Storage) {
+  static injector: Injector;
+
+  constructor(injector: Injector, private http: HttpClient, private storage: Storage) {
     console.log('UserAccountModule->constructor');
+    UserAccountModule.injector = injector;
+  }
+
+  public init() {
     this.country_code = 'US';
     this.language_code = 'eng';
     this.timezone = 'America/Los_Angeles';
@@ -42,9 +49,6 @@ export class UserAccountModule {
     this.proposals = [];
     this.contracts = [];
     this.dealToView = {};
-  }
-
-  public init() {
     return this.getUser();
   }
 
