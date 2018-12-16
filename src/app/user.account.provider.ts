@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserAccount {
-  private backend_host = 'http://localhost:28081';
+  private backend_host = 'http://46.219.125.69:5000';
 
   public check_user: boolean;
 
@@ -117,6 +117,9 @@ export class UserAccount {
         return this.http[method].apply(this.http, args).toPromise();
       })
       .then((response) => {
+        if (!response) {
+          throw(new Error('Got empty response!'));
+        }
         if ((response.error || {}).message) {
           throw new Error([
             response.error.code,
@@ -337,5 +340,9 @@ export class UserAccount {
     await this.getUser();
     await this.storage.remove( [ this.account_id, 'deal' ].join(':') );
     this.dealToView = {};
+  }
+
+  async dealAccept(contract_id) {
+    return await this._request('/deal/accept/' + contract_id, 'put', null, null);
   }
 }
