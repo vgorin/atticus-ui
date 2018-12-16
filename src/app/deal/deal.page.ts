@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserAccount} from '../user.account.provider';
+import { UserAccount } from '../user.account.provider';
 
 @Component({
   selector: 'app-deal',
@@ -23,24 +23,41 @@ export class DealPage implements OnInit {
 
   async sign() {
     try {
-      const accepted = await this.account.dealAccept(this.deal.contract_id);
+      await this.account.dealAccept(this.deal);
       this.viewMode = ViewMode.ModalProposalSigned;
     } catch (err) {
-      console.log('ERROR:', err);
+      this.displayError(err, 'Signature error!');
     }
   }
 
   async openCounter() {
-    // TODO: POST /contract/{deal.contract_id} -> copied_contract_id
-
-    this.viewMode = ViewMode.CounterView;
+    try {
+      await this.account.openCounter();
+      this.viewMode = ViewMode.CounterView;
+    } catch (err) {
+      this.displayError(err, 'Send counter error!');
+    }
   }
 
   async sendCounter() {
-    // TODO: PUT /contract/{copied_contract_id}
+    try {
+      await this.account.sendCounter();
+      this.viewMode = ViewMode.ModalCounterSent;
+    } catch (err) {
+      this.displayError(err, 'Send counter error!');
+    }
+  }
 
-    // TODO: POST /deal/{deal.deal_id}?contract_id={copied_contract_id}
-    this.viewMode = ViewMode.ModalCounterSent;
+  async displayError(err, header) {
+    console.log('ERROR:', header, err);
+    const alert = await this.alertController.create({
+      header: 'Error',
+      subHeader: header||err.message||err,
+      message: err.message||err,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
 

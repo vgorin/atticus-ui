@@ -342,7 +342,16 @@ export class UserAccount {
     this.dealToView = {};
   }
 
-  async dealAccept(contract_id) {
-    return await this._request('/deal/accept/' + contract_id, 'put', null, null);
+  async dealAccept(deal) {
+    return await this._request('/deal/accept/' + deal.contract_id, 'put', null, null);
+  }
+
+  async sendCounter() {
+    console.log('!!! TODO: PUT /contract/{copied_contract_id}');
+    console.log('!!! TODO: POST /deal/{deal.deal_id}?contract_id={copied_contract_id}');
+  }
+
+  async openCounter() {
+    console.log('!!! TODO: POST /contract/{deal.contract_id} -> copied_contract_id');
   }
 }
