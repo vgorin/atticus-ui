@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
-import { UserAccountModule } from '../user.account.module';
+import { UserAccount } from '../user.account.provider';
 
 @Component({
   selector: 'app-signup',
@@ -82,7 +82,7 @@ export class SignupPage implements OnInit {
   constructor(
       public alertController: AlertController,
       public toastController: ToastController,
-      private user_account: UserAccountModule
+      private user_account: UserAccount
   ) { }
 
   createUser() {

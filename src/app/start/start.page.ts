@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserAccountModule } from '../user.account.module';
+import { UserAccount } from '../user.account.provider';
 
 @Component({
   selector: 'app-start',
@@ -11,7 +11,7 @@ export class StartPage implements OnInit {
 
   constructor(
       private router: Router,
-      private account: UserAccountModule
+      private account: UserAccount
   ) { }
 
   async ngOnInit() {

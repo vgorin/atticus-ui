@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import {UserAccountModule} from '../user.account.module';
+import {UserAccount} from '../user.account.provider';
 
 @Component({
   selector: 'app-drafts',
@@ -17,7 +17,7 @@ export class DraftsPage implements OnInit {
   public sendToAccount;
 
   constructor(
-      private account: UserAccountModule,
+      private account: UserAccount,
       public alertController: AlertController,
   ) {
     this.drafts = [];

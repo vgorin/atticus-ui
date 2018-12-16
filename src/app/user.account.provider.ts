@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class UserAccountModule {
+export class UserAccount {
   private backend_host = 'http://46.219.125.69:5000';
 
   public check_user: boolean;
@@ -33,7 +33,7 @@ export class UserAccountModule {
   public dealToView;
 
   constructor(private http: HttpClient, private storage: Storage) {
-    console.log('UserAccountModule->constructor');
+    console.log('UserAccount->constructor');
     this.country_code = 'US';
     this.language_code = 'eng';
     this.timezone = 'America/Los_Angeles';
@@ -106,11 +106,7 @@ export class UserAccountModule {
             args = args.concat([options]);
             break;
           }
-          case 'post' : {
-            args = args.concat([json, options]);
-            break;
-          }
-          case 'put' : {
+          default : {
             args = args.concat([json, options]);
             break;
           }
@@ -141,7 +137,7 @@ export class UserAccountModule {
       return null;
     }
     this.check_user = true;
-    console.log('UserAccountModule->getUser');
+    console.log('UserAccount->getUser');
     return this._request('/account/auth/', 'get', null, null)
         .then( (user) => {
           if ( !user.account_id ) {

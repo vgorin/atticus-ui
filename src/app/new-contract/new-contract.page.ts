@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAccountModule } from '../user.account.module';
+import { UserAccount } from '../user.account.provider';
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -15,7 +15,7 @@ export class NewContractPage implements OnInit {
   constructor(
       public toastController: ToastController,
       public alertController: AlertController,
-      private account: UserAccountModule
+      private account: UserAccount
   ) {}
 
   async proposeContract() {

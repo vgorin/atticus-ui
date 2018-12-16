@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AlertController, ToastController } from '@ionic/angular';
-import { UserAccountModule } from '../user.account.module';
+import { UserAccount } from '../user.account.provider';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
       public alertController: AlertController,
       public toastController: ToastController,
       private router: Router,
-      public account: UserAccountModule
+      public account: UserAccount
   ) { }
 
   ngOnInit() {

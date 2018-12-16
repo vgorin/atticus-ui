@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAccountModule } from '../user.account.module';
+import { UserAccount } from '../user.account.provider';
 
 @Component({
   selector: 'app-contracts',
@@ -9,7 +9,7 @@ import { UserAccountModule } from '../user.account.module';
 export class ContractsPage implements OnInit {
   private deals: Array<Object>;
 
-  constructor(private account: UserAccountModule) {}
+  constructor(private account: UserAccount) {}
 
   async ngOnInit() {
     this.deals = await this.account.getActiveDeals();

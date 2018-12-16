@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserAccountModule} from '../user.account.module';
+import {UserAccount} from '../user.account.provider';
 
 @Component({
   selector: 'app-deal',
@@ -11,7 +11,7 @@ export class DealPage implements OnInit {
 
   public deal;
 
-  constructor(private account: UserAccountModule) {
+  constructor(private account: UserAccount) {
     this.deal = {};
   }
 

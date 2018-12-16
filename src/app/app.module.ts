@@ -13,9 +13,7 @@ import {IonicStorageModule} from '@ionic/storage';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { UserAccountModule } from './user.account.module';
-
-
+import { UserAccount } from './user.account.provider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +32,7 @@ import { UserAccountModule } from './user.account.module';
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
-    UserAccountModule
+    UserAccount
   ],
   bootstrap: [AppComponent]
 })

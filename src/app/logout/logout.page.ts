@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAccountModule } from '../user.account.module';
+import { UserAccount } from '../user.account.provider';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class LogoutPage implements OnInit {
 
   constructor(
       private router: Router,
-      private user_account: UserAccountModule
+      private user_account: UserAccount
   ) { }
 
   ngOnInit() {
