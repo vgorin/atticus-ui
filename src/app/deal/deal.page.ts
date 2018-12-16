@@ -25,6 +25,19 @@ export class DealPage implements OnInit {
     // TODO: PUT /deal/accept/{deal.contract_id}
     this.viewMode = ViewMode.ModalProposalSigned;
   }
+
+  async openCounter() {
+    // TODO: POST /contract/{deal.contract_id} -> copied_contract_id
+
+    this.viewMode = ViewMode.CounterView;
+  }
+
+  async sendCounter() {
+    // TODO: PUT /contract/{copied_contract_id}
+
+    // TODO: POST /deal/{deal.deal_id}?contract_id={copied_contract_id}
+    this.viewMode = ViewMode.ModalCounterSent;
+  }
 }
 
 enum ViewMode {
