@@ -7,8 +7,6 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'start', loadChildren: './start/start.module#StartPageModule' },
   { path: 'contracts', loadChildren: './contracts/contracts.module#ContractsPageModule' },
-  { path: 'new-contract', loadChildren: './new-contract/new-contract.module#NewContractPageModule' },
-  { path: 'new-template', loadChildren: './new-template/new-template.module#NewTemplatePageModule' },
   { path: 'drafts', loadChildren: './drafts/drafts.module#DraftsPageModule' },
   { path: 'proposals', loadChildren: './proposals/proposals.module#ProposalsPageModule' },
   { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' },

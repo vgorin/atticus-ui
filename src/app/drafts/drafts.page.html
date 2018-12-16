@@ -72,23 +72,6 @@
     </header>
     <!-- drafts.html -->
 
-    <!-- drafts-new.html -->
-    <header class="heading" [hidden]="viewMode != 4">
-      <section>
-        <div>
-          <div>
-            <h1><a href="drafts">Drafts</a> <i class="fas fa-angle-right"></i> New Draft</h1>
-          </div>
-        </div>
-        <div>
-          <span class="close">
-            <a href="drafts"><i class="fas fa-times"></i></a>
-          </span>
-        </div>
-      </section>
-    </header>
-    <!-- drafts-new.html -->
-
     <!-- drafts-view.html -->
     <header class="heading" [hidden]="viewMode != 2">
       <section>
@@ -111,7 +94,7 @@
       <section>
         <div>
           <div>
-            <h1><a href="drafts">Drafts</a> <i class="fas fa-angle-right"></i> Baseball Bet</h1>
+            <h1><a href="drafts">Drafts</a> <i class="fas fa-angle-right"></i> {{currentDraft.memo}}</h1>
           </div>
         </div>
         <div>
@@ -122,6 +105,23 @@
       </section>
     </header>
     <!-- drafts-edit.html -->
+
+    <!-- drafts-new.html -->
+    <header class="heading" [hidden]="viewMode != 4">
+      <section>
+        <div>
+          <div>
+            <h1><a href="drafts">Drafts</a> <i class="fas fa-angle-right"></i> New Draft</h1>
+          </div>
+        </div>
+        <div>
+          <span class="close">
+            <a href="drafts"><i class="fas fa-times"></i></a>
+          </span>
+        </div>
+      </section>
+    </header>
+    <!-- drafts-new.html -->
 
     <!--   End: Header -->
     <!-- Begin: Main -->
@@ -175,17 +175,23 @@
             </li>
           </ul>
 
-          <ul [hidden]="viewMode != 4">
-            <li class="delete">
-              <button (click)="viewMode = 1">
-                <span><i class="fas fa-times"></i></span>
-                <span>Cancel</span>
+          <ul [hidden]="viewMode != 2">
+            <li class="edit">
+              <button (click)="viewMode = 3">
+                <span><i class="fas fa-pencil-alt"></i></span>
+                <span>Edit</span>
               </button>
             </li>
-            <li class="save">
-              <button (click)="saveNew()">
-                <span><i class="fas fa-save"></i></span>
-                <span>Save</span>
+            <li class="delete">
+              <a href="drafts-delete">
+                <span><i class="fas fa-trash-alt"></i></span>
+                <span>Delete</span>
+              </a>
+            </li>
+            <li class="new">
+              <button (click)="viewMode = 6">
+                <span><i class="far fa-user"></i></span>
+                <span>Propose</span>
               </button>
             </li>
           </ul>
@@ -211,23 +217,17 @@
             </li>
           </ul>
 
-          <ul [hidden]="viewMode != 2">
-            <li class="edit">
-              <button (click)="viewMode = 3">
-                <span><i class="fas fa-pencil-alt"></i></span>
-                <span>Edit</span>
+          <ul [hidden]="viewMode != 4">
+            <li class="delete">
+              <button (click)="viewMode = 1">
+                <span><i class="fas fa-times"></i></span>
+                <span>Cancel</span>
               </button>
             </li>
-            <li class="delete">
-              <a href="drafts-delete">
-                <span><i class="fas fa-trash-alt"></i></span>
-                <span>Delete</span>
-              </a>
-            </li>
-            <li class="new">
-              <button (click)="viewMode = 6">
-                <span><i class="far fa-user"></i></span>
-                <span>Propose</span>
+            <li class="save">
+              <button (click)="saveNew()">
+                <span><i class="fas fa-save"></i></span>
+                <span>Save</span>
               </button>
             </li>
           </ul>

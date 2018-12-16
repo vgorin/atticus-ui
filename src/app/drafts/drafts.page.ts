@@ -41,7 +41,7 @@ export class DraftsPage implements OnInit {
     console.log('DraftsPage -> ngOnInit', this.drafts);
   }
 
-  viewDraft(index) {
+  async viewDraft(index) {
     this.currentDraft = this.drafts[index];
     this.viewMode = ViewMode.View;
   }
