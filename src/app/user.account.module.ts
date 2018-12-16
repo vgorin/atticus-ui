@@ -110,6 +110,10 @@ export class UserAccountModule {
             args = args.concat([json, options]);
             break;
           }
+          case 'put' : {
+            args = args.concat([json, options]);
+            break;
+          }
         }
         if (!this.http[method]) {
           console.log('Error: No such HTTP method :', {url, method, json, options});
