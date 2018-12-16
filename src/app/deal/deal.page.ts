@@ -22,8 +22,12 @@ export class DealPage implements OnInit {
   }
 
   async sign() {
-    // TODO: PUT /deal/accept/{deal.contract_id}
-    this.viewMode = ViewMode.ModalProposalSigned;
+    try {
+      const accepted = await this.account.dealAccept(this.deal.contract_id);
+      this.viewMode = ViewMode.ModalProposalSigned;
+    } catch (err) {
+      console.log('ERROR:', err);
+    }
   }
 }
 
