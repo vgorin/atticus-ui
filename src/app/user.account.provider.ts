@@ -118,7 +118,7 @@ export class UserAccount {
       })
       .then((response) => {
         if (!response) {
-          throw(new Error('Got empty response!'));
+          return response;
         }
         if ((response.error || {}).message) {
           throw new Error([
