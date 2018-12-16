@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserAccountModule {
-  private backend_host = 'http://172.104.123.14:28081';
+  private backend_host = 'http://46.219.125.69:5000';
 
   public check_user: boolean;
 
