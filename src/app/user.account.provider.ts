@@ -328,11 +328,11 @@ export class UserAccount {
     await this.getUser();
     const str = await this.storage.get( [ this.account_id, 'deal' ].join(':') );
     this.dealToView = JSON.parse(str);
-    const secondPatry = (this.dealToView.parties || []).filter( (x) => {
+    const secondParty = (this.dealToView.parties || []).filter( (x) => {
       return x.account_id !== this.account_id;
     })[0];
-    if ( secondPatry.account_id ) {
-      this.dealToView.secondPatry = await this._request('/account/' + secondPatry.account_id, 'get', null, null);
+    if ( secondParty.account_id ) {
+      this.dealToView.secondParty = await this._request('/account/' + secondParty.account_id, 'get', null, null);
     }
   }
 
