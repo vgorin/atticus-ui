@@ -77,73 +77,13 @@
 
       <!-- Begin: Intro -->
 
-      <section id="templates" class="list stack">
+      <section id="templates" class="list stack" [hidden]="viewMode != 1">
         <div>
 
 
           <div id="accordion">
-            <div class="tab">
-              <h3><a href="templates-view"><i class="fas fa-file-alt"></i> Consultant Agreement</a></h3>
-              <input id="a1" type="checkbox" name="tabs">
-              <label for="a1">&nbsp;</label>
-              <div class="tab-content">
-                <ul>
-                  <li><a href="templates-view">Consultant Agreement v3</a></li>
-                  <li><a href="templates-view">Consultant Agreement v2</a></li>
-                  <li><a href="templates-view">Consultant Agreement v1</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="tab">
-              <h3><a href="templates-view"><i class="fas fa-file-alt"></i> Rental Agreement</a></h3>
-              <input id="a2" type="checkbox" name="tabs">
-              <label for="a2">&nbsp;</label>
-              <div class="tab-content">
-                <ul>
-                  <li><a href="templates-view">Rental Agreement v3</a></li>
-                  <li><a href="templates-view">Rental Agreement v2</a></li>
-                  <li><a href="templates-view">Rental Agreement v1</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="tab">
-              <h3><a href="templates-view"><i class="fas fa-file-alt"></i> Software Dev Agreement</a></h3>
-              <input id="a3" type="checkbox" name="tabs">
-              <label for="a3">&nbsp;</label>
-              <div class="tab-content">
-                <ul>
-                  <li><a href="templates-view">Software Dev Agreement v3</a></li>
-                  <li><a href="templates-view">Software Dev Agreement v2</a></li>
-                  <li><a href="templates-view">Software Dev Agreement v1</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="tab">
-              <h3><a href="templates-view"><i class="fas fa-file-alt"></i> 3-Party bet</a></h3>
-              <input id="a4" type="checkbox" name="tabs">
-              <label for="a4">&nbsp;</label>
-              <div class="tab-content">
-                <ul>
-                  <li><a href="templates-view">3-Party bet v3</a></li>
-                  <li><a href="templates-view">3-Party bet v2</a></li>
-                  <li><a href="templates-view">3-Party bet v1</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="tab">
-              <h3><a href="templates-view"><i class="fas fa-file-alt"></i> Dice Roll Bet</a></h3>
-              <input id="a5" type="checkbox" name="tabs">
-              <label for="a5">&nbsp;</label>
-              <div class="tab-content">
-                <ul>
-                  <li><a href="templates-view">Dice Roll Bet v6</a></li>
-                  <li><a href="templates-view">Dice Roll Bet v5</a></li>
-                  <li><a href="templates-view">Dice Roll Bet v4</a></li>
-                  <li><a href="templates-view">Dice Roll Bet v3</a></li>
-                  <li><a href="templates-view">Dice Roll Bet v2</a></li>
-                  <li><a href="templates-view">Dice Roll Bet v1</a></li>
-                </ul>
-              </div>
+            <div class="tab" *ngFor="let template of templates; let i = index" [attr.data-index]="i">
+              <h3><button (click)="viewTemplate(i)"><i class="fas fa-file"></i> {{ template.title }}</button></h3>
             </div>
           </div>
 
@@ -151,6 +91,25 @@
 
         </div>
       </section>
+
+      <section id="edit" [hidden]="viewMode == 1">
+        <div>
+          <form>
+            <fieldset>
+              <h4>Template Info</h4>
+              <p>
+                <label for="name">Template Title</label>
+                <input [(ngModel)]="currentTemplate.title" id="name" type="text" placeholder="Enter text" [disabled]="viewMode != 3 && viewMode != 4" name="name">
+              </p>
+              <p>
+                <label for="text">Template Text</label>
+                <textarea [(ngModel)]="currentTemplate.body" id="text" [disabled]="viewMode != 3 && viewMode != 4" name="text"></textarea>
+              </p>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
     </main>
 
     <!--   End: Main -->

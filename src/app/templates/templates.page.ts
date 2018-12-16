@@ -9,6 +9,7 @@ import { UserAccountModule } from '../user.account.module';
 
 
 export class TemplatesPage implements OnInit {
+  public viewMode: ViewMode = ViewMode.List;
 
   public templates;
   public currentTemplate = {};
@@ -22,18 +23,29 @@ export class TemplatesPage implements OnInit {
     console.log('DraftsPage -> ngOnInit', this.templates);
   }
 
-  async viewTemplate(index) {
+  viewTemplate(index) {
     this.currentTemplate = this.templates[index];
+    this.viewMode = ViewMode.View;
   }
 
   async saveNew() {
     this.templates = await this.account.saveNewTemplate(this.currentTemplate);
-    // this.viewMode = 1;
+    this.viewMode = 1;
   }
 
   async save() {
     this.templates = await this.account.saveTemplate(this.currentTemplate);
-    // this.viewMode = 1;
+    this.viewMode = 1;
   }
 
+}
+
+enum ViewMode {
+  List = 1,
+  View,
+  Edit,
+  New,
+  ModalSaved,
+  ModalSendInvite,
+  ModalInvitationSent
 }
