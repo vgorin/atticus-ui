@@ -7,11 +7,27 @@ import { UserAccount } from '../user.account.provider';
   styleUrls: ['./contracts.page.scss'],
 })
 export class ContractsPage implements OnInit {
-  private deals: Array<Object>;
+  private viewMode = ViewMode.List;
 
-  constructor(private account: UserAccount) {}
+  private activeDeals;
+  private currentDeal;
+
+  constructor(private account: UserAccount) {
+    this.activeDeals = [];
+    this.currentDeal = {};
+  }
 
   async ngOnInit() {
-    this.deals = await this.account.getActiveDeals();
+    this.activeDeals = await this.account.getActiveDeals();
   }
+
+  async viewActiveDeal(index) {
+    this.currentDeal = this.activeDeals[index];
+    this.viewMode = ViewMode.View;
+  }
+}
+
+enum ViewMode {
+  List = 1,
+  View,
 }

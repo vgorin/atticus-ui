@@ -5,8 +5,8 @@
 
     <!-- Begin: Header -->
 
-    <header>
-
+    <!-- contracts.html -->
+    <header [hidden]="viewMode != 1">
       <section id="top">
         <div>
           <section>
@@ -72,6 +72,32 @@
       </section>
     </header>
 
+    <!-- contract-status-alt.html -->
+    <header class="heading tabbed" [hidden]="viewMode != 2">
+      <section>
+        <div>
+          <div>
+            <h1><a href="contracts">Contracts</a> <i class="fas fa-angle-right"></i> Baseball Bet</h1>
+          </div>
+        </div>
+        <div>
+          <span class="close">
+              <a href="contracts"><i class="fas fa-times"></i></a>
+          </span>
+        </div>
+      </section>
+
+      <section>
+        <nav class="tabs">
+          <ul>
+            <li><a href="contract-status-alt" class="active">Status</a></li>
+            <li><a href="contract-timeline">Timeline</a></li>
+            <li><a href="contract-terms">Terms</a></li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+
     <!--   End: Header -->
     <!-- Begin: Main -->
 
@@ -79,17 +105,52 @@
 
       <!-- Begin: Intro -->
 
-      <section id="contracts" class="list stack">
+      <section id="contracts" class="list stack" [hidden]="viewMode != 1">
         <div>
           <div id="accordion">
             <div class="tab">
-              <h3 *ngFor="let deal of deals; let i = index" [attr.data-index]="i">
-                <a href="contract-status-alt"><img src="./assets/images/users/{{deal.contracter_id}}.png"> {{deal.title}}</a>
+              <h3 *ngFor="let activeDeal of activeDeals; let i = index" [attr.data-index]="i">
+                <button (click)="viewActiveDeal(i)">
+                  <img src="./assets/images/users/{{activeDeal.contracter_id}}.png"> {{activeDeal.title}}
+                </button>
               </h3>
             </div>
           </div>
         </div>
       </section>
+
+      <section id="edit" [hidden]="viewMode == 1">
+        <div>
+          <section id="timeline">
+            <div>
+              <section>
+                <div>
+                  <p><img src="./assets/images/profile-craig.png"></p>
+                </div>
+                <div>
+                  <h3>Counter Proposal</h3>
+                  <p>Let's be realistic here... Who else is going to ever make an offer like this. Just man up, Sam.</p>
+                  <p>Terms: $5,000,000 USD</p>
+                  <p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>
+                </div>
+              </section>
+            </div>
+          </section>
+          <section id="status">
+            <div>
+              <section>
+                <div>
+                  <figure><img src="./assets/images/profile-sam-lg.png"></figure>
+                  <h3><strong>Last Action</strong></h3>
+                  <p>Sam Bourque</p>
+                  <p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </section>
+
     </main>
 
     <!--   End: Main -->
