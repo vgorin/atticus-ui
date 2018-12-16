@@ -22,7 +22,8 @@ export class DealPage implements OnInit {
   }
 
   async sign() {
-
+    // TODO: PUT /deal/accept/{deal.contract_id}
+    this.viewMode = ViewMode.ModalProposalSigned;
   }
 }
 
