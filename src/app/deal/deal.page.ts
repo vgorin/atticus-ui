@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, ToastController } from '@ionic/angular';
 import { UserAccount } from '../user.account.provider';
 
 @Component({
@@ -11,7 +12,11 @@ export class DealPage implements OnInit {
 
   public deal;
 
-  constructor(private account: UserAccount) {
+  constructor(
+      public alertController: AlertController,
+      public toastController: ToastController,
+      private account: UserAccount
+  ) {
     this.deal = {};
   }
 
