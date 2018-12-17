@@ -29,7 +29,7 @@ export class ProposalsPage implements OnInit {
     const deal = this.proposals[index];
     await this.account.setDealToView(deal);
     console.log('setDealToView', deal);
-    this.router.navigateByUrl('/deal/' + deal.contracter_id );
+    this.router.navigateByUrl('/deal/' + [this.account.account_id, deal.contracter_id].join('/') );
   }
 }
 

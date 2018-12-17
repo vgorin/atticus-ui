@@ -272,7 +272,13 @@ export class UserAccount {
   async sendProposal(sendToAccount, currentDraft) {
     console.log('sendProposal', {currentDraft, sendToAccount});
     return await this._request(
-        `/deal?contract_id=${currentDraft.contract_id}&to_account_id=${sendToAccount.account_id}&deal_title=${currentDraft.memo}&email=${sendToAccount.email}`,
+        //`/deal?contract_id=${currentDraft.contract_id}&to_account_id=${sendToAccount.account_id}&deal_title=${currentDraft.memo}&email=${sendToAccount.email}`,
+        '/deal?' + this.buidQueryString({
+          contract_id: currentDraft.contract_id,
+          to_account_id: sendToAccount.account_id,
+          deal_title: currentDraft.memo,
+          email: sendToAccount.email
+        }),
         'post', null, null);
   }
 
