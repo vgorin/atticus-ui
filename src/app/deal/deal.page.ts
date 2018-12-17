@@ -13,7 +13,8 @@ export class DealPage implements OnInit {
 
   public deal;
   public counterContract;
-  public account_id;
+  public _account_id;
+  public _contracter_id;
 
   constructor(
       public alertController: AlertController,
@@ -23,7 +24,8 @@ export class DealPage implements OnInit {
   ) {
     this.deal = {};
     this.counterContract = {};
-    this.account_id = this.route.snapshot.paramMap.get('account_id');
+    this._account_id = this.route.snapshot.paramMap.get('account_id');
+    this._contracter_id = this.route.snapshot.paramMap.get('contracter_id');
   }
 
   async ngOnInit() {
