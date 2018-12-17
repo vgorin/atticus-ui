@@ -177,7 +177,7 @@
             <div class="tab">
               <h3 *ngFor="let activeDeal of activeDeals; let i = index" [attr.data-index]="i">
                 <button (click)="viewActiveDeal(i)">
-                  <img src="./assets/images/users/{{activeDeal.contracter_id}}.png"> {{activeDeal.title}}
+                  <img src="./assets/images/users/{{activeDeal.contracter_id||'nologo'}}.png"> {{activeDeal.title}}
                 </button>
               </h3>
             </div>
