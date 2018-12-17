@@ -12,9 +12,9 @@
           </div>
         </div>
         <div>
-                <span class="close">
-                    <a href=""><i class="fas fa-times"></i></a>
-                </span>
+        <span class="close">
+          <a href=""><i class="fas fa-times"></i></a>
+        </span>
         </div>
       </section>
     </header>
@@ -42,17 +42,37 @@
                 <input [(ngModel)]="user_account.verify_password" id="password" type="password" name="password">
               </p>
 
-              <nav id="action">
+              <nav class="action">
                 <ul>
-                  <li class="new">
+                  <li class="d">
                     <a href="start">
-                      <span><i class="fas fa-arrow-left"></i></span>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                          <g class="c">
+                            <circle cx="40" cy="40" r="29.5"/>
+                          </g>
+                          <g class="i">
+                            <line class="l" x1="52" y1="40" x2="28" y2="40"/>
+                            <polyline class="l" points="40,52 28,40 40,28"/>
+                          </g>
+                        </svg>
+                      </span>
                       <span>Back</span>
                     </a>
                   </li>
-                  <li class="new">
+                  <li class="g">
                     <button (click)="setStep(2)">
-                      <span><i class="fas fa-arrow-right"></i></span>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                          <g class="c">
+                            <circle cx="40" cy="40" r="29.5"/>
+                          </g>
+                          <g class="i">
+                        	  <line class="l" x1="28" y1="40" x2="52" y2="40"/>
+	                          <polyline class="l" points="40,28 52,40 40,52"/>
+                          </g>
+                        </svg>
+                      </span>
                       <span>Next</span>
                     </button>
                   </li>
@@ -85,9 +105,9 @@
           </div>
         </div>
         <div>
-                <span class="close">
-                    <a href=""><i class="fas fa-times"></i></a>
-                </span>
+        <span class="close">
+          <a href=""><i class="fas fa-times"></i></a>
+        </span>
         </div>
       </section>
     </header>
@@ -132,17 +152,36 @@
               <option>Time 1</option>
             </select>
           </p>
-          <nav id="action">
+          <nav class="action">
             <ul>
-              <li class="new">
+              <li class="d">
                 <button (click)="setStep(1)">
-                  <span><i class="fas fa-arrow-left"></i></span>
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                      <g class="c">
+                        <circle cx="40" cy="40" r="29.5"/>
+                      </g>
+                      <g class="i">
+                        <line class="l" x1="52" y1="40" x2="28" y2="40"/>
+                        <polyline class="l" points="40,52 28,40 40,28"/>
+                      </g>
+                    </svg>
+                  </span>
                   <span>Back</span>
                 </button>
               </li>
-              <li class="new">
+              <li class="g">
                 <button (click)="createUser()" href="signup-success">
-                  <span><i class="fas fa-check"></i></span>
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                      <g class="c">
+                        <circle cx="40" cy="40" r="29.5"/>
+                      </g>
+                      <g class="i">
+                        <path class="l" d="M54 32.04L35.38 50.66 27 42.29"/>
+                      </g>
+                    </svg>
+                  </span>
                   <span>Finish</span>
                 </button>
               </li>
