@@ -11,6 +11,7 @@ export class DealPage implements OnInit {
   public viewMode: ViewMode = ViewMode.DealView;
 
   public deal;
+  public counterContract;
 
   constructor(
       public alertController: AlertController,
@@ -18,6 +19,7 @@ export class DealPage implements OnInit {
       private account: UserAccount
   ) {
     this.deal = {};
+    this.counterContract = {};
   }
 
   async ngOnInit() {
@@ -37,7 +39,7 @@ export class DealPage implements OnInit {
 
   async openCounter() {
     try {
-      await this.account.openCounter();
+      this.counterContract = await this.account.openCounter(this.deal);
       this.viewMode = ViewMode.CounterView;
     } catch (err) {
       this.displayError(err, 'Send counter error!');
