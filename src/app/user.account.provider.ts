@@ -349,12 +349,13 @@ export class UserAccount {
   buidQueryString(obj) {
     return Object.keys(obj).map( (key) => {
       return [key, encodeURIComponent(obj[key])].join('=');
-    });
+    }).join('&');
   }
 
   async sendCounter(deal, counterContract) {
     await this._request('/contract/' + counterContract.contract_id, 'put', null, null);
     let queryObj = { contract_id : counterContract.contract_id };
+    console.log('tmp', queryObj);
     let r = await this._request('/deal/' + deal.deal_id + '?' + this.buidQueryString(queryObj), 'post', null, null);
     console.log('sendCounter', deal, counterContract, '->', r);
     return r;
