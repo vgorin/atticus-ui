@@ -28,7 +28,8 @@ export class ProposalsPage implements OnInit {
   async openDeal(index) {
     const deal = this.proposals[index];
     await this.account.setDealToView(deal);
-    this.router.navigateByUrl('/deal/' + this.account.account_id );
+    console.log('setDealToView', deal);
+    this.router.navigateByUrl('/deal/' + deal.contracter_id );
   }
 }
 
