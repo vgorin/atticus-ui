@@ -353,6 +353,6 @@ export class UserAccount {
 
   async openCounter(deal) {
     console.log('!!! TODO: POST /contract/{deal.contract_id} -> copied_contract_id');
-    return await this._request('/deal/accept/' + deal.contract_id, 'post', null, null);
+    return await this._request('/contract/' + deal.contract_id, 'post', null, null);
   }
 }
