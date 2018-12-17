@@ -1,0 +1,408 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Menu */
+
+#menu > div > div {
+    padding: 0;
+}
+#menu ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#menu ul li {
+    display: block;
+    margin: 0;
+    padding: 0; 
+    border-bottom: solid .1rem #eee;
+}
+#menu ul li a {
+    background: #fff;
+    display: block;
+    margin: 0;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+}
+
+
+
+
+#app > header + main {
+    background-color: hsla(0, 100%, 100%, 0);
+    margin-top: 14rem;
+    margin-bottom: 13rem;
+}
+#app > header.heading + main {
+    margin-top: 6rem;
+}
+#app > header.heading.tabbed + main {
+    margin-top: 9rem;
+}
+
+
+#app > header.heading.tabbed {
+    background: none;
+}
+#app > header.heading.tabbed > section:first-of-type {
+    background: #fff;
+}
+#app > header.heading.tabbed > section:last-of-type {
+    background: hsla(215, 75%, 32%, 1);
+}
+
+
+#app header.heading section > div:last-of-type {
+    width: 6rem;
+}
+#app header.heading section > div:last-of-type a {
+    padding: 1.5rem;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#notifications #timeline {
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+
+
+section#timeline,
+ul#timeline {
+    background-color: hsla(0, 100%, 100%, 0); 
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+section#timeline > div,
+ul#timeline > li {
+    display: block;
+    margin: 1rem 1rem 0 1rem;
+    background: #fff;
+    padding: 1.5rem 0 1rem;
+    border-radius: .5rem;
+    background-color: hsla(0, 100%, 100%, 1);
+    overflow-y: auto;
+    width: auto;
+}
+section#timeline > div > section,
+ul#timeline > li > ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+}
+    section#timeline > div > section > div:first-of-type,
+    ul#timeline > li > ul > li:first-of-type {
+        width: 6rem;
+        text-align: center;
+    }
+        section#timeline > div > section > div:first-of-type,
+        ul#timeline > li > ul > li:first-of-type {
+            width: 6rem;
+        }
+        section#timeline > div > section > div:first-of-type p,
+        ul#timeline > li > ul > li:first-of-type p {
+            width: 6rem;
+        }
+        section#timeline > div > section > div:first-of-type p img,
+        ul#timeline > li > ul > li:first-of-type p img {
+            border: .1rem solid hsla(0, 100%, 0%, .1);
+            border-radius: 50%;
+            padding: .2rem;
+            width: 3rem; }
+
+    section#timeline > div > section > div:last-of-type,
+    ul#timeline > li > ul > li:last-of-type{
+        text-align: left;
+        padding: 0 1.5rem;
+    }
+        section#timeline > div > section > div:last-of-type h3,
+        ul#timeline > li > ul > li:last-of-type h3 {
+            font-size: 1.6rem;
+            letter-spacing: .05rem;
+            margin-top: .25rem;
+        }
+        section#timeline > div > section > div:last-of-type p,
+        ul#timeline > li > ul > li:last-of-type p {
+            color: hsla(0, 100%, 0%, .45);
+            font-size: 1.2rem;
+            letter-spacing: .05rem;
+        }
+        section#timeline > div > section > div:last-of-type p[role="memo"],
+        ul#timeline > li > ul > li:last-of-type p[role="memo"] {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 10rem;
+        }
+
+        section#timeline > div > section > div:last-of-type p i,
+        ul#timeline > li > ul > li:last-of-type p i {
+            margin-right: .5rem;
+        }
+        section#timeline > div > section > div:last-of-type p:last-of-type,
+        ul#timeline > li > ul > li:last-of-type p:last-of-type {
+            color: hsla(0, 100%, 0%, .85);
+            font-size: 1.2rem;
+        }
+        section#timeline > div > section > div:last-of-type p:last-of-type i,
+        ul#timeline > li > ul > li:last-of-type p:last-of-type i {
+            color: hsla(0, 100%, 0%, .35);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ul#t {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+ul#t > li {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+ul#t > li > div {
+    box-sizing: border-box;
+    background-color: hsla(0, 100%, 100%, 1);
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem;
+    text-align: left;
+    width: auto;
+}
+
+
+
+
+ul#t.messages > li > div {
+    margin: 0 1.5rem 1.5rem 7.5rem;
+}
+ul#t.messages > li:nth-child(even) > div {
+    margin: 0 7.5rem 1.5rem 1.5rem;
+}
+ul#t.messages > li:nth-child(even) > div {
+
+}
+
+
+
+
+ul#t > li > div ul {
+    display: block;
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+}
+
+ul#t li div h4 {
+    line-height: 100%;
+    margin: 0;
+    font-size: 1.6rem;
+}
+ul#t li div li {
+    color: hsla(0, 0%, 50%, 2);
+    font-size: 1.3rem;font-weight: 300;
+    letter-spacing: .05rem;
+    line-height: 150%;
+    margin: 0 0 1.5rem 0;
+    padding: 0 4rem;
+}
+ul#t li div li:last-of-type {
+    margin-bottom: 0;
+}
+ul#t figure {
+    border-radius: 50%;
+    display: inline-block;
+    height: 3rem;
+    margin: 0 1rem 0 0;
+    width: 3rem;
+}
+ul#t figure img,
+ul#t figure i {
+    height: auto;
+    width: 100%;
+    display: inline-block;
+    border: solid 1px #ddd;
+    padding: 1px;
+    border-radius: 50%;
+}
+ul#t figure i {
+    height: 3rem;
+    width: 3rem;
+    display: inline-block;
+    border: solid 1px #ddd;
+    padding: 1px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+}
+ul#t figure figcaption {
+    display: none;
+}
+
+
+
+
+section#status {
+    padding: 1rem;
+    background-color: hsla(0, 100%, 100%, 0); 
+}
+section#status > div {
+    display: block;
+    margin: 0;
+    background: #fff;
+    padding: 1.5rem 0 1rem;
+    border-radius: .5rem;
+    background-color: hsla(0, 100%, 100%, 1);
+    overflow-y: auto;
+    width: 100%;
+}
+section#status div {
+
+}
+#modal div figure,
+section#status figure {
+    border-radius: 50%;
+    border: .1rem solid #ddd;
+    margin: 3rem auto;
+    padding: 1rem;
+    height: 30rem;
+    width: 30rem;
+}
+#modal div figure img,
+section#status figure img {
+    border-radius: 50%;
+}
+#modal div figure + h3 {
+    color: hsla(225, 15%, 30%, 1);
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 2rem;
+    letter-spacing: .05rem;
+    text-align: center;
+}
+#modal div figure + h3 > strong {
+    color: hsla(345, 90%, 50%, 1);
+    font-weight: 800;
+}
+
+
+
+
+
+
+
+
+/* Intro */
+
+#app #intro {
+    height: 100vh;
+    margin: 0;
+    position: fixed;
+}
+#intro * {
+    text-align: center;
+}
+#intro img {
+    margin-top: 5rem;
+}
+#intro h1 {
+    position: absolute;
+    left: -999rem;
+}
+#intro h3 {
+    color: hsla(0, 100%, 100%, .65);
+    font-family: "nunito sans", sans-serif;
+    font-size: 2.3rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    margin-top: 5rem;
+}
+
+
+
+
+
+
+
+
+#proposals {
+    padding: 0;
+}
+
+
+
+
+
+
+
+.stack h3,
+.bubble h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.9rem;
+    letter-spacing: .05rem;
+}
+.list p {
+margin-top: .8rem;
+    max-height: 3.6rem;
+    overflow: hidden;
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.8rem;
+    text-overflow: ellipsis;
+    letter-spacing: .1rem;
+    color: hsla(227, 20%, 52%, 1);
+
+}

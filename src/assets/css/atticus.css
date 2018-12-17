@@ -1,0 +1,248 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Theme */
+
+body {
+	background-color: hsla(227, 15%, 10%, 1);
+}
+
+
+
+
+
+
+
+
+/* Typography */
+
+h1, h2, h3, h4, h5, h6, p, th, td, li, dt, dd, select, option, input, span, caption, textarea {
+	line-height: 150%;
+	margin: 0 0 1rem;
+}
+h1, h2, h3, h4, h5, h6, dt, th, legend { font-weight: 300; }
+h1 {
+    color: hsla(225, 15%, 30%, 1);
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 2rem;
+    letter-spacing: .05rem;
+}
+h2, legend { font-size: 4.6rem; }
+h3 { font-size: 2.6rem; }
+h4 {
+    color: hsla(225, 15%, 30%, 1);
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 2rem;
+    letter-spacing: .05rem;
+}
+h5 { font-size: 1.6rem; }
+h6 { font-size: 1.2rem; }
+h4 { font-weight: 400; }
+h5, h6 { font-weight: 600; }
+
+p, th, td, li, dt, dd, select, option, input, span, caption, textarea {
+	font-size: 1.7rem;
+	font-weight: 400;
+}
+li, dt, dd {
+    line-height: 150%;
+    list-style-position: outside;
+    margin: 0 0 .5rem 0;
+    padding: 0;
+}
+caption {
+	margin: 1.5rem;
+}
+dt, th, legend {
+	font-weight: 600;
+}
+small {
+	font-size: 82.5%;
+}
+a {
+	color: hsla(225, 45%, 30%, 1);
+	transition: all .2s;
+}
+a:hover {
+	color: hsla(225, 15%, 20%, 1);
+	transition: all .2s;
+}
+
+/* blockquote */
+
+blockquote {
+
+}
+blockquote p {
+
+}
+blockquote small {
+
+}
+
+figure {
+    margin: 0 auto 2rem;
+    padding: 0;
+}
+figure img {
+    height: auto;
+    width: 100%;
+}
+
+/* Table */
+
+table {
+	border: .1rem solid hsla(0, 0%, 85%, 1);
+	border-collapse: collapse;
+	margin: 1rem auto;
+	width: 100%;
+}
+td, th {
+	padding: .75rem 1rem;
+	text-align: left;
+}
+td {
+	border-bottom: .1rem dashed hsla(0, 0%, 75%, 1);
+}
+td a {
+
+}
+td a:hover {
+
+}
+th {
+	background-color: hsla(0, 0%, 85%, 1);
+	font-weight: 600;
+	padding: 1.5rem 1rem;
+	text-align: left;
+}
+table {
+	border: .1rem solid hsla(0, 0%, 85%, 1);
+	border-collapse: collapse;
+	margin: 1rem auto;
+	width: 100%;
+}
+td, th {
+	padding: .75rem 1rem;
+	text-align: left;
+}
+td {
+	border-bottom: .1rem dashed hsla(0, 0%, 75%, 1);
+}
+td a {
+
+}
+td a:hover {
+
+}
+th {
+	background-color: hsla(0, 0%, 85%, 1);
+	font-weight: 600;
+	padding: 1.5rem 1rem;
+	text-align: left;
+}
+
+
+
+
+pre {
+	background: hsla(210, 20%, 10%, 1);
+	border-radius: .5rem;
+	color: hsla(0, 0%, 100%, 1);
+	counter-reset: line;
+	padding: 2rem 2rem 1rem;
+}
+code {
+    color: hsla(0, 0%, 100%, 1);
+    counter-increment: line;
+    display: inline-block;
+    /* border-right: 1px solid #ddd; */
+    margin-right: 0;
+    padding: 0;
+	tab-size: 3rem;
+}
+p code {
+	color: hsla(190, 80%, 40%, 1);
+	font-weight: 600;
+}
+code span:not[class]:before {
+    content: counter(line);
+	-webkit-user-select: none;
+}
+button {
+	transition: all .1s;
+}
+button:hover {
+	transition: all 0s;
+}
+
+
+
+/* Fonts ------------------------------ */
+
+
+@font-face {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/NunitoSans/nunito-sans-v3-latin-300.eot");
+    src: local("Nunito Sans Light"), local("NunitoSans-Light"), url("../fonts/NunitoSans/nunito-sans-v3-latin-300.eot?#iefix") format("embedded-opentype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-300.woff2") format("woff2"), url("../fonts/NunitoSans/nunito-sans-v3-latin-300.woff") format("woff"), url("../fonts/NunitoSans/nunito-sans-v3-latin-300.ttf") format("truetype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-300.svg#NunitoSans") format("svg");
+}
+@font-face {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/NunitoSans/nunito-sans-v3-latin-regular.eot");
+    src: local("Nunito Sans Regular"), local("NunitoSans-Regular"), url("../fonts/NunitoSans/nunito-sans-v3-latin-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-regular.woff2") format("woff2"), url("../fonts/NunitoSans/nunito-sans-v3-latin-regular.woff") format("woff"), url("../fonts/NunitoSans/nunito-sans-v3-latin-regular.ttf") format("truetype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-regular.svg#NunitoSans") format("svg");
+}
+@font-face {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/NunitoSans/nunito-sans-v3-latin-600.eot");
+    src: local("Nunito Sans SemiBold"), local("NunitoSans-SemiBold"), url("../fonts/NunitoSans/nunito-sans-v3-latin-600.eot?#iefix") format("embedded-opentype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-600.woff2") format("woff2"), url("../fonts/NunitoSans/nunito-sans-v3-latin-600.woff") format("woff"), url("../fonts/NunitoSans/nunito-sans-v3-latin-600.ttf") format("truetype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-600.svg#NunitoSans") format("svg"); }
+@font-face {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/NunitoSans/nunito-sans-v3-latin-700.eot");
+    src: local("Nunito Sans Bold"), local("NunitoSans-Bold"), url("../fonts/NunitoSans/nunito-sans-v3-latin-700.eot?#iefix") format("embedded-opentype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-700.woff2") format("woff2"), url("../fonts/NunitoSans/nunito-sans-v3-latin-700.woff") format("woff"), url("../fonts/NunitoSans/nunito-sans-v3-latin-700.ttf") format("truetype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-700.svg#NunitoSans") format("svg");
+}
+@font-face {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 800;
+    src: url("../fonts/NunitoSans/nunito-sans-v3-latin-800.eot");
+    src: local("Nunito Sans ExtraBold"), local("NunitoSans-ExtraBold"), url("../fonts/NunitoSans/nunito-sans-v3-latin-800.eot?#iefix") format("embedded-opentype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-800.woff2") format("woff2"), url("../fonts/NunitoSans/nunito-sans-v3-latin-800.woff") format("woff"), url("../fonts/NunitoSans/nunito-sans-v3-latin-800.ttf") format("truetype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-800.svg#NunitoSans") format("svg");
+}
+@font-face {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 900;
+    src: url("../fonts/NunitoSans/nunito-sans-v3-latin-900.eot");
+    src: local("Nunito Sans Black"), local("NunitoSans-Black"), url("../fonts/NunitoSans/nunito-sans-v3-latin-900.eot?#iefix") format("embedded-opentype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-900.woff2") format("woff2"), url("../fonts/NunitoSans/nunito-sans-v3-latin-900.woff") format("woff"), url("../fonts/NunitoSans/nunito-sans-v3-latin-900.ttf") format("truetype"), url("../fonts/NunitoSans/nunito-sans-v3-latin-900.svg#NunitoSans") format("svg");
+}
+
+
+
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 1rem;
+    background-color: hsla(0, 100%, 100%, .75);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0 hsla(0, 0%, 0%, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #fff; 
+    border-radius: .5rem;
+}

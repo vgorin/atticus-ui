@@ -1,0 +1,10 @@
+@import url(~@ionic/angular/css/core.css);
+@import url(~@ionic/angular/css/normalize.css);
+@import url(~@ionic/angular/css/structure.css);
+@import url(~@ionic/angular/css/typography.css);
+@import url(~@ionic/angular/css/padding.css);
+@import url(~@ionic/angular/css/float-elements.css);
+@import url(~@ionic/angular/css/text-alignment.css);
+@import url(~@ionic/angular/css/text-transformation.css);
+@import url(~@ionic/angular/css/flex-utils.css);
+@import url(./assets/css/style.css);

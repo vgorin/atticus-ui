@@ -1,0 +1,199 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Lists */
+
+
+#items {
+    
+}
+#items div {
+    
+}
+#items div h3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#items div h3 a,
+#items div h3 span {
+    color: hsla(225, 45%, 50%, 1);
+    display: inline-block;
+    font-size: 1.6rem;
+    margin: 0;
+    padding: 1.5rem;
+    text-decoration: none;
+}
+#items div h3 a:hover {
+    color: hsla(225, 15%, 20%, 1);
+}
+#items div h3 span {
+    color: hsla(225, 15%, 70%, 1);
+    font-size: 1.3rem;
+}
+#items div h3 a i,
+#items div h3 span i {
+    color: #ccc;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+#items div h3 a:hover {
+    color: #000;
+}
+#items div h3 span i {
+    color: #ccc;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+
+/* Accordion styles */
+
+#accordion {
+    padding: 0 1.5rem;
+}
+#accordion .tab {
+    /* margin-bottom: -.1rem; */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+#accordion .tab h3 {
+    margin: 1rem 0 0;
+    background: #fff;
+    border-radius: .5rem;
+}
+#accordion .tab h3 a {
+    /* border-bottom: .1rem solid #eee; */
+    color: #333;
+    font-size: 1.6rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    display: flex;
+}
+#accordion .tab h3 a > img {
+    border-radius: 50%;
+    display: inline-block;
+    height: 2.4rem;
+    margin: 0 1rem 0 0;
+    padding: .2rem;
+    width: 2.4rem;
+}
+#accordion .tab h3 a i {
+    color: #ccc;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+#accordion .tab h3 a:hover {
+    color: #000;
+}
+#accordion .tab input {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+}
+#accordion .tab label {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    float: right;
+    height: 3rem;
+    line-height: 3rem;
+    margin-top: -4rem;
+    padding: 0rem;
+    position: relative;
+    width: 3rem;
+}
+#accordion .blue label {
+    background: #2980b9;
+}
+#accordion .tab-content {
+    background-color: hsla(0, 100%, 100%, .9);
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height .35s;
+    -o-transition: max-height .35s;
+    transition: max-height .35s;
+
+}
+#accordion .tab-content section {
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(0, 0%, 0%, .1);
+}
+#accordion .tab-content section > div {
+    background-color: hsla(0, 100%, 100%, 1);
+    border-radius: .5rem;
+    display: block;
+    flex-direction: row;
+    margin: 1rem 3rem 0 1rem;
+    position: relative;
+}
+#accordion .tab-content > section > div > div {
+    margin: 0;
+}
+#accordion .tab-content > section > div > div:first-of-type {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 6rem;
+}
+#accordion .tab-content > section > div > div:first-of-type img {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+#accordion .tab-content > section > div > div:nth-of-type(2) {
+    padding-left: 6rem;
+}
+#accordion .blue .tab-content {
+
+}
+#accordion .tab-content ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+#accordion .tab-content li {
+
+}
+#accordion .tab-content li a {
+    font-size: 1.3rem;
+    letter-spacing: .05rem;
+    padding: 1rem 1.5rem;
+}
+#accordion .tab input:checked ~ .tab-content {
+    max-height: 100vh;
+}
+
+#accordion .tab label::after {
+    display: block;
+    height: 3rem;
+    line-height: 3rem;
+    position: absolute;
+    right: .5rem;
+    text-align: center;
+    top: 0;
+    -webkit-transition: all .35s;
+    -o-transition: all .35s;
+    transition: all .35s;
+    width: 3rem;
+}
+#accordion .tab input[type=checkbox] + label::after {
+    content: "+";
+}
+#accordion .tab input[type=radio] + label::after {
+    content: "\25BC";
+}
+#accordion .tab input[type=checkbox]:checked + label::after {
+    transform: rotate(315deg);
+}
+#accordion .tab input[type=radio]:checked + label::after {
+    transform: rotateX(0deg);
+}
+

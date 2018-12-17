@@ -1,0 +1,291 @@
+/* Grid */
+
+/* Next Level Containers */
+
+/* Grid ------------------------------ */
+
+/*! fire.css v.1.0.0
+
+Handcrafted with love... And a shitload of hours :)
+
+Flex Containers 
+
+*/
+
+/* App: Outermost Element */
+
+#app {
+    /*background: url(../images/bg.jpg) no-repeat center center fixed;*/
+    background: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+#app aside#modal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    max-width: 600px;
+    margin: 0 auto;
+    /* min-height: 960px; */
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+
+#app > header,
+#app > main,
+#app > footer {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    /* max-width: 600px; */
+}
+#app aside#modal {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;    
+}
+
+/* Header & Footer */
+
+#app > header,
+#app > footer {
+    background-color: hsla(0, 100%, 100%, 1);
+
+}
+#app > header {
+    position: fixed;
+    z-index: 100;
+}
+#app > footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 200;
+}
+
+
+/* Default Grid */
+
+
+body > *,
+section,
+form {
+	background-color: hsla(0, 100%, 100%, 0);
+    display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	width: 100%;
+}
+section > nav {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: auto;
+}
+section > nav > ul {
+    align-items: center;
+	background-color: hsla(0, 100%, 100%, 0);
+    display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+    list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	width: auto;    
+}
+section > nav > ul > li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    width: auto;
+}
+section > div > div {
+    width: auto;
+    margin: 0 !important;
+    padding: 0;
+}
+
+section > nav > ul > li {
+    display: inline-block;
+    margin: 0;
+    width: auto;
+}
+
+
+
+
+
+/* Flex items */
+
+aside,
+header,
+main,
+footer,
+form > div,
+section > div
+{
+	align-items: stretch;
+	border: 0;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+
+/* Content box */
+
+form > div > fieldset,
+section > div > div {
+	border: 0;
+	display: block;
+	flex-direction: column;
+	position: relative;
+	text-align: left;
+	
+	/* Theme */
+	
+	
+
+	margin: 1.5rem;
+	padding: 1.5rem 1.5rem .75rem;
+}
+
+
+
+
+
+
+
+
+[class^="c"] {
+	flex-wrap: wrap;
+}
+
+
+
+
+
+@media only screen and (min-width:768px) {
+
+	.c1 > * { width: 100%; }
+	.c2 > * { width: 100%; }
+	.c3 > * { width: 100%; }
+	.c4 > * { width: 50%; }
+	.c5 > * { width: 50%; }
+	.c6 > * { width: 50%; }
+
+}
+
+@media only screen and (min-width:1024px) {
+	
+	.c1 > * { width: 100%; }
+	.c2 > * { width: 50%; }
+	.c3 > * { width: 50%; }
+	.c4 > * { width: 25%; }
+	.c5 > * { width: 20%; }
+	.c6 > * { width: 33.33333%; }
+
+}
+
+@media only screen and (min-width:1280px) {
+	
+	/* Hierarchal Organized Templating (HOT) */
+	
+	/* Cascadent inheritive */
+
+	.c1 > * { width: 100%; }
+	.c2 > * { width: 50%; }
+	.c3 > * { width: 33.33333%; }
+	.c4 > * { width: 25%; }
+	.c5 > * { width: 20%; }
+	.c6 > * { width: 16.66667%; }
+
+	/* Explicit percentage */
+
+	* > .e5   { width: 5%; }
+	* > .e10  { width: 10%; }
+	* > .e15  { width: 15%; }
+	* > .e20  { width: 20%; }
+	* > .e25  { width: 25%; }
+	* > .e30  { width: 30%; }
+	* > .e35  { width: 35%; }
+	* > .e40  { width: 40%; }
+	* > .e45  { width: 45%; }
+	* > .e50  { width: 50%; }
+	* > .e55  { width: 55%; }
+	* > .e60  { width: 60%; }
+	* > .e65  { width: 65%; }
+	* > .e70  { width: 70%; }
+	* > .e75  { width: 75%; }
+	* > .e80  { width: 80%; }
+	* > .e85  { width: 85%; }
+	* > .e90  { width: 90%; }
+	* > .e95  { width: 95%; }
+	* > .e100 { width: 100%; }
+
+
+	/* Explicit static width */
+
+
+	* > .w10  { width: 10rem; }
+	* > .w20  { width: 20rem; }
+	* > .w30  { width: 30rem; }
+	* > .w40  { width: 40rem; }
+	* > .w50  { width: 50rem; }
+	* > .w60  { width: 60rem; }
+	* > .w70  { width: 70rem; }
+	* > .w80  { width: 80rem; }
+	* > .w90  { width: 90rem; }
+	* > .w100 { width: 100rem; }
+
+
+/*	
+	div:not([class^="c"]),
+	.r > div > div > div:not([class^="c"]) {
+		flex-wrap: nowrap;
+	}
+	footer > div:not([class^="c"]) > div:not([class^="e"]),
+	section > div:not([class^="c"]) > div:not([class^="e"]),
+	footer > .r > div > div > div:not([class^="c"]) > div:not([class^="e"]),
+	section > .r > div > div > div:not([class^="c"]) > div:not([class^="e"]) {
+		width: 100%;
+	}
+
+
+
+	section > div[class^="c"] {
+		flex-wrap: wrap;
+	}
+	section > div[class^="c"] > div[class^="w"] {
+		flex-wrap: wrap;
+	}
+	section > div[class^="c"] > div[class^="w"] + div {
+		width: 100%;
+	}
+*/
+}
+

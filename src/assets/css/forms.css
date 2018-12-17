@@ -1,0 +1,520 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Forms */
+
+.onoffswitch {
+    position: relative;
+    width: 7rem;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    margin-top: 1rem;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: .1rem solid #eeeeee;
+    border-radius: 1.5rem;
+    padding: 0;
+}
+.onoffswitch-inner {
+    display: block; 
+    width: 200%; 
+    margin-left: -100%;
+    transition: margin 0.15s ease-in 0s;
+}
+.onoffswitch-inner:before, 
+.onoffswitch-inner:after {
+    display: block; 
+    float: left; 
+    width: 50%; 
+    height: 3rem; 
+    padding: 0; 
+    line-height: 3rem;
+    font-size: 1.3rem; 
+    color: white; 
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Yes";
+    padding-left: 1.5rem;
+    background-color: #41C43D; 
+    color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "No";
+    padding-right: 10px;
+    background-color: #FFFFFF; 
+    color: #666666;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block;
+    width: 3rem;
+    margin: 0px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 4rem;
+    border: .1rem solid #eeeeee;
+    border-radius: 3rem;
+    transition: all 0.15s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+
+
+
+
+
+.notify {
+display: flex;
+    margin: 1.5rem 1.5rem 0;
+    padding: 1.5rem;
+    background: #22982f;
+    border-radius: .5rem;
+    width: auto;
+}
+.notify div div {
+    margin: 0;
+    padding: 0;
+}
+.notify h2 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    line-height: 100%;
+}
+
+
+form {
+    
+}
+form > div {
+	
+}
+form > fieldset,
+form section > fieldset{
+	align-items: stretch;
+    background: hsla(0, 100%, 100%, 1);
+	border: 0;
+	border-radius: .4rem;
+	display: inline-block;
+	margin: 1.5rem;
+	padding: 1.5rem;
+	text-align: left;
+	width: 100%;
+}
+form fieldset > p {
+	border: 0;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	text-align: left;
+	width: 100%;
+}
+form fieldset > h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+	margin: 4rem 0 0;
+    text-align: left;
+}
+form fieldset > h4:first-of-type {
+    margin-top: 0;
+}
+form fieldset > p > label {
+	align-items: stretch;
+	background: transparent;
+	color: hsla(200, 43%, 5%, 1);
+	display: block;
+	font-weight: 400;
+	margin: 0;
+	padding: 1rem 0 1rem 2.5rem;
+	text-align: left;
+	width: 100%;
+}
+form fieldset > p > input[type="checkbox"]:checked + label,
+form fieldset > p > input[type="radio"]:checked + label{
+	color: hsla(200, 43%, 5%, 1);
+}
+form fieldset > p > input + i {
+	font-size: 1.2rem;
+	font-weight: 400;
+}
+legend {
+	display: block;
+	margin: 0 0 2rem 0;
+	padding: 0;
+	text-align: left;
+}
+
+form > div {
+
+}
+form > div > fieldset {
+
+}
+form  div > fieldset > div {
+	background: hsla(0, 100%, 100%, 1);
+	flex-direction: column;
+}
+fieldset > h5 {
+	margin-top: 1.5rem;
+}
+fieldset > p {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	font-size: 1.6rem;
+	margin-bottom: .5rem;
+	position: relative;
+	padding-left: 2.5rem;
+	width: 100%;
+}
+fieldset > p:hover {
+	cursor: pointer;
+}
+fieldset > p > input {
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	z-index: -1;
+}
+
+
+form fieldset > p :first-child[for] {
+	display: block;
+	font-size: 1.3rem;
+	font-weight: 400;
+    margin-top: 1rem;
+	padding-left: 0;
+	width: 100%;
+    letter-spacing: .1rem;
+    color: hsla(227, 20%, 52%, 1);
+}
+form fieldset > p :first-child[for] + input {
+	background-color: hsla(34, 94%, 100%, .8);
+    border: .1rem solid hsla(0, 0%, 85%, 1);
+    border-color: hsla(0, 0%, 70%, 1) hsla(0, 0%, 80%, 1) hsla(0, 0%, 85%, 1);
+    border-radius: .5rem;
+    color: rgba(8, 16, 20, 1);
+	display: block;
+    font-size: 2rem;
+	left: auto;
+	margin: 0;
+	opacity: 1;
+	outline: 0;
+    padding: .75rem 1rem .65rem;
+	position: inherit;
+	width: 100%;
+	z-index: 0;
+}
+form fieldset > p :first-child[for] + textarea {
+	background-color: hsla(34, 94%, 100%, 1);
+    border: .1rem solid hsla(0, 0%, 85%, 1);
+    border-color: hsla(0, 0%, 70%, 1) hsla(0, 0%, 80%, 1) hsla(0, 0%, 85%, 1);
+    border-radius: .5rem;
+    color: rgba(8, 16, 20, 1);
+	display: block;
+    font-size: 1.3rem;
+	left: auto;
+	margin: 0;
+	opacity: 1;
+	outline: 0;
+    padding: .75rem 1rem .65rem;
+	position: inherit;
+	width: 100%;
+	z-index: 0;
+}
+
+form fieldset > p :first-child[for] + input[disabled="disabled"],
+form fieldset > p :first-child[for] + textarea[disabled="disabled"] {
+    background-color: hsla(34, 0%, 95%, 1);
+    border-color: hsla(34, 0%, 95%, 0);
+    color: hsla(34, 0%, 55%, 1);
+    cursor: not-allowed;
+}
+
+
+form fieldset > p :first-child[for] ~ i {
+	left: inherit;
+	right: 0;
+	top: 5rem;
+}
+
+
+fieldset p i {
+
+}
+fieldset p i {
+	background-color: hsla(0, 0%, 92.5%, 1);
+	border: 0;
+	border-radius: .3rem;
+	box-shadow: inset 0 0.05rem 0.035rem hsla(0, 0%, 0%, .35);
+	height: 1.6rem;
+	left: 0;
+	pointer-events: none;
+	position: absolute;
+	top: 1.2rem;
+	transition: background-color .1s;
+	width: 1.6rem;
+}
+fieldset p:hover i {
+	background-color: hsla(0, 0%, 95%, 1);
+	transition: background-color 0s;
+}
+fieldset p input[type="radio"] ~ i {
+ 	border-radius: 50%;
+}
+fieldset p:hover input ~ i,
+fieldset p input:focus ~ i {
+ 	background: hsla(20, 0%, 80%, 1);
+	transition: background-color .2s;
+}
+fieldset p input:checked ~ i {
+	background: hsla(30, 90%, 50%, 1);
+}
+fieldset p:hover input:not([disabled]):checked ~ i,
+fieldset p input:checked:focus ~ i {
+	background: hsla(30, 90%, 50%, 1);
+}
+fieldset p input:disabled ~ i {
+	background: #e6e6e6;
+	opacity: 0.6;
+	pointer-events: none;
+}
+fieldset p i:after {
+	content: '';
+	display: none;
+	pointer-events: none;
+	position: absolute;
+}
+fieldset p select ~ i:after,
+fieldset p input:checked ~ i:after {
+	display: block;
+	pointer-events: none;
+}
+fieldset p input[type="checkbox"] ~ i:after {
+	border: solid #fff;
+	border-width: 0 .2rem .2rem 0;
+	box-shadow: .05rem .05rem 0.035rem hsla(0, 0%, 0%, .35);
+	height: .9rem;
+	left: .6rem;
+	pointer-events: none;
+	top: .3rem;
+	transform: rotate(45deg);
+	width: .5rem;
+}
+fieldset p input[type="checkbox"]:disabled ~ i:after {
+	border-color: #7b7b7b;
+	pointer-events: none;
+}
+fieldset p input[type="radio"] ~ i:after {
+    background: hsla(0, 100%, 100%, 1);
+    border-radius: 50%;
+    box-shadow: 0 .1rem 0.05rem hsla(0, 0%, 0%, .35);
+    height: .6rem;
+    left: .5rem;
+    pointer-events: none;
+    top: .5rem;
+    width: .6rem;
+}
+fieldset p input[type="radio"]:disabled ~ i:after {
+	background: #7b7b7b;
+	pointer-events: none;
+}
+
+
+textarea {
+    width: 100%;
+    min-height: 20rem;
+}
+
+
+
+
+
+
+
+
+fieldset p > label  {
+	font-weight: 600;
+	padding: .5rem 0 .5rem 0rem;
+}
+fieldset p > label + select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: hsl(0, 0%, 92.5%);
+	border: 0;
+	border-radius: .3rem;
+	box-shadow: inset 0 0.05rem 0.035rem hsla(0, 0%, 0%, .25);
+	color: hsl(0, 0%, 48%);
+	cursor: pointer;
+	display: inline-block;
+	outline: 0;
+	padding: 1rem 1.5rem;
+	width: 100%;
+}
+fieldset p > select::-ms-expand {
+	display: none;
+}
+fieldset p > select:hover,
+fieldset p > select:focus {
+	color: #000;
+}
+fieldset p > select:disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+fieldset p > select i {
+	background: hsla(0, 0%, 90%, 0);
+	border: solid 0 hsla(200, 43%, 5%, 1);
+	box-shadow: none;
+	height: 2rem;
+	left: auto;
+	pointer-events: none;
+	position: absolute;
+	right: 1rem;
+	top: 4rem;
+	transform: rotate(0deg);
+	transition: all .3s;
+	width: 2rem;
+}
+fieldset p > select i:after {
+	border: solid hsla(200, 43%, 5%, 1);
+	border-width: 0 .2rem .2rem 0;
+	box-shadow: none;
+	height: .8rem;
+	left: .6rem;
+	pointer-events: none;
+	position: absolute;
+	top: .5rem;
+	transform: rotate(45deg);
+	width: .8rem;
+}
+fieldset > p > select:hover ~ i,
+fieldset > p > select:focus ~ i {
+
+}
+fieldset p > select:hover ~ i,
+fieldset p > select:active ~ i,
+fieldset p > select:focus ~ i {
+	transform: rotate(180deg);
+	transition: all .3s;
+}
+fieldset p > select:visited ~ i {
+	transform: rotate(0deg);
+	transition: all .3s;
+}
+fieldset p > select:disabled ~ i {
+
+}
+
+
+
+
+
+fieldset p {
+  align-items: center;
+  position: relative;
+}
+[type='range'] {
+  background: transparent;
+  flex: 1;
+  font: inherit;
+  margin: 0;
+  min-height: 1.5rem;
+  padding: 0;
+}
+[type='range'], [type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+[type='range']::-webkit-slider-runnable-track {
+  background: #ccc;
+  border: none;
+  height: 0.25em;
+  width: 12.5em;
+}
+[type='range']::-moz-range-track {
+  background: #ccc;
+  border: none;
+  height: 0.25rem;
+  width: 12.5rem;
+}
+[type='range']::-ms-track {
+  background: #ccc;
+  border: none;
+  height: 0.25rem;
+  width: 12.5rem;
+}
+[type='range']::-webkit-slider-thumb {
+  background: #f90;
+  border: none;
+  border-radius: 50%;
+  margin-top: -0.625rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+[type='range']::-moz-range-thumb {
+  background: #f90;
+  border: none;
+  border-radius: 50%;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+[type='range']::-ms-thumb {
+  background: #f90;
+  border: none;
+  border-radius: 50%;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+[type='range']::-ms-tooltip {
+  display: none;
+}
+[type='range'] ~ output {
+  display: none;
+}
+.js [type='range'] ~ output {
+  background: #95a;
+  border-radius: 3px;
+  color: #eee;
+  display: block;
+  left: 0.75em;
+  padding: .25em .5em;
+  position: absolute;
+  top: 0;
+  transform: translate(calc((var(--val) - var(--min))/(var(--max) - var(--min))*11em - 50%));
+}
+
+
+
+
+
+
+
+
+
+/*
+
+form > div > section + fieldset {
+	margin-top: 0;
+}
+form > div > section {
+	margin: 1.5rem 1.5rem 0;
+	padding: 0;
+}
+
+*/

@@ -1,0 +1,192 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    overflow-y: auto;
+    padding: 1.5rem;
+    position: fixed;
+    height: 100vh;
+    text-align: center;
+    width: 100vw;
+    background-color: hsla(225, 45%, 10%, 0);
+    z-index: 1000;
+}
+#modal header {
+    background-color: hsla(0, 100%, 100%, 1);
+    max-width: 600px;
+    padding: 0;
+    position: relative;
+    top: 0;
+    z-index: 1050;
+}
+#modal header > section {
+    position: fixed;
+    background: #fff;
+    max-width: 600px;
+}
+
+
+#modal header p {
+    font-size: 1.3rem;
+    letter-spacing: .05rem;
+}
+
+
+#modal main {
+    max-width: 600px;
+    overflow-y: auto;
+}
+#modal footer {
+    background-color: hsla(0, 100%, 100%, 1); 
+    max-width: 600px;
+    position: fixed;
+    bottom: 0;
+    z-index: 1060;
+}
+#modal footer > section {
+       
+}
+#modal form {
+    background-color: hsla(0, 100%, 100%, 0);
+    border-radius: .5rem;
+    flex-direction: column;
+    position: relative;
+    max-width: 600px;
+    overflow-y: auto;
+}
+#modal section {
+
+    border-radius: 0rem;
+    flex-direction: column;
+    position: relative;
+}
+#modal > section > span {
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+}
+#modal #action {
+    box-shadow: none;
+    margin-top: 5rem;
+}
+#modal section div div nav {
+    display: flex;
+    flex-direction: row;
+}
+
+#modal > section > div {
+    overflow-y: auto;
+}
+
+
+
+
+#modal > section > header {
+background-color: hsla(0, 100%, 100%, 1);
+}
+
+
+
+
+
+#modal.alert {
+    background: hsla(227, 15%, 10%, .75);
+}
+#modal.alert section,
+#modal.alert form {
+    background: #fff;
+    border-radius: .5rem;
+    padding: 1.5rem;
+    
+    max-width: 50%;
+    min-width: 50rem;
+}
+
+
+#modal.alert section section,
+#modal.alert form section{
+    max-width: 100%;
+    width: 100%;
+}
+
+
+
+
+
+
+#modal > section > header {
+    margin: 0;
+    padding: 1.5rem;
+    text-align: left;
+    border-radius: .5rem;
+    position: relative;
+}
+#modal > section > header h1 {
+    margin: 0;
+}
+#modal > section > header h1 a {
+    text-decoration: none;
+}
+
+#modal .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#modal .close a {
+    diplay: inline-block;
+    padding: 1.5rem 2.5rem;
+    display: inline-block;
+}
+
+
+
+
+
+
+/* Modal */
+
+/*
+#modal section > div > section {
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(0, 0%, 0%, .1);
+    padding-right: 2rem;
+    overflow-y: auto;
+}
+#modal section > div > section > div {
+    background-color: hsla(0, 100%, 100%, 1);
+    border-radius: .5rem;
+    display: block;
+    flex-direction: row;
+    margin: 1rem 1rem 0 1rem;
+    position: relative;
+}
+#modal section > div > section > div > div {
+    margin: 0;
+}
+#modal section > div > section > div > div:first-of-type {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 6rem;
+}
+#modal section > div > section > div > div:first-of-type img {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+ #modal section > div > section > div > div:nth-of-type(2) {
+    padding-left: 6rem;
+}
+*/
+
+
+
