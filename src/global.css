@@ -7,4 +7,13 @@
 @import url(~@ionic/angular/css/text-alignment.css);
 @import url(~@ionic/angular/css/text-transformation.css);
 @import url(~@ionic/angular/css/flex-utils.css);
-@import url(./assets/css/style.css);
+
+@import url(./assets/css/reset.css);
+@import url(./assets/css/fg.css);
+@import url(./assets/css/atticus.css);
+@import url(./assets/css/navs.css);
+@import url(./assets/css/sections.css);
+@import url(./assets/css/lists.css);
+@import url(./assets/css/forms.css);
+@import url(./assets/css/modals.css);
+@import url(./assets/css/misc.css);
