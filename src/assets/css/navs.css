@@ -51,110 +51,6 @@ nav > ul > li a {
 
 
 
-/* Nav Main */
-
-
-/*
-#main {
-    background-color: hsla(0, 100%, 100%, 1);
-    width: 100%;
-    z-index: 50;
-}
-#main ul {
-    justify-content: center;
-    padding: 0;
-}
-#main > ul > li {
-    min-width: 10rem;
-}
-#main > ul > li a {
-    display: inline-block;
-    padding: 2rem 0 1rem;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    margin: 0;
-    min-width: 10rem;
-}
-#main > ul > li a span:first-of-type {
-    background-color: hsla(345, 0%, 80%, .5);
-    border-radius: 50%;
-    color: hsla(0, 100%, 100%, 1);
-    font-size: .8rem;
-    font-weight: bold;
-    height: 2rem;
-    padding: .4rem 0;
-    position: absolute;
-    right: 1.5rem;
-    top: 2rem;
-    transition: all .2s;
-    width: 2rem;
-}
-#main > ul > li a.active span:first-of-type,
-#main > ul > li a:hover span:first-of-type {
-    background-color: hsla(345, 90%, 50%, 1);
-    transition: all .2s;
-}
-#main > ul > li a span:nth-of-type(2) {
-    background-color: #fff;
-    border: .1rem solid hsla(225, 13%, 39%, 0);
-    border-radius: 50%;
-    font-size: 3rem;
-    height: 6rem;
-    margin: 0 auto;
-    transition: all .2s;
-    width: 6rem;
-}
-#main > ul > li a:hover span:nth-of-type(2) {
-     transition: all .2s;  
-}
-#main > ul > li > a span:nth-of-type(2) {
-    color: hsla(225, 5%, 80%, 1);
-    padding-top: .75rem;
-}
-#main > ul > li > a span:nth-of-type(2) {
-    color: hsla(225, 5%, 80%, 1);
-    padding-top: .75rem;
-}
-#main > ul > li > a.active span:nth-of-type(2),
-#main > ul > li > a:hover span:nth-of-type(2) {
-    color: hsla(225, 5%, 30%, 1);
-}
-#main > ul > li > a span:nth-of-type(3) {
-    color: hsla(225, 5%, 70%, 1);
-    display: block;
-    margin-top: 0rem;
-    
-    font-size: 1.4rem;
-    font-weight: 400;
-    line-height: 1.4rem;
-    letter-spacing: .1rem;
-    text-transform: initial;
-}
-#main > ul > li > a.active span:nth-of-type(3),
-#main > ul > li > a:hover span:nth-of-type(3) {
-    color: hsla(225, 5%, 10%, 1);
-}
-#main > ul > li > a span:nth-of-type(4) {
-    display:none;
-}
-#main > ul > li > a.active span:nth-of-type(4) {
-    background-color: #fff;
-    display: inline-block;
-    left: 50%;
-    margin: 0 0 0 -1rem;
-    position: absolute;
-    transform: rotate(45deg);
-    bottom: -1.5rem;
-    width: 2rem; 
-    height: 2rem; 
-    box-shadow: 0rem .2rem 0 hsla(0, 0%, 0%, .05);
-}
-
-
-*/
-
-
 
 #top {
     background-color: hsla(0,100%, 100%, 1);
@@ -323,21 +219,25 @@ nav.tabs ul a.active {
 /* Action Buttons */
 
 .action {
-    width: 100%;
-    z-index: 50;
+  width: 100%;
+  z-index: 50;
+  padding: 1rem 0;
+}
+.action.nav-main {
+  padding: 0;
 }
 
 fieldset > .action {
-	padding-top: 5rem;
+  padding-top: 5rem;
 }
 .action ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 .action > ul > li {
     min-width: 10rem;

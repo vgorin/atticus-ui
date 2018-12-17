@@ -15,7 +15,7 @@ Flex Containers
 /* App: Outermost Element */
 
 #app {
-    /*background: url(../images/bg.jpg) no-repeat center center fixed;*/
+    background: none !important;
     background: #e5e5e5;
     display: flex;
     flex-direction: column;
@@ -39,7 +39,6 @@ Flex Containers
     position: relative;
     text-align: center;
 }
-
 #app > header,
 #app > main,
 #app > footer {
