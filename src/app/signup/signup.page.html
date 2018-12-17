@@ -1,7 +1,7 @@
 <ion-content>
   <!-- Begin: App -->
 
-  <div id="app" [hidden]="step != 1">
+  <div id="app" [hidden]="viewMode != 1">
 
 
     <header class="heading">
@@ -12,9 +12,9 @@
           </div>
         </div>
         <div>
-                <span class="close">
-                    <a href=""><i class="fas fa-times"></i></a>
-                </span>
+          <span class="close">
+              <a href="start"><i class="fas fa-times"></i></a>
+          </span>
         </div>
       </section>
     </header>
@@ -67,15 +67,13 @@
 
     <!--   End: Main -->
 
-
-
   </div>
 
   <!--   End: App -->
 
   <!-- Begin: App -->
 
-  <div id="app" [hidden]="step != 2">
+  <div id="app" [hidden]="viewMode != 2">
 
     <header class="heading">
       <section>
@@ -85,9 +83,9 @@
           </div>
         </div>
         <div>
-                <span class="close">
-                    <a href=""><i class="fas fa-times"></i></a>
-                </span>
+          <span class="close">
+              <a href=""><i class="fas fa-times"></i></a>
+          </span>
         </div>
       </section>
     </header>
@@ -99,7 +97,7 @@
         <fieldset>
           <h4>Sign In Information</h4>
           <p>
-            <label for="username">User Name</label>
+            <label for="username">Username</label>
             <input [(ngModel)]="user_account.username" id="username" type="text" name="username">
 
           </p>
@@ -135,7 +133,7 @@
           <nav id="action">
             <ul>
               <li class="new">
-                <button (click)="setStep(1)">
+                <button (click)="setViewMode(1)">
                   <span><i class="fas fa-arrow-left"></i></span>
                   <span>Back</span>
                 </button>
@@ -153,8 +151,6 @@
     </main>
 
     <!--   End: Main -->
-
-
 
   </div>
 
