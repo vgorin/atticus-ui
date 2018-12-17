@@ -148,14 +148,14 @@
               </section>
               <form>
                 <fieldset>
-                  <h4>Terms</h4>
+                  <h4>Counter</h4>
                   <p>
-                    <label for="amount">Amount (USD)</label>
-                    <input id="amount" type="text" value="$10,000">
+                    <label for="name">Memo</label>
+                    <input [(ngModel)]="counterContract.memo" id="name" type="text" placeholder="Enter text" name="name">
                   </p>
                   <p>
-                    <label for="amount">Memo (optional)</label>
-                    <textarea>Nice try, Craig! You know damn well I would never sell out that cheap... Try this.</textarea>
+                    <label for="text">Terms</label>
+                    <textarea [(ngModel)]="counterContract.body" id="text" name="text"></textarea>
                   </p>
                 </fieldset>
               </form>
