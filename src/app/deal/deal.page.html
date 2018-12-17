@@ -148,14 +148,14 @@
               </section>
               <form>
                 <fieldset>
-                  <h4>Terms</h4>
+                  <h4>Counter</h4>
                   <p>
-                    <label for="amount">Amount (USD)</label>
-                    <input id="amount" type="text" value="$10,000">
+                    <label for="name">Memo</label>
+                    <input [(ngModel)]="counterContract.memo" id="name" type="text" placeholder="Enter text" name="name">
                   </p>
                   <p>
-                    <label for="amount">Memo (optional)</label>
-                    <textarea>Nice try, Craig! You know damn well I would never sell out that cheap... Try this.</textarea>
+                    <label for="text">Terms</label>
+                    <textarea [(ngModel)]="counterContract.body" id="text" name="text"></textarea>
                   </p>
                 </fieldset>
               </form>
@@ -215,7 +215,7 @@
           <div>
             <h1>You Have A Deal!</h1>
             <p>{{deal.title}}</p>
-            <p>A notification has been sent to Craig Wright. Your contract is in effect.</p>
+            <p>A notification has been sent to {{deal.secondParty}}. Your contract is in effect.</p>
           </div>
           <section>
             <nav class="action">
@@ -248,7 +248,7 @@
           <div>
             <h1>Counter Proposal Declined</h1>
             <p>{{deal.title}}</p>
-            <p>A notification has been sent to Craig Wright.</p>
+            <p>A notification has been sent to {{deal.secondParty}}.</p>
           </div>
           <section>
             <nav class="action">
@@ -281,7 +281,7 @@
           <div>
             <h1>Counter Proposal Sent!</h1>
             <p>{{deal.title}}</p>
-            <p>A notification has been sent to Craig Wright.</p>
+            <p>A notification has been sent to {{deal.secondParty}}.</p>
           </div>
           <section>
             <nav class="action">
