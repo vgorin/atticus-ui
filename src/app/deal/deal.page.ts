@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 import { UserAccount } from '../user.account.provider';
 
 @Component({
@@ -12,14 +13,17 @@ export class DealPage implements OnInit {
 
   public deal;
   public counterContract;
+  public account_id;
 
   constructor(
       public alertController: AlertController,
       public toastController: ToastController,
-      private account: UserAccount
+      private account: UserAccount,
+      private route: ActivatedRoute
   ) {
     this.deal = {};
     this.counterContract = {};
+    this.account_id = this.route.snapshot.paramMap.get('account_id');
   }
 
   async ngOnInit() {
