@@ -68,8 +68,14 @@ export class UserAccount {
     return this
       .storage.get('auth')
       .then( (auth_str) => {
+        // if register
+        if ( /post/i.test(method) && /\/account/i.test(sub_url) ) {
+          this.auth = {};
+          return null;
+        }
+
         const auth = JSON.parse(auth_str || '{}');
-        if (!auth.email) {
+        if ( !auth.email ) {
           throw(new Error('NOT_LOGGED_IN1'));
         }
         this.auth = auth;
@@ -96,9 +102,11 @@ export class UserAccount {
           options.headers['Content-Type'] = {};
         }
         // todo - http.useBasicAuth(username, password)
-        options.headers['Authorization'] = 'Basic ' + btoa(
-            unescape(encodeURIComponent(this.auth.email + ':' + this.auth.password))
-        );
+        if ( this.auth.email ) {
+          options.headers['Authorization'] = 'Basic ' + btoa(
+              unescape(encodeURIComponent(this.auth.email + ':' + this.auth.password))
+          );
+        }
         options.headers['Content-Type'] = 'application/json';
         method = (method || 'get').toLowerCase();
         switch (method) {
