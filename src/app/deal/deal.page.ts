@@ -37,7 +37,7 @@ export class DealPage implements OnInit {
 
   async openCounter() {
     try {
-      await this.account.openCounter();
+      await this.account.openCounter(this.deal);
       this.viewMode = ViewMode.CounterView;
     } catch (err) {
       this.displayError(err, 'Send counter error!');

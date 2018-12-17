@@ -351,7 +351,8 @@ export class UserAccount {
     console.log('!!! TODO: POST /deal/{deal.deal_id}?contract_id={copied_contract_id}');
   }
 
-  async openCounter() {
+  async openCounter(deal) {
     console.log('!!! TODO: POST /contract/{deal.contract_id} -> copied_contract_id');
+    return await this._request('/deal/accept/' + deal.contract_id, 'post', null, null);
   }
 }
