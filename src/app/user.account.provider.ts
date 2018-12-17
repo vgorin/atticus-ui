@@ -368,7 +368,7 @@ export class UserAccount {
     return counterContract;
   }
 
-  getDealName(deal) {
+  getDealSecondPartyName(deal) {
     return (deal.secondParty || {}).legal_name || (deal.secondParty || {}).username || (deal.secondParty || {}).email;
   }
 }
