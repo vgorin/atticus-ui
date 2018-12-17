@@ -8,7 +8,7 @@ import { UserAccount } from '../user.account.provider';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-  public step = 1;
+  public viewMode = ViewMode.Step1;
 
   async displayEmptyEmailAlert() {
     const alert = await this.alertController.create({
@@ -63,19 +63,23 @@ export class SignupPage implements OnInit {
     await alert.present();
   }
 
-  async setStep(step) {
-    if (this.step === 1 && step === 2) {
+  async setViewMode(viewMode) {
+    if (this.viewMode == ViewMode.Step1 && viewMode == ViewMode.Step2) {
       if (!this.user_account.email) {
         await this.displayEmptyEmailAlert();
-      } else if (!this.user_account.password) {
-        await this.displayEmptyPasswordAlert();
-      } else if (this.user_account.password !== this.user_account.verify_password) {
-        await this.displayPasswordMismatchAlert();
-      } else {
-        this.step = 2;
       }
-    } else if (this.step === 2 && step === 1) {
-      this.step = 1;
+      else if (!this.user_account.password) {
+        await this.displayEmptyPasswordAlert();
+      }
+      else if (this.user_account.password !== this.user_account.verify_password) {
+        await this.displayPasswordMismatchAlert();
+      }
+      else {
+        this.viewMode = ViewMode.Step2;
+      }
+    }
+    else if (this.viewMode == ViewMode.Step2 && viewMode == ViewMode.Step1) {
+      this.viewMode = ViewMode.Step1;
     }
   }
 
@@ -97,4 +101,9 @@ export class SignupPage implements OnInit {
 
   ngOnInit(): void {
   }
+}
+
+enum ViewMode {
+  Step1 = 1,
+  Step2,
 }

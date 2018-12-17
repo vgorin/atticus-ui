@@ -56,7 +56,7 @@
                 <div>
                   <figure><img src="./assets/images/users/{{account_id}}.png"></figure>
                   <h3><strong>Action Required</strong></h3>
-                  <p>{{getDealName()}}</p>
+                  <p>{{getDealSecondPartyName()}}</p>
                 </div>
               </section>
               <section>
@@ -215,7 +215,7 @@
           <div>
             <h1>You Have A Deal!</h1>
             <p>{{deal.title}}</p>
-            <p>A notification has been sent to {{deal.secondParty}}. Your contract is in effect.</p>
+            <p>A notification has been sent to {{getDealSecondPartyName()}}. Your contract is in effect.</p>
           </div>
           <section>
             <nav class="action">
@@ -248,7 +248,7 @@
           <div>
             <h1>Counter Proposal Declined</h1>
             <p>{{deal.title}}</p>
-            <p>A notification has been sent to {{deal.secondParty}}.</p>
+            <p>A notification has been sent to {{getDealSecondPartyName()}}.</p>
           </div>
           <section>
             <nav class="action">
@@ -281,7 +281,7 @@
           <div>
             <h1>Counter Proposal Sent!</h1>
             <p>{{deal.title}}</p>
-            <p>A notification has been sent to {{deal.secondParty}}.</p>
+            <p>A notification has been sent to {{getDealSecondPartyName()}}.</p>
           </div>
           <section>
             <nav class="action">
