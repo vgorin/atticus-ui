@@ -66,6 +66,10 @@ export class DealPage implements OnInit {
 
     await alert.present();
   }
+
+  getDealName() {
+    return this.account.getDealName(this.deal);
+  }
 }
 
 enum ViewMode {

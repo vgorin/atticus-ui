@@ -56,7 +56,7 @@
                 <div>
                   <figure><img src="./assets/images/users/{{(deal.secondParty || {}).account_id}}.png"></figure>
                   <h3><strong>Action Required</strong></h3>
-                  <p>{{(deal.secondParty || {}).legal_name || (deal.secondParty || {}).username || (deal.secondParty || {}).email}}</p>
+                  <p>{{(getDealName()}}</p>
                 </div>
               </section>
               <section>

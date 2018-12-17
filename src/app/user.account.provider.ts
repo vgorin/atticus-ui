@@ -353,7 +353,7 @@ export class UserAccount {
   }
 
   async sendCounter(deal, counterContract) {
-    await this._request('/contract/' + counterContract.contract_id, 'put', null, null);
+    await this._request('/contract/' + counterContract.contract_id, 'put', counterContract, null);
     let queryObj = { contract_id : counterContract.contract_id };
     console.log('tmp', queryObj);
     let r = await this._request('/deal/' + deal.deal_id + '?' + this.buidQueryString(queryObj), 'post', null, null);
@@ -366,5 +366,9 @@ export class UserAccount {
     let counterContract = await this._request('/contract/' + contract_id, 'get', null, null);
     console.log('openCounter', deal, '->', {counterContract});
     return counterContract;
+  }
+
+  getDealName(deal) {
+    return (deal.secondParty || {}).legal_name || (deal.secondParty || {}).username || (deal.secondParty || {}).email;
   }
 }
