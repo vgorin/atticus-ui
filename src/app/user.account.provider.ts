@@ -346,17 +346,24 @@ export class UserAccount {
     return await this._request('/deal/accept/' + deal.contract_id, 'put', null, null);
   }
 
-  async sendCounter() {
-    console.log('!!! TODO: PUT /contract/{copied_contract_id}');
-    console.log('!!! TODO: POST /deal/{deal.deal_id}?contract_id={copied_contract_id}');
+  buidQueryString(obj) {
+    return Object.keys(obj).map( (key) => {
+      return [key, encodeURIComponent(obj[key])].join('=');
+    });
+  }
+
+  async sendCounter(deal, counterContract) {
+    await this._request('/contract/' + counterContract.contract_id, 'put', null, null);
+    let queryObj = { contract_id : counterContract.contract_id };
+    let r = await this._request('/deal/' + deal.deal_id + '?' + this.buidQueryString(queryObj), 'post', null, null);
+    console.log('sendCounter', deal, counterContract, '->', r);
+    return r;
   }
 
   async openCounter(deal) {
-    console.log('!!! TODO: POST /contract/{deal.contract_id} -> copied_contract_id');
     let contract_id = await this._request('/contract/' + deal.contract_id, 'post', null, null);
-    console.log( '1)', contract_id );
     let counterContract = await this._request('/contract/' + contract_id, 'get', null, null);
-    console.log( '2)', counterContract );
+    console.log('openCounter', deal, '->', {counterContract});
     return counterContract;
   }
 }
