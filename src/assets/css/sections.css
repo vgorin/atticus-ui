@@ -36,7 +36,7 @@
     margin-bottom: 13rem;
 }
 #app > header.heading + main {
-    margin-top: 6rem;
+    margin-top: 16rem !important;
 }
 #app > header.heading.tabbed + main {
     margin-top: 9rem;
