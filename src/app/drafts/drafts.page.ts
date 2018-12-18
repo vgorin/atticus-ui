@@ -24,6 +24,10 @@ export class DraftsPage implements OnInit {
     this.currentDraft = {};
   }
 
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.init();
+  }
+
   async onChange(r) {
     const input = this.sendTo + r.key;
     if ( input.length > 0 ) {

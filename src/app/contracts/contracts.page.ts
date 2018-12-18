@@ -17,6 +17,10 @@ export class ContractsPage implements OnInit {
     this.currentDeal = {};
   }
 
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.init();
+  }
+
   async ngOnInit() {
     this.activeDeals = await this.account.getActiveDeals();
   }

@@ -11,11 +11,15 @@ export class LogoutPage implements OnInit {
 
   constructor(
       private router: Router,
-      private user_account: UserAccount
+      private account: UserAccount
   ) { }
 
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.init();
+  }
+
   ngOnInit() {
-    this.user_account.logOut().then( () => {
+    this.account.logOut().then( () => {
       return this.router.navigateByUrl('/');
     });
   }

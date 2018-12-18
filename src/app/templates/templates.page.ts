@@ -23,6 +23,10 @@ export class TemplatesPage implements OnInit {
     this.currentTemplate = {};
   }
 
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.init();
+  }
+
   async ngOnInit() {
     this.templates = await this.account.listTemplates();
     console.log('DraftsPage -> ngOnInit', this.templates);

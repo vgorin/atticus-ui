@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
   constructor(
       public modalController: ModalController,
       public alertController: AlertController,
@@ -17,6 +18,10 @@ export class LoginPage implements OnInit {
       private router: Router,
       public account: UserAccount
   ) { }
+
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.init();
+  }
 
   ngOnInit() {
   }

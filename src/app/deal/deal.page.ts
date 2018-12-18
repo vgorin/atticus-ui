@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
 import { UserAccount } from '../user.account.provider';
 
 @Component({
@@ -22,12 +21,12 @@ export class DealPage implements OnInit {
   }
 
   async ionViewCanEnter(): Promise<any> {
-    return await this.account.getDealToView();
+    return await this.account.init();
   }
 
   async ngOnInit() {
     await this.account.getDealToView();
-    console.log("deal to view", this.account.dealToView);
+    console.log('deal to view', this.account.dealToView);
   }
 
   async sign() {
@@ -41,7 +40,7 @@ export class DealPage implements OnInit {
 
   async openCounter() {
     try {
-      this.counterContract = await this.account.openCounter(this.deal);
+      this.counterContract = await this.account.openCounter(this.account.dealToView);
       this.viewMode = ViewMode.CounterView;
     } catch (err) {
       this.displayError(err, 'Send counter error!');
@@ -61,8 +60,8 @@ export class DealPage implements OnInit {
     console.log('ERROR:', header, err);
     const alert = await this.alertController.create({
       header: 'Error',
-      subHeader: header||err.message||err,
-      message: err.message||err,
+      subHeader: header || err.message || err,
+      message: err.message || err,
       buttons: ['OK']
     });
 
@@ -70,7 +69,7 @@ export class DealPage implements OnInit {
   }
 
   getDealSecondPartyName() {
-    return this.account.getDealSecondPartyName(this.deal);
+    return this.account.getDealSecondPartyName(this.account.dealToView);
   }
 }
 

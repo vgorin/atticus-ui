@@ -65,13 +65,13 @@ export class SignupPage implements OnInit {
 
   async setViewMode(viewMode) {
     if (this.viewMode == ViewMode.Step1 && viewMode == ViewMode.Step2) {
-      if (!this.user_account.email) {
+      if (!this.account.email) {
         await this.displayEmptyEmailAlert();
       }
-      else if (!this.user_account.password) {
+      else if (!this.account.password) {
         await this.displayEmptyPasswordAlert();
       }
-      else if (this.user_account.password !== this.user_account.verify_password) {
+      else if (this.account.password !== this.account.verify_password) {
         await this.displayPasswordMismatchAlert();
       }
       else {
@@ -86,11 +86,15 @@ export class SignupPage implements OnInit {
   constructor(
       public alertController: AlertController,
       public toastController: ToastController,
-      private user_account: UserAccount
+      private account: UserAccount
   ) { }
 
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.init();
+  }
+
   createUser() {
-    this.user_account.createUser()
+    this.account.createUser()
         .then(data => {
           this.displayUserRegisteredToast();
         })

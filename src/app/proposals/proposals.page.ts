@@ -19,6 +19,10 @@ export class ProposalsPage implements OnInit {
     this.proposals = [];
   }
 
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.init();
+  }
+
   async ngOnInit() {
     await this.account.loadProposals();
     this.proposals = this.account.proposals;
