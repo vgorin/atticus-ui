@@ -51,11 +51,115 @@ nav > ul > li a {
 
 
 
+/* Nav Main */
+
+
+/*
+#main {
+    background-color: hsla(0, 100%, 100%, 1);
+    width: 100%;
+    z-index: 50;
+}
+#main ul {
+    justify-content: center;
+    padding: 0;
+}
+#main > ul > li {
+    min-width: 10rem;
+}
+#main > ul > li a {
+    display: inline-block;
+    padding: 2rem 0 1rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    margin: 0;
+    min-width: 10rem;
+}
+#main > ul > li a span:first-of-type {
+    background-color: hsla(345, 0%, 80%, .5);
+    border-radius: 50%;
+    color: hsla(0, 100%, 100%, 1);
+    font-size: .8rem;
+    font-weight: bold;
+    height: 2rem;
+    padding: .4rem 0;
+    position: absolute;
+    right: 1.5rem;
+    top: 2rem;
+    transition: all .2s;
+    width: 2rem;
+}
+#main > ul > li a.active span:first-of-type,
+#main > ul > li a:hover span:first-of-type {
+    background-color: hsla(345, 90%, 50%, 1);
+    transition: all .2s;
+}
+#main > ul > li a span:nth-of-type(2) {
+    background-color: #fff;
+    border: .1rem solid hsla(225, 13%, 39%, 0);
+    border-radius: 50%;
+    font-size: 3rem;
+    height: 6rem;
+    margin: 0 auto;
+    transition: all .2s;
+    width: 6rem;
+}
+#main > ul > li a:hover span:nth-of-type(2) {
+     transition: all .2s;  
+}
+#main > ul > li > a span:nth-of-type(2) {
+    color: hsla(225, 5%, 80%, 1);
+    padding-top: .75rem;
+}
+#main > ul > li > a span:nth-of-type(2) {
+    color: hsla(225, 5%, 80%, 1);
+    padding-top: .75rem;
+}
+#main > ul > li > a.active span:nth-of-type(2),
+#main > ul > li > a:hover span:nth-of-type(2) {
+    color: hsla(225, 5%, 30%, 1);
+}
+#main > ul > li > a span:nth-of-type(3) {
+    color: hsla(225, 5%, 70%, 1);
+    display: block;
+    margin-top: 0rem;
+    
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    letter-spacing: .1rem;
+    text-transform: initial;
+}
+#main > ul > li > a.active span:nth-of-type(3),
+#main > ul > li > a:hover span:nth-of-type(3) {
+    color: hsla(225, 5%, 10%, 1);
+}
+#main > ul > li > a span:nth-of-type(4) {
+    display:none;
+}
+#main > ul > li > a.active span:nth-of-type(4) {
+    background-color: #fff;
+    display: inline-block;
+    left: 50%;
+    margin: 0 0 0 -1rem;
+    position: absolute;
+    transform: rotate(45deg);
+    bottom: -1.5rem;
+    width: 2rem; 
+    height: 2rem; 
+    box-shadow: 0rem .2rem 0 hsla(0, 0%, 0%, .05);
+}
+
+
+*/
+
+
 
 #top {
     background-color: hsla(0,100%, 100%, 1);
-    box-shadow: 0 0 .3rem hsla(0, 0%, 0%, .05);
-    padding: 0;
+    border-bottom: .05rem solid hsla(0, 0%, 0%, .05);
+    padding: .5rem 0;
     z-index: 100;
 }
 #top ul > li a {
@@ -90,7 +194,7 @@ nav > ul > li a {
 #top ul > li a:hover svg .l,
 #top ul > li a:hover svg circle {
     stroke: hsla(225, 10%, 20%, 1);
-    transition: 100ms;
+    transition: 50ms;
     transition-timing-function: ease-in-out;
     -webkit-transition: 100ms;
     -webkit-transition-timing-function: ease-in-out;
@@ -145,10 +249,19 @@ color: hsla(0, 100%, 100%, .5);
     background: transparent;
     letter-spacing: .05rem;
     display: block;
+      transition: 150ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 150ms;
+    -webkit-transition-timing-function: ease-in-out;
 }
 nav.tabs ul a:hover,
 nav.tabs ul a.active {
     color: hsla(0, 100%, 100%, 1);
+  background-color: hsla(0, 100%, 100%, .1);
+      transition: 50ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 50ms;
+    -webkit-transition-timing-function: ease-in-out;
 }
 
 
@@ -219,29 +332,50 @@ nav.tabs ul a.active {
 /* Action Buttons */
 
 .action {
-  width: 100%;
-  z-index: 50;
+
   padding: 1rem 0;
+    width: 100%;
+    z-index: 50;
 }
 .action.nav-main {
   padding: 0;
 }
 
 fieldset > .action {
-  padding-top: 5rem;
+	padding-top: 5rem;
 }
 .action ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
-.action > ul > li {
-    min-width: 10rem;
+
+@media only screen and (min-width : 768px) {
+  .action > ul > li {
+    width: 10rem;
+  }
 }
+@media only screen and (min-width : 481px) and (max-width : 767px) {
+  .action > ul > li {
+    width: 10rem;
+  }
+}
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+  .action > ul > li {
+    width: 8rem;
+  }
+}
+@media only screen and (max-width : 479px) {
+  .action.nav-main li > a span:nth-of-type(2) {
+      display: none;
+  }
+}
+
+
 .action > ul > li a,
 .action > ul > li button {
     display: inline-block;
@@ -252,7 +386,10 @@ fieldset > .action {
     outline: none;
     padding: 0;
     position: relative;
-    transition: all .2s;
+    transition: 150ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 150ms;
+    -webkit-transition-timing-function: ease-in-out;
     width: 100%;
 }
 .action > ul > li a span:first-of-type,
@@ -272,7 +409,10 @@ fieldset > .action {
 .action > ul > li > a:hover span:first-of-type,
 .action > ul > li button:hover  span:first-of-type {
     color: hsla(225, 50%, 50%, 1);
-    transition: all .2s;
+        transition: 50ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 50ms;
+    -webkit-transition-timing-function: ease-in-out;
 }
 
 .action > ul > li > a span:nth-of-type(2),
@@ -312,8 +452,7 @@ fieldset > .action {
 
 
 
-.action > ul > li a svg .c circle,
-.action > ul > li button svg .c circle {
+.action > ul > li a svg .c circle {
     stroke-width: .025rem;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -322,8 +461,7 @@ fieldset > .action {
     -webkit-transition: 150ms;
     -webkit-transition-timing-function: ease-in-out;
 }
-.action > ul > li:hover a svg .c circle,
-.action > ul > li:hover button svg .c circle {
+.action > ul > li:hover a svg .c circle {
     transition: 100ms;
     transition-timing-function: ease-in-out;
     -webkit-transition: 100ms;
@@ -331,9 +469,8 @@ fieldset > .action {
 }
 
 
-.action > ul > li a svg .i .s,
-.action > ul > li button svg .i .s {
-    stroke-width: 2;
+.action > ul > li a svg .i .s {
+    stroke-width: .1rem;
     stroke-linecap: round;
     stroke-linejoin: round;
     transition: 150ms;
@@ -341,9 +478,8 @@ fieldset > .action {
     -webkit-transition: 150ms;
     -webkit-transition-timing-function: ease-in-out;
 }
-.action > ul > li a svg .i .l,
-.action > ul > li button svg .i .l {
-    stroke-width: 2;
+.action > ul > li a svg .i .l {
+    stroke-width: .1rem;
     stroke-linecap: round;
     stroke-linejoin: round;
     transition: 150ms;
@@ -351,15 +487,13 @@ fieldset > .action {
     -webkit-transition: 150ms;
     -webkit-transition-timing-function: ease-in-out;
 }
-.action > ul > li:hover a svg .i .s,
-.action > ul > li:hover button svg .i .s {
+.action > ul > li:hover a svg .i .s {
     transition: 100ms;
     transition-timing-function: ease-in-out;
     -webkit-transition: 100ms;
     -webkit-transition-timing-function: ease-in-out;
 }
-.action > ul > li:hover a svg .i .l,
-.action > ul > li:hover button svg .i .l {
+.action > ul > li:hover a svg .i .l {
     transition: 100ms;
     transition-timing-function: ease-in-out;
     -webkit-transition: 100ms;
@@ -370,19 +504,51 @@ fieldset > .action {
 
 /* Nav Main */
 
+#mainNav {
+    background-color: hsla(0,100%, 100%, 1);
+    padding: 0;
+    z-index: 100;
+}
+
+/* Templatres icon */
+
+
+.action.nav-main li:first-child a svg .i .s {
+    fill: hsla(225, 20%, 85%, 1) !important;
+    stroke: hsla(225, 20%, 100%, 1) !important;
+}
+.action.nav-main li:first-child a svg .i .l {
+    fill: none !important;
+    stroke: hsla(225, 20%, 100%, 1) !important;
+}
+.action.nav-main li:first-child:hover a svg .i .s,
+.action.nav-main li:first-child a.active svg .i .s {
+    fill: hsla(225, 20%, 5%, 1) !important;
+    stroke: hsla(225, 20%, 100%, 1) !important;
+}
+.action.nav-main li:first-child:hover a svg .i .l,
+.action.nav-main li:first-child a.active svg .i .l{
+    fill: none !important;
+    stroke: hsla(225, 20%, 100%, 1) !important;
+}
+
+/* The other icons */
+
 .action.nav-main li a svg .i .s {
     fill: hsla(0, 100%, 100%, 1) !important;
-    stroke: hsla(225, 20%, 70%, 1) !important;
+    stroke: hsla(225, 20%, 85%, 1) !important;
 }
 .action.nav-main li a svg .i .l {
     fill: none !important;
-    stroke: hsla(225, 20%, 70%, 1) !important;
+    stroke: hsla(225, 20%, 85%, 1) !important;
 }
-.action.nav-main li:hover a svg .i .s {
+.action.nav-main li:hover a svg .i .s,
+.action.nav-main li a.active svg .i .s {
     fill: hsla(0, 100%, 100%, 1) !important;
     stroke: hsla(225, 20%, 5%, 1) !important;
 }
-.action.nav-main li:hover a svg .i .l {
+.action.nav-main li:hover a svg .i .l,
+.action.nav-main li a.active svg .i .l{
     fill: none !important;
     stroke: hsla(225, 20%, 5%, 1) !important;
 }
@@ -391,10 +557,17 @@ fieldset > .action {
 .action.nav-main li > a span:nth-of-type(2) {
     margin-top: -1.25rem;
     padding-bottom: 1rem;
+  color: hsla(225, 20%, 85%, 1);
+  font-weight: 400;
 }
+.action.nav-main li:hover > a span:nth-of-type(2),
+.action.nav-main li > a.active span:nth-of-type(2) {
+  color: hsla(225, 20%, 5%, 1);
+}
+
 .action.nav-main li > a span:nth-of-type(3) {
     background-color: hsla(345, 0%, 0%, 0);
-    color: hsla(225, 100%, 80%, 1);
+    color: hsla(225, 100%, 85%, 1);
     display: inline-block;
     margin-top: 0rem;
     padding: .5rem .75rem;
@@ -411,142 +584,141 @@ fieldset > .action {
 }
 .action.nav-main li > a.active span:nth-of-type(3),
 .action.nav-main > li:hover > a span:nth-of-type(3) {
-    background-color: hsla(345, 80%, 50%, 1);
-    color: hsla(225, 100%, 100%, 1);
+
 }
 
 
 /* Default color */
 
-li.d svg .c circle {
+li.d a svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(225, 10%, 60%, 1);
 }
-li.d:hover svg .c circle {
+li.d:hover a svg .c circle {
     fill: hsla(225, 10%, 60%, 1);
     stroke: hsla(225, 10%, 60%, 1);
 }
-li.d svg .c .s {
+li.d a svg .c .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(225, 10%, 60%, 1);
 }
-li.d svg .i .l {
+li.d a svg .i .l {
     fill: none;
     stroke: hsla(225, 10%, 60%, 1);
 }
-li.d:hover svg .i .s {
+li.d:hover a svg .i .s {
     fill: hsla(225, 10%, 60%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.d:hover svg .i .l {
+li.d:hover a svg .i .l {
     fill: none;
     stroke: hsla(0, 100%, 100%, 1);
 }
 
 /* Red color */
 
-li.r svg .c circle {
+li.r a svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(345, 80%, 50%, 1);
 }
-li.r:hover svg .c circle {
+li.r:hover a svg .c circle {
     fill: hsla(345, 80%, 50%, 1);
     stroke: hsla(345, 80%, 50%, 1);
 }
-li.d svg .c .s {
+li.d a svg .c .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(345, 80%, 50%, 1);
 }
-li.r svg .i .l {
+li.r a svg .i .l {
     fill: none;
     stroke: hsla(345, 80%, 50%, 1);
 }
-li.r:hover svg .i .s {
+li.r:hover a svg .i .s {
     fill: hsla(345, 80%, 50%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.r:hover svg .i .l {
+li.r:hover a svg .i .l {
     fill: none;
     stroke: hsla(0, 100%, 100%, 1);
 }
 
 /* Green color */
 
-li.g svg .c circle {
+li.g a svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(115, 80%, 40%, 1);
 }
-li.g:hover svg .c circle {
+li.g:hover a svg .c circle {
     fill: hsla(115, 80%, 40%, 1);
     stroke: hsla(115, 80%, 40%, 1);
 }
-li.g svg .i .s {
+li.g a svg .i .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(115, 80%, 40%, 1);
 }
-li.g svg .i .l {
+li.g a svg .i .l {
     fill: none;
     stroke: hsla(115, 80%, 40%, 1);
 }
-li.g:hover svg .i .s {
+li.g:hover a svg .i .s {
     fill: hsla(115, 80%, 40%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.g:hover svg .i .l {
+li.g:hover a svg .i .l {
     fill: none;
     stroke: hsla(0, 80%, 100%, 1);
 }
 
 /* Blue color */
 
-li.b svg .c circle {
+li.b a svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(225, 60%, 50%, 1);
 }
-li.b:hover svg .c circle {
+li.b:hover a svg .c circle {
     fill: hsla(225, 60%, 50%, 1);
     stroke: hsla(225, 60%, 50%, 1);
 }
-li.b svg .i .s {
+li.b a svg .i .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(225, 60%, 50%, 1);
 }
-li.b svg .i .l {
+li.b a svg .i .l {
     fill: none;
     stroke: hsla(225, 60%, 50%, 1);
 }
-li.b:hover svg .i .s {
+li.b:hover a svg .i .s {
     fill: hsla(225, 60%, 50%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.b:hover svg .i .l {
+li.b:hover a svg .i .l {
     fill: none;
     stroke: hsla(0, 100%, 100%, 1);
 }
 
 /* Puerple color */
 
-li.p svg .c circle {
+li.p a svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(265, 60%, 50%, 1);
 }
-li.p:hover svg .c circle {
+li.p:hover a svg .c circle {
     fill: hsla(265, 60%, 50%, 1);
     stroke: hsla(265, 60%, 50%, 1);
 }
-li.p svg .i .s {
+li.p a svg .i .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(265, 60%, 50%, 1);
 }
-li.p svg .i .l {
+li.p a svg .i .l {
     fill: none;
     stroke: hsla(265, 60%, 50%, 1);
 }
-li.p:hover svg .i .s {
+li.p:hover a svg .i .s {
     fill: hsla(265, 60%, 50%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.p:hover svg .i .l {
+li.p:hover a svg .i .l {
     fill: none;
     stroke: hsla(0, 100%, 100%, 1);
 }
