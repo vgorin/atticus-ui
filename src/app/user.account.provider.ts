@@ -370,7 +370,7 @@ export class UserAccount {
     await this._request('/contract/' + counterContract.contract_id, 'put', counterContract, null);
     let queryObj = { contract_id : counterContract.contract_id };
     console.log('tmp', queryObj);
-    let r = await this._request('/deal/' + deal.deal_id + '?' + this.buidQueryString(queryObj), 'post', null, null);
+    let r = await this._request('/deal/' + deal.deal_id, 'post', queryObj, null);
     console.log('sendCounter', deal, counterContract, '->', r);
     return r;
   }
