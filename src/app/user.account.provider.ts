@@ -32,6 +32,8 @@ export class UserAccount {
 
   public dealToView;
 
+  public user;
+
   constructor(private http: HttpClient, private storage: Storage) {
     console.log('UserAccount->constructor');
     this.country_code = 'US';
@@ -45,8 +47,8 @@ export class UserAccount {
     this.dealToView = {};
   }
 
-  public init() {
-    return this.getUser();
+  async init() {
+    this.user = await this.getUser();
   }
 
   public newTemplatesCount(): number {
@@ -68,15 +70,14 @@ export class UserAccount {
   private _request(sub_url, method, json, options) {
     return this
       .storage.get('auth')
-      .then( (auth_str) => {
+      .then( (auth) => {
         // if register
         if ( /post/i.test(method) && /\/account/i.test(sub_url) ) {
           this.auth = {};
           return null;
         }
 
-        const auth = JSON.parse(auth_str || '{}');
-        if ( !auth.email ) {
+        if ( !(auth || {}).email ) {
           throw(new Error('NOT_LOGGED_IN1'));
         }
         this.auth = auth;
@@ -150,13 +151,13 @@ export class UserAccount {
     }
     this.check_user = true;
     console.log('UserAccount->getUser');
-    return this.storage.get('user').then( (str) => {
-      if (str) {
-        return JSON.parse(str);
+    return this.storage.get('user').then( (user) => {
+      if (user) {
+        return user;
       } else {
-        return this.storage.get('auth').then( (auth_str) => {
+        return this.storage.get('auth').then( (auth) => {
           if ( !this.auth.email ) {
-            this.auth = JSON.parse(auth_str);
+            this.auth = auth;
           }
           console.log(this.auth);
           return this._request('/account/auth/', 'get', null, null);
@@ -203,7 +204,7 @@ export class UserAccount {
 
   async logIn() {
     console.log('logIn', this.auth);
-    await this.storage.set('auth', JSON.stringify(this.auth));
+    await this.storage.set('auth', this.auth);
     const user = await this.getUser();
     await this.listDrafts();
     await this.listTemplates();
@@ -215,6 +216,7 @@ export class UserAccount {
   async logOut() {
     await this.storage.remove('auth');
     await this.storage.remove('user');
+    await this.storage.remove( [ this.account_id, 'deal' ].join(':') );
     return null;
   }
 
@@ -351,13 +353,13 @@ export class UserAccount {
     console.log('setDealToView', deal);
     await this.getUser();
     this.dealToView = deal;
-    await this.storage.set( [ this.account_id, 'deal' ].join(':'), JSON.stringify(deal) );
+    await this.storage.set( [ this.account_id, 'deal' ].join(':'), deal );
   }
 
   async getDealToView() {
+    await this.init();
     await this.getUser();
-    const str = await this.storage.get( [ this.account_id, 'deal' ].join(':') );
-    this.dealToView = JSON.parse(str);
+    this.dealToView = await this.storage.get( [ this.account_id, 'deal' ].join(':') );
     const secondParty = (this.dealToView.parties || []).filter( (x) => {
       return x.account_id !== this.account_id;
     })[0];

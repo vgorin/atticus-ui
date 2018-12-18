@@ -7,7 +7,7 @@
       <section>
         <div>
           <div>
-            <h1><a href="proposals">Proposals</a> <i class="fas fa-angle-right"></i> {{deal.title}}</h1>
+            <h1><a href="proposals">Proposals</a> <i class="fas fa-angle-right"></i> {{account.dealToView.title}}</h1>
           </div>
         </div>
         <div>
@@ -39,7 +39,7 @@
             <div>
               <section>
                 <div>
-                  <p><img src="./assets/images/users/{{_account_id}}.png"></p>
+                  <p><img src="./assets/images/users/{{account.dealToView.account_id}}.png"></p>
                 </div>
                 <div>
                   <h3>Counter Proposal</h3>
@@ -54,7 +54,7 @@
             <div>
               <section>
                 <div>
-                  <figure><img src="./assets/images/users/{{_contracter_id}}.png"></figure>
+                  <figure><img src="./assets/images/users/{{account.dealToView.contracter_id}}.png"></figure>
                   <h3><strong>Action Required</strong></h3>
                   <p>{{getDealSecondPartyName()}}</p>
                 </div>
@@ -214,7 +214,7 @@
         <div>
           <div>
             <h1>You Have A Deal!</h1>
-            <p>{{deal.title}}</p>
+            <p>{{account.dealToView.title}}</p>
             <p>A notification has been sent to {{getDealSecondPartyName()}}. Your contract is in effect.</p>
           </div>
           <section>
@@ -247,7 +247,7 @@
         <div>
           <div>
             <h1>Counter Proposal Declined</h1>
-            <p>{{deal.title}}</p>
+            <p>{{account.dealToView.title}}</p>
             <p>A notification has been sent to {{getDealSecondPartyName()}}.</p>
           </div>
           <section>
@@ -280,7 +280,7 @@
         <div>
           <div>
             <h1>Counter Proposal Sent!</h1>
-            <p>{{deal.title}}</p>
+            <p>{{account.dealToView.title}}</p>
             <p>A notification has been sent to {{getDealSecondPartyName()}}.</p>
           </div>
           <section>

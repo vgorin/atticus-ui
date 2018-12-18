@@ -11,27 +11,23 @@ import { UserAccount } from '../user.account.provider';
 export class DealPage implements OnInit {
   public viewMode: ViewMode = ViewMode.DealView;
 
-  public deal;
   public counterContract;
-  public _account_id;
-  public _contracter_id;
 
   constructor(
       public alertController: AlertController,
       public toastController: ToastController,
       private account: UserAccount,
-      private route: ActivatedRoute
   ) {
-    this.deal = {};
     this.counterContract = {};
-    this._account_id = this.route.snapshot.paramMap.get('account_id');
-    this._contracter_id = this.route.snapshot.paramMap.get('contracter_id');
+  }
+
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.getDealToView();
   }
 
   async ngOnInit() {
     await this.account.getDealToView();
-    this.deal = this.account.dealToView;
-    console.log("deal to view", this.deal);
+    console.log("deal to view", this.account.dealToView);
   }
 
   async sign() {
