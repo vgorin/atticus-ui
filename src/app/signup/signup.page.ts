@@ -7,7 +7,7 @@ import { UserAccount } from '../user.account.provider';
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
-export class SignupPage implements OnInit {
+export class SignupPage {
   public viewMode = ViewMode.Step1;
 
   async displayEmptyEmailAlert() {
@@ -97,9 +97,6 @@ export class SignupPage implements OnInit {
         .catch(error => {
           this.displayUserRegistrationFailedError();
         });
-  }
-
-  ngOnInit(): void {
   }
 }
 

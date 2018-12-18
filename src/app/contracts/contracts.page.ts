@@ -6,7 +6,7 @@ import { UserAccount } from '../user.account.provider';
   templateUrl: './contracts.page.html',
   styleUrls: ['./contracts.page.scss'],
 })
-export class ContractsPage implements OnInit {
+export class ContractsPage {
   private viewMode = ViewMode.List;
 
   private activeDeals;
@@ -17,8 +17,9 @@ export class ContractsPage implements OnInit {
     this.currentDeal = {};
   }
 
-  async ngOnInit() {
-    this.activeDeals = await this.account.getActiveDeals();
+  async ionViewCanEnter(): Promise<any> {
+    await this.account.init(); // todo try catch
+    this.activeDeals = this.account.activeDeals;
   }
 
   async viewActiveDeal(index) {

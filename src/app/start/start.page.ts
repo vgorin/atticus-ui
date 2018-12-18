@@ -7,19 +7,24 @@ import { UserAccount } from '../user.account.provider';
   templateUrl: './start.page.html',
   styleUrls: ['./start.page.scss'],
 })
-export class StartPage implements OnInit {
+export class StartPage {
 
   constructor(
       private router: Router,
       private account: UserAccount
   ) { }
 
-  async ngOnInit() {
-    await this.account.init();
-    const auth = this.account.auth || { email : null };
-    if ( auth.email ) {
-      return this.router.navigateByUrl('/contracts');
-    }
+  ionViewCanEnter(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.account.init()
+          .then( (templates) => {
+            const auth = this.account.auth || { email : null };
+            if ( auth.email ) {
+              this.router.navigateByUrl('/contracts');
+            }
+            resolve(true);
+          }).catch(reject);
+    });
   }
 
 }

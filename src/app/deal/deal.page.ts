@@ -8,7 +8,7 @@ import { UserAccount } from '../user.account.provider';
   templateUrl: './deal.page.html',
   styleUrls: ['./deal.page.scss'],
 })
-export class DealPage implements OnInit {
+export class DealPage {
   public viewMode: ViewMode = ViewMode.DealView;
 
   public deal;
@@ -28,10 +28,9 @@ export class DealPage implements OnInit {
     this._contracter_id = this.route.snapshot.paramMap.get('contracter_id');
   }
 
-  async ngOnInit() {
-    await this.account.getDealToView();
+  async ionViewCanEnter(): Promise<any> {
+    await this.account.init(); // todo try catch
     this.deal = this.account.dealToView;
-    console.log("deal to view", this.deal);
   }
 
   async sign() {

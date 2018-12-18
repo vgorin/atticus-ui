@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './proposals.page.html',
   styleUrls: ['./proposals.page.scss'],
 })
-export class ProposalsPage implements OnInit {
+export class ProposalsPage {
   public viewMode: ViewMode = ViewMode.List;
 
   public proposals;
@@ -19,10 +19,14 @@ export class ProposalsPage implements OnInit {
     this.proposals = [];
   }
 
-  async ngOnInit() {
-    await this.account.loadProposals();
-    this.proposals = this.account.proposals;
-    console.log("viewMode", this.viewMode);
+  ionViewCanEnter(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.account.loadProposals()
+          .then( () => {
+            this.proposals = this.account.proposals;
+            resolve(true);
+          }).catch(reject);
+    });
   }
 
   async openDeal(index) {

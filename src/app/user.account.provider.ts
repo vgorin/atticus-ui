@@ -30,6 +30,8 @@ export class UserAccount {
   public proposals;
   private contracts;
 
+  public activeDeals;
+
   public dealToView;
 
   constructor(private http: HttpClient, private storage: Storage) {
@@ -42,33 +44,49 @@ export class UserAccount {
     this.proposals = [];
     this.contracts = [];
     this.dealToView = {};
+    this.activeDeals = [];
   }
 
-  public init() {
-    return this.getUser();
+  async init() {
+    await this.getUser();
+    this.drafts = await this.listDrafts();
+
+    this.contracts = await this.getActiveDeals();
+    this.activeDeals = this.contracts.map( (x) => {
+      x.contracter_id = x.parties.filter( (y) => {
+        return y.account_id !== x.account_id;
+      })[0].account_id;
+      return x;
+    });
+
+    this.dealToView = await this.getDealToView();
+
+
+    this.templates = await this.listTemplates();
+    this.proposals = await this.loadProposals();
   }
 
   public newTemplatesCount(): number {
-    return this.templates? this.templates.length: 0;
+    return (this.templates||[]).length;
   }
 
   public newDraftsCount(): number {
-    return this.drafts? this.drafts.length: 0;
+    return (this.drafts||[]).length;
   }
 
   public newProposalsCount(): number {
-    return this.proposals? this.proposals.length: 0;
+    return (this.proposals||[]).length;
   }
 
   public newActiveDealsCount(): number {
-    return this.contracts? this.contracts.length: 0;
+    return (this.contracts||[]).length;
   }
 
   private _request(sub_url, method, json, options) {
     return this
       .storage.get('auth')
       .then( (auth_str) => {
-        // if register
+        // skip if register
         if ( /post/i.test(method) && /\/account/i.test(sub_url) ) {
           this.auth = {};
           return null;
@@ -134,11 +152,11 @@ export class UserAccount {
             response.error.message
           ].join(': '));
         }
-        console.log('HTTP_RESPONSE:', {method, options, response});
+        console.log('HTTP_RESPONSE:', {sub_url, method, options, response});
         return response;
       })
       .catch((error) => {
-        console.log('HTTP_ERROR:', {method, options, error});
+        console.log('HTTP_ERROR:', {sub_url, method, options, error});
         throw(error);
       });
   }
@@ -147,33 +165,48 @@ export class UserAccount {
     if ( this.account_id ) {
       return null;
     }
-    this.check_user = true;
-    console.log('UserAccount->getUser');
-    return this._request('/account/auth/', 'get', null, null)
-        .then( (user) => {
-          if ( !user.account_id ) {
-            throw(new Error('FAILED_TO_LOGIN'));
-          }
+    let promise = new Promise((resolve, reject) => {
+      let user = this.storage.get('user');
+      if ((user||{}).account_id) {
+        resolve(user);
+      } else {
+        resolve(null);
+      }
+    });
+    return promise.then( (user) => {
+      this.check_user = true;
+      console.log('UserAccount->getUser');
+      if (!user) {
+        return this._request('/account/auth/', 'get', null, null)
+      } else {
+        return user;
+      }
+    }).then( (user) => {
+      if ( !user.account_id ) {
+        throw(new Error('FAILED_TO_LOGIN'));
+      }
 
-          this.account_id = user.account_id;
-          this.email = user.email;
-          this.password = user.password;
-          this.verify_password = user.verify_password;
-          this.name = user.name;
-          this.username = user.username;
-          this.legal_name = user.legal_name;
-          this.country_code = user.country_code;
-          this.language_code = user.language_code;
-          this.timezone = user.timezone;
-          this.contracts = user.contracts;
+      this.account_id = user.account_id;
+      this.email = user.email;
+      this.password = user.password;
+      this.verify_password = user.verify_password;
+      this.name = user.name;
+      this.username = user.username;
+      this.legal_name = user.legal_name;
+      this.country_code = user.country_code;
+      this.language_code = user.language_code;
+      this.timezone = user.timezone;
+      this.contracts = user.contracts;
 
-          console.log( this.account_id );
+      console.log( this.account_id );
 
-          return user;
-        })
-        .finally( () => {
-          this.check_user = false;
-        });
+      return this.storage.set('user', user).then( () => {
+        return user;
+      });
+    })
+    .finally( () => {
+      this.check_user = false;
+    });
   }
 
   createUser() {
@@ -189,9 +222,7 @@ export class UserAccount {
     this.auth = { email, password };
     await this.storage.set('auth', JSON.stringify({email, password}));
     const user = await this.getUser();
-    await this.listDrafts();
-    await this.listTemplates();
-    await this.loadProposals();
+    await this.init();
     console.log('Logged In:', user);
     return user;
   }
@@ -210,17 +241,8 @@ export class UserAccount {
         });
   }
 
-  getActiveDeals() {
-    return this._request('/deal/active-deals/', 'get', null, null)
-        .then(data => {
-          this.contracts = data;
-          return data.map( (x) => {
-            x.contracter_id = x.parties.filter( (y) => {
-              return y.account_id !== x.account_id;
-            })[0].account_id;
-            return x;
-          });
-        });
+  async getActiveDeals() {
+    return await this._request('/deal/active-deals/', 'get', null, null);
   }
 
   addContract(memo, body, to_account_id) {
@@ -246,8 +268,7 @@ export class UserAccount {
   // *** DRAFTS LOGIC *** //
 
   async listDrafts() {
-    this.drafts = await this._request('/contract/list?type=draft', 'get', null, null);
-    return this.drafts;
+    return await this._request('/contract/list?type=draft', 'get', null, null);
   }
 
   saveNewDraft(draft) {
@@ -299,59 +320,52 @@ export class UserAccount {
   }
   
   async listTemplates() {
-    this.templates = await this._request('/template/list', 'get', null, null);
-    return this.templates;
+    return await this._request('/template/list', 'get', null, null);
   }
 
-  saveNewTemplate(template) {
-    return this._request('/template/', 'post', template, null).then( () => {
-      return this.listTemplates();
-    });
+  async saveNewTemplate(template) {
+    await this._request('/template/', 'post', template, null);
+    await this.init();
   }
 
-  saveTemplate(template) {
-    return this._request('/template/' + this.account_id, 'put', template, null).then( () => {
-      return this.listTemplates();
-    });
+  async saveTemplate(template) {
+    await this._request('/template/' + this.account_id, 'put', template, null);
+    await this.init();
   }
 
   // *** PROPOSALS LOGIC *** //
 
   async loadProposals() {
     // /deal/received-proposals -> proposals
-    this.proposals = await this._request('/deal/received-proposals', 'get', null, null);
-    this.proposals = this.proposals.map( (x) => {
-          x.contracter_id = x.parties.filter( (y) => {
-            return y.account_id !== this.account_id;
-          })[0].account_id;
-          return x;
-        });
-    console.log('loadProposals', this.proposals);
+    let proposals = await this._request('/deal/received-proposals', 'get', null, null);
+    proposals = proposals.map( (x) => {
+      x.contracter_id = x.parties.filter( (y) => {
+        return y.account_id !== this.account_id;
+      })[0].account_id;
+      return x;
+    });
+    return proposals;
   }
 
   // *** DEAL LOGIC *** //
 
   async setDealToView(deal) {
-    console.log('setDealToView', deal);
-    await this.getUser();
-    this.dealToView = deal;
     await this.storage.set( [ this.account_id, 'deal' ].join(':'), JSON.stringify(deal) );
   }
 
   async getDealToView() {
-    await this.getUser();
     const str = await this.storage.get( [ this.account_id, 'deal' ].join(':') );
-    this.dealToView = JSON.parse(str);
-    const secondParty = (this.dealToView.parties || []).filter( (x) => {
+    const dealToView = JSON.parse(str||'{}');
+    dealToView.secondParty = (dealToView.parties || []).filter( (x) => {
       return x.account_id !== this.account_id;
     })[0];
-    if ( secondParty.account_id ) {
-      this.dealToView.secondParty = await this._request('/account/' + secondParty.account_id, 'get', null, null);
+    if ( dealToView.secondParty.account_id ) {
+      dealToView.secondParty = await this._request('/account/' + dealToView.secondParty.account_id, 'get', null, null);
     }
+    return dealToView;
   }
 
   async removeDealToView() {
-    await this.getUser();
     await this.storage.remove( [ this.account_id, 'deal' ].join(':') );
     this.dealToView = {};
   }
@@ -368,16 +382,16 @@ export class UserAccount {
 
   async sendCounter(deal, counterContract) {
     await this._request('/contract/' + counterContract.contract_id, 'put', counterContract, null);
-    let queryObj = { contract_id : counterContract.contract_id };
+    const queryObj = { contract_id : counterContract.contract_id };
     console.log('tmp', queryObj);
-    let r = await this._request('/deal/' + deal.deal_id + '?' + this.buidQueryString(queryObj), 'post', null, null);
+    const r = await this._request('/deal/' + deal.deal_id + '?' + this.buidQueryString(queryObj), 'post', null, null);
     console.log('sendCounter', deal, counterContract, '->', r);
     return r;
   }
 
   async openCounter(deal) {
-    let contract_id = await this._request('/contract/' + deal.contract_id, 'post', null, null);
-    let counterContract = await this._request('/contract/' + contract_id, 'get', null, null);
+    const contract_id = await this._request('/contract/' + deal.contract_id, 'post', null, null);
+    const counterContract = await this._request('/contract/' + contract_id, 'get', null, null);
     console.log('openCounter', deal, '->', {counterContract});
     return counterContract;
   }

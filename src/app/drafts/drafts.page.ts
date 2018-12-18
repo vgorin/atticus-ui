@@ -7,7 +7,7 @@ import {UserAccount} from '../user.account.provider';
   templateUrl: './drafts.page.html',
   styleUrls: ['./drafts.page.scss'],
 })
-export class DraftsPage implements OnInit {
+export class DraftsPage {
   public viewMode: ViewMode = ViewMode.List;
 
   public drafts;
@@ -36,9 +36,9 @@ export class DraftsPage implements OnInit {
     }
   }
 
-  async ngOnInit() {
-    this.drafts = await this.account.listDrafts();
-    console.log('DraftsPage -> ngOnInit', this.drafts);
+  async ionViewCanEnter(): Promise<any> {
+    await this.account.init(); // todo try catch
+    this.drafts = this.account.drafts;
   }
 
   async viewDraft(index) {

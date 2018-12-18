@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   public email: string;
   public password: string;
 
@@ -21,7 +21,13 @@ export class LoginPage implements OnInit {
       public account: UserAccount
   ) { }
 
-  ngOnInit() {
+  ionViewCanEnter(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.account.getUser()
+          .then( () => {
+            resolve(true);
+          }).catch(reject);
+    });
   }
 
   dismiss() {

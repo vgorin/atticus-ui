@@ -9,7 +9,7 @@ import {UserAccount} from '../user.account.provider';
 })
 
 
-export class TemplatesPage implements OnInit {
+export class TemplatesPage {
   public viewMode: ViewMode = ViewMode.List;
 
   public templates;
@@ -23,9 +23,14 @@ export class TemplatesPage implements OnInit {
     this.currentTemplate = {};
   }
 
-  async ngOnInit() {
-    this.templates = await this.account.listTemplates();
-    console.log('DraftsPage -> ngOnInit', this.templates);
+  ionViewCanEnter(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.account.listTemplates()
+          .then( (templates) => {
+            this.templates = templates;
+            resolve(true);
+          }).catch(reject);
+    });
   }
 
   async viewTemplate(index) {
