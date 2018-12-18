@@ -10,9 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public email: string;
-  public password: string;
-
   constructor(
       public modalController: ModalController,
       public alertController: AlertController,
@@ -50,7 +47,7 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    return this.account.logIn(this.email, this.password)
+    return this.account.logIn()
         .then(data => {
           console.log('login - user - data', data);
           return this.displayAuthSuccessfulToast();

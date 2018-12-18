@@ -37,6 +37,7 @@ export class UserAccount {
     this.country_code = 'US';
     this.language_code = 'eng';
     this.timezone = 'America/Los_Angeles';
+    this.auth = {};
     this.drafts = [];
     this.templates = [];
     this.proposals = [];
@@ -82,7 +83,7 @@ export class UserAccount {
         if (!this.account_id) {
           // throw(new Error('NOT_LOGGED_IN2'));
           if (!this.check_user) {
-            return this.logIn(auth.email, auth.password);
+            return this.logIn();
           }
         }
       })
@@ -134,11 +135,11 @@ export class UserAccount {
             response.error.message
           ].join(': '));
         }
-        console.log('HTTP_RESPONSE:', {method, options, response});
+        console.log('HTTP_RESPONSE:', {sub_url, method, options, response});
         return response;
       })
       .catch((error) => {
-        console.log('HTTP_ERROR:', {method, options, error});
+        console.log('HTTP_ERROR:', {sub_url, method, options, error});
         throw(error);
       });
   }
@@ -149,31 +150,46 @@ export class UserAccount {
     }
     this.check_user = true;
     console.log('UserAccount->getUser');
-    return this._request('/account/auth/', 'get', null, null)
-        .then( (user) => {
-          if ( !user.account_id ) {
-            throw(new Error('FAILED_TO_LOGIN'));
+    return this.storage.get('user').then( (str) => {
+      if (str) {
+        return JSON.parse(str);
+      } else {
+        return this.storage.get('auth').then( (auth_str) => {
+          if ( !this.auth.email ) {
+            this.auth = JSON.parse(auth_str);
           }
-
-          this.account_id = user.account_id;
-          this.email = user.email;
-          this.password = user.password;
-          this.verify_password = user.verify_password;
-          this.name = user.name;
-          this.username = user.username;
-          this.legal_name = user.legal_name;
-          this.country_code = user.country_code;
-          this.language_code = user.language_code;
-          this.timezone = user.timezone;
-          this.contracts = user.contracts;
-
-          console.log( this.account_id );
-
-          return user;
-        })
-        .finally( () => {
-          this.check_user = false;
+          console.log(this.auth);
+          return this._request('/account/auth/', 'get', null, null);
         });
+      }
+    }).then( (user) => {
+      if ( !user ) {
+        return null;
+      }
+      if ( !user.account_id ) {
+        throw(new Error('FAILED_TO_LOGIN'));
+      }
+
+      this.account_id = user.account_id;
+      this.email = user.email;
+      this.password = user.password;
+      this.verify_password = user.verify_password;
+      this.name = user.name;
+      this.username = user.username;
+      this.legal_name = user.legal_name;
+      this.country_code = user.country_code;
+      this.language_code = user.language_code;
+      this.timezone = user.timezone;
+      this.contracts = user.contracts;
+
+      console.log( 'Logged in', this.account_id );
+
+      return this.storage.set('user', user).then( () => {
+        return user;
+      });
+    }).finally( () => {
+      this.check_user = false;
+    });
   }
 
   createUser() {
@@ -185,9 +201,9 @@ export class UserAccount {
         });
   }
 
-  async logIn(email, password) {
-    this.auth = { email, password };
-    await this.storage.set('auth', JSON.stringify({email, password}));
+  async logIn() {
+    console.log('logIn', this.auth);
+    await this.storage.set('auth', JSON.stringify(this.auth));
     const user = await this.getUser();
     await this.listDrafts();
     await this.listTemplates();
