@@ -452,7 +452,8 @@ fieldset > .action {
 
 
 
-.action > ul > li a svg .c circle {
+.action > ul > li a svg .c circle,
+.action > ul > li button svg .c circle {
     stroke-width: .025rem;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -461,7 +462,8 @@ fieldset > .action {
     -webkit-transition: 150ms;
     -webkit-transition-timing-function: ease-in-out;
 }
-.action > ul > li:hover a svg .c circle {
+.action > ul > li:hover a svg .c circle,
+.action > ul > li:hover button svg .c circle {
     transition: 100ms;
     transition-timing-function: ease-in-out;
     -webkit-transition: 100ms;
@@ -469,7 +471,8 @@ fieldset > .action {
 }
 
 
-.action > ul > li a svg .i .s {
+.action > ul > li a svg .i .s,
+.action > ul > li button svg .i .s {
     stroke-width: .1rem;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -478,7 +481,8 @@ fieldset > .action {
     -webkit-transition: 150ms;
     -webkit-transition-timing-function: ease-in-out;
 }
-.action > ul > li a svg .i .l {
+.action > ul > li a svg .i .l,
+.action > ul > li button svg .i .l {
     stroke-width: .1rem;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -487,13 +491,15 @@ fieldset > .action {
     -webkit-transition: 150ms;
     -webkit-transition-timing-function: ease-in-out;
 }
-.action > ul > li:hover a svg .i .s {
+.action > ul > li:hover a svg .i .s,
+.action > ul > li:hover button svg .i .s {
     transition: 100ms;
     transition-timing-function: ease-in-out;
     -webkit-transition: 100ms;
     -webkit-transition-timing-function: ease-in-out;
 }
-.action > ul > li:hover a svg .i .l {
+.action > ul > li:hover a svg .i .l,
+.action > ul > li:hover button svg .i .l{
     transition: 100ms;
     transition-timing-function: ease-in-out;
     -webkit-transition: 100ms;
@@ -590,135 +596,135 @@ fieldset > .action {
 
 /* Default color */
 
-li.d a svg .c circle {
+li.d svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(225, 10%, 60%, 1);
 }
-li.d:hover a svg .c circle {
+li.d:hover svg .c circle {
     fill: hsla(225, 10%, 60%, 1);
     stroke: hsla(225, 10%, 60%, 1);
 }
-li.d a svg .c .s {
+li.d svg .c .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(225, 10%, 60%, 1);
 }
-li.d a svg .i .l {
+li.d svg .i .l {
     fill: none;
     stroke: hsla(225, 10%, 60%, 1);
 }
-li.d:hover a svg .i .s {
+li.d:hover svg .i .s {
     fill: hsla(225, 10%, 60%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.d:hover a svg .i .l {
+li.d:hover svg .i .l {
     fill: none;
     stroke: hsla(0, 100%, 100%, 1);
 }
 
 /* Red color */
 
-li.r a svg .c circle {
+li.r svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(345, 80%, 50%, 1);
 }
-li.r:hover a svg .c circle {
+li.r:hover svg .c circle {
     fill: hsla(345, 80%, 50%, 1);
     stroke: hsla(345, 80%, 50%, 1);
 }
-li.d a svg .c .s {
+li.d svg .c .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(345, 80%, 50%, 1);
 }
-li.r a svg .i .l {
+li.r svg .i .l {
     fill: none;
     stroke: hsla(345, 80%, 50%, 1);
 }
-li.r:hover a svg .i .s {
+li.r:hover svg .i .s {
     fill: hsla(345, 80%, 50%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.r:hover a svg .i .l {
+li.r:hover svg .i .l {
     fill: none;
     stroke: hsla(0, 100%, 100%, 1);
 }
 
 /* Green color */
 
-li.g a svg .c circle {
+li.g svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(115, 80%, 40%, 1);
 }
-li.g:hover a svg .c circle {
+li.g:hover svg .c circle {
     fill: hsla(115, 80%, 40%, 1);
     stroke: hsla(115, 80%, 40%, 1);
 }
-li.g a svg .i .s {
+li.g svg .i .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(115, 80%, 40%, 1);
 }
-li.g a svg .i .l {
+li.g svg .i .l {
     fill: none;
     stroke: hsla(115, 80%, 40%, 1);
 }
-li.g:hover a svg .i .s {
+li.g:hover svg .i .s {
     fill: hsla(115, 80%, 40%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.g:hover a svg .i .l {
+li.g:hover svg .i .l {
     fill: none;
     stroke: hsla(0, 80%, 100%, 1);
 }
 
 /* Blue color */
 
-li.b a svg .c circle {
+li.b svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(225, 60%, 50%, 1);
 }
-li.b:hover a svg .c circle {
+li.b:hover svg .c circle {
     fill: hsla(225, 60%, 50%, 1);
     stroke: hsla(225, 60%, 50%, 1);
 }
-li.b a svg .i .s {
+li.b svg .i .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(225, 60%, 50%, 1);
 }
-li.b a svg .i .l {
+li.b svg .i .l {
     fill: none;
     stroke: hsla(225, 60%, 50%, 1);
 }
-li.b:hover a svg .i .s {
+li.b:hover svg .i .s {
     fill: hsla(225, 60%, 50%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.b:hover a svg .i .l {
+li.b:hover svg .i .l {
     fill: none;
     stroke: hsla(0, 100%, 100%, 1);
 }
 
 /* Puerple color */
 
-li.p a svg .c circle {
+li.p svg .c circle {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(265, 60%, 50%, 1);
 }
-li.p:hover a svg .c circle {
+li.p:hover svg .c circle {
     fill: hsla(265, 60%, 50%, 1);
     stroke: hsla(265, 60%, 50%, 1);
 }
-li.p a svg .i .s {
+li.p svg .i .s {
     fill: hsla(0, 100%, 100%, 1);
     stroke: hsla(265, 60%, 50%, 1);
 }
-li.p a svg .i .l {
+li.p svg .i .l {
     fill: none;
     stroke: hsla(265, 60%, 50%, 1);
 }
-li.p:hover a svg .i .s {
+li.p:hover svg .i .s {
     fill: hsla(265, 60%, 50%, 1);
     stroke: hsla(0, 100%, 100%, 1);
 }
-li.p:hover a svg .i .l {
+li.p:hover svg .i .l {
     fill: none;
     stroke: hsla(0, 100%, 100%, 1);
 }

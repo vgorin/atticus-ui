@@ -240,7 +240,7 @@ form fieldset > p :first-child[for] + textarea {
 
 form fieldset > p :first-child[for] + input[disabled="disabled"],
 form fieldset > p :first-child[for] + textarea[disabled="disabled"] {
-    background-color: hsla(34, 0%, 95%, 1);
+    background-color: hsla(225, 15%, 97.55%, .975);
     border-color: hsla(34, 0%, 95%, 0);
     color: hsla(34, 0%, 55%, 1);
     cursor: not-allowed;
