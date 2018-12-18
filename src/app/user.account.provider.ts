@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserAccount {
-  private backend_host = 'http://46.219.125.69:5000';
+  private backend_host = 'http://172.104.123.14:28081';
 
   public check_user: boolean;
 
@@ -388,7 +388,7 @@ export class UserAccount {
     await this._request('/contract/' + counterContract.contract_id, 'put', counterContract, null);
     let queryObj = { contract_id : counterContract.contract_id };
     console.log('tmp', queryObj);
-    let r = await this._request('/deal/' + deal.deal_id + '?' + this.buidQueryString(queryObj), 'post', null, null);
+    let r = await this._request('/deal/' + deal.deal_id, 'post', queryObj, null);
     console.log('sendCounter', deal, counterContract, '->', r);
     return r;
   }

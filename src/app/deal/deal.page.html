@@ -7,7 +7,7 @@
       <section>
         <div>
           <div>
-            <h1><a href="proposals">Proposals</a> <i class="fas fa-angle-right"></i> {{account.dealToView.title}}</h1>
+            <h1><a href="proposals">Proposals</a> <i class="fas fa-angle-right"></i> {{deal.title}}</h1>
           </div>
         </div>
         <div>
@@ -39,13 +39,12 @@
             <div>
               <section>
                 <div>
-                  <p><img src="./assets/images/users/{{account.dealToView.account_id}}.png"></p>
+                  <p><img src="./assets/images/users/{{_contracter_id}}.png"></p>
                 </div>
                 <div>
-                  <h3>Counter Proposal</h3>
-                  <p>Let's be realistic here... Who else is going to ever make an offer like this. Just man up, Sam.</p>
-                  <p>Terms: $5,000,000 USD</p>
-                  <p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>
+                  <h3>Proposal</h3>
+                  <p></p>
+                  <!--<p><i class="far fa-calendar-alt"></i> {{1288323623006 | date:'medium'}}   26 October 2018 - 7:03 AM (CST) - 1 day ago</p>-->
                 </div>
               </section>
             </div>
@@ -54,9 +53,8 @@
             <div>
               <section>
                 <div>
-                  <figure><img src="./assets/images/users/{{account.dealToView.contracter_id}}.png"></figure>
+                  <figure><img src="./assets/images/users/{{_account_id}}.png"></figure>
                   <h3><strong>Action Required</strong></h3>
-                  <p>{{getDealSecondPartyName()}}</p>
                 </div>
               </section>
               <section>
@@ -129,18 +127,12 @@
             <div>
               <section>
                 <div>
-                  <p><img src="./assets/images/profile-craig.png"></p>
-                </div>
-                <div>
-                  <h3>Counter Proposal</h3>
-                  <p>Let's be realistic here... Who else is going to ever make an offer like this. Just man up, Sam.</p>
-                  <p>Terms: $5,000,000 USD</p>
-                  <p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>
+                  <p><img src="./assets/images/users/{{_contracter_id}}.png"></p>
                 </div>
               </section>
               <section>
                 <div>
-                  <p><img src="./assets/images/profile-sam.png"></p>
+                  <p><img src="./assets/images/users/{{_account_id}}.png"></p>
                 </div>
                 <div>
                   <h3>Counter Proposal</h3>
@@ -214,7 +206,7 @@
         <div>
           <div>
             <h1>You Have A Deal!</h1>
-            <p>{{account.dealToView.title}}</p>
+            <p>{{deal.title}}</p>
             <p>A notification has been sent to {{getDealSecondPartyName()}}. Your contract is in effect.</p>
           </div>
           <section>
@@ -247,7 +239,7 @@
         <div>
           <div>
             <h1>Counter Proposal Declined</h1>
-            <p>{{account.dealToView.title}}</p>
+            <p>{{deal.title}}</p>
             <p>A notification has been sent to {{getDealSecondPartyName()}}.</p>
           </div>
           <section>
@@ -280,7 +272,7 @@
         <div>
           <div>
             <h1>Counter Proposal Sent!</h1>
-            <p>{{account.dealToView.title}}</p>
+            <p>{{deal.title}}</p>
             <p>A notification has been sent to {{getDealSecondPartyName()}}.</p>
           </div>
           <section>

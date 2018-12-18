@@ -82,11 +82,11 @@
                   </svg>
                 </span>
                 <span>Templates</span>
-                <span>{{account.newTemplatesCount()}}</span>
+                <!--<span>{{account.newTemplatesCount()}}</span>-->
               </a>
             </li>
             <li>
-              <a href="drafts">
+              <a href="drafts" class="active">
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
                     <g class="i">
@@ -97,7 +97,7 @@
                   </svg>
                 </span>
                 <span>Drafts</span>
-                <span>{{account.newDraftsCount()}}</span>
+               <!-- <span>{{account.newDraftsCount()}}</span>-->
               </a>
             </li>
             <li>
@@ -118,7 +118,7 @@
               </a>
             </li>
             <li>
-              <a href="contracts" class="active">
+              <a href="contracts">
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
                     <g class="i">
@@ -512,10 +512,9 @@
       <section>
         <div>
           <div>
-            <h1>Invitation Sent Successfully!</h1>
+            <h1>Proposal Sent to {{this.sendToAccount.legal_name}}</h1>
             <p>{{currentDraft.memo}}</p>
-            <figure><img src="./assets/images/profile-craig-lg.png"></figure>
-            <h3>Craig Wright</h3>
+	    <figure><img src="./assets/images/users/{{this.sendToAccount.account_id}}.png"></figure>
           </div>
           <section>
             <nav class="action">

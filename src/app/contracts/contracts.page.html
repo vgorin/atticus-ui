@@ -82,7 +82,7 @@
                   </svg>
                 </span>
                 <span>Templates</span>
-                <span>{{account.newTemplatesCount()}}</span>
+                <!--<span>{{account.newTemplatesCount()}}</span>-->
               </a>
             </li>
             <li>
@@ -97,7 +97,7 @@
                   </svg>
                 </span>
                 <span>Drafts</span>
-                <span>{{account.newDraftsCount()}}</span>
+                <!--<span>{{account.newDraftsCount()}}</span>-->
               </a>
             </li>
             <li>
@@ -191,13 +191,12 @@
             <div>
               <section>
                 <div>
-                  <p><img src="./assets/images/profile-craig.png"></p>
+                  <p><img src="./assets/images/users/{{this.account.account_id}}.png"></p>
                 </div>
                 <div>
-                  <h3>Counter Proposal</h3>
-                  <p>Let's be realistic here... Who else is going to ever make an offer like this. Just man up, Sam.</p>
-                  <p>Terms: $5,000,000 USD</p>
-                  <p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>
+                  <h3>Contract</h3>
+		  <p>{{currentDeal.title}}</p>
+		  <!--<p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>-->
                 </div>
               </section>
             </div>
@@ -206,10 +205,9 @@
             <div>
               <section>
                 <div>
-                  <figure><img src="./assets/images/profile-sam-lg.png"></figure>
+                  <figure><img src="./assets/images/users/{{currentDeal.contracter_id}}.png"></figure>
                   <h3><strong>Last Action</strong></h3>
-                  <p>Sam Bourque</p>
-                  <p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>
+		  <!--<p><i class="far fa-calendar-alt"></i> 26 October 2018 - 7:03 AM (CST) - 1 day ago</p>-->
                 </div>
               </section>
             </div>
