@@ -1,6 +1,46 @@
 @charset "UTF-8";
 /* CSS Document */
 
+
+
+#app header #top {
+  background-color: hsla(0, 100%, 100%, 1);
+  max-width: 64rem;
+}
+#app header #mainNav,
+#app header.heading > section,
+#app footer > * {
+  background-color: hsla(0, 100%, 100%, 1);
+  margin: 0 auto;
+  max-width: 64rem;
+}
+
+#app header #mainNav,
+#app header.heading > section {
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;  
+}
+#app footer > * {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+
+
+#app main > section,
+#app main > form,
+#app main #templates,
+#app main #drafts,
+#app main #proposals,
+#app main #contracts,
+#app main #view,
+#app main #edit {
+  background-color: hsla(0, 100%, 100%, .1);
+  max-width: 64rem;
+}
+
+
+
+
 /* Menu */
 
 #menu > div > div {
@@ -30,16 +70,16 @@
 
 
 
-#app > header + main {
+#app > header + main > section:first-child {
     background-color: hsla(0, 100%, 100%, 0);
     margin-top: 14rem;
-    margin-bottom: 13rem;
+    margin-bottom: 14rem;
 }
-#app > header.heading + main {
-    margin-top: 16rem !important;
+#app > header + main > section {
+    margin-top: 5rem;
 }
-#app > header.heading.tabbed + main {
-    margin-top: 9rem;
+#app > header.tabbed + main > section {
+    margin-top: 10rem;
 }
 
 
@@ -50,7 +90,7 @@
     background: #fff;
 }
 #app > header.heading.tabbed > section:last-of-type {
-    background: hsla(215, 75%, 32%, 1);
+        background: hsla(225, 05%, 55%, 1);
 }
 
 
@@ -64,14 +104,17 @@
 
 
 
-
-
-
-
-
-
-
-
+#app > header.heading.tabbed h1 {
+  font-size: 1.8rem;
+}
+#app > header.heading.tabbed h1 a {
+    text-decoration: none;
+    color: hsla(225, 60%, 50%, 1);
+}
+#app > header.heading.tabbed h1 a:hover {
+  text-decoration: underline;
+    color: hsla(225, 15%, 30%, 1)
+}
 
 
 
@@ -200,7 +243,7 @@ ul#t {
     flex-direction: column;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 1rem 0 0 0;
     width: 100%;
 }
 ul#t > li {
@@ -313,12 +356,12 @@ section#status div {
 }
 #modal div figure,
 section#status figure {
-    border-radius: 50%;
+border-radius: 50%;
     border: .1rem solid #ddd;
-    margin: 3rem auto;
-    padding: 1rem;
-    height: 30rem;
-    width: 30rem;
+    margin: 0 auto;
+    padding: .5rem;
+    height: 10rem;
+    width: 10rem;
 }
 #modal div figure img,
 section#status figure img {
