@@ -20,6 +20,7 @@ export class DraftsPage implements OnInit {
       public alertController: AlertController,
   ) {
     this.currentDraft = {};
+    this.sendToAccount = {};
   }
 
   ionViewCanEnter(): Promise<any> {
