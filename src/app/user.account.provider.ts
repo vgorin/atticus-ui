@@ -53,12 +53,12 @@ export class UserAccount {
   }
 
   async _request(sub_url, method, json, options) {
-    if ( (this.auth || {}).email ) {
+    if ( !(this.auth || {}).email ) {
       console.log('Error - email is not set');
       return null;
     }
 
-    if ( (this.auth || {}).password ) {
+    if ( !(this.auth || {}).password ) {
       console.log('Error - password is not set');
       return null;
     }
@@ -123,15 +123,17 @@ export class UserAccount {
   async getUser() {
     if ( this.user ) {
       if ( this.user.account_id ) {
-        return null;
+        return this.user;
       }
     }
     this.user = await this._request('/account/auth/', 'get', null, null);
+    console.log('getUser', this.user, this.auth);
     await this.store();
   }
 
   async createUser() {
-    await this._request('/account', 'post', this.user, null);
+    const user = await this._request('/account', 'post', this.user, null);
+    console.log('createUser', user);
     await this.getUser();
   }
 
@@ -193,8 +195,9 @@ export class UserAccount {
   }
 
   async saveDraft(draft) {
-    await this._request('/contract/' + this.user.account_id, 'put', draft, null);
+    const ret = await this._request('/contract/' + this.user.account_id, 'put', draft, null);
     await this.listDrafts();
+    return ret;
   }
 
   async getSendTo(keys) {

@@ -30,16 +30,16 @@
               <h4>Sign In Information</h4>
               <p>
                 <label for="email">Email</label>
-                <input [(ngModel)]="user_account.email" id="email" type="email" name="email">
+                <input [(ngModel)]="account.auth.email" id="email" type="email" name="email">
 
               </p>
               <p>
                 <label for="password">Password</label>
-                <input [(ngModel)]="user_account.password" id="password" type="password" name="password">
+                <input [(ngModel)]="account.auth.password" id="password" type="password" name="password">
               </p>
               <p>
                 <label for="password">Password (again)</label>
-                <input [(ngModel)]="user_account.verify_password" id="password" type="password" name="password">
+                <input [(ngModel)]="verify_password" id="password" type="password" name="password">
               </p>
 
               <nav class="action">
@@ -118,12 +118,12 @@
           <h4>Sign In Information</h4>
           <p>
             <label for="username">Username</label>
-            <input [(ngModel)]="user_account.username" id="username" type="text" name="username">
+            <input [(ngModel)]="account.user.username" id="username" type="text" name="username">
 
           </p>
           <p>
             <label for="legalname">Legal Name</label>
-            <input [(ngModel)]="user_account.legal_name" id="legalname" type="text" name="legalname">
+            <input [(ngModel)]="account.user.legal_name" id="legalname" type="text" name="legalname">
 
           </p>
           <p>

@@ -10,7 +10,6 @@ import {UserAccount} from '../user.account.provider';
 export class DraftsPage implements OnInit {
   public viewMode: ViewMode = ViewMode.List;
 
-  public drafts;
   public currentDraft;
 
   public sendTo;
@@ -20,12 +19,13 @@ export class DraftsPage implements OnInit {
       private account: UserAccount,
       public alertController: AlertController,
   ) {
-    this.drafts = [];
     this.currentDraft = {};
   }
 
-  async ionViewCanEnter(): Promise<any> {
-    return await this.account.init();
+  ionViewCanEnter(): Promise<any> {
+    return new Promise<any>( (resolve, reject) => {
+      return this.account.init().then( resolve ).catch( reject );
+    });
   }
 
   async onChange(r) {
@@ -41,24 +41,22 @@ export class DraftsPage implements OnInit {
   }
 
   async ngOnInit() {
-    this.drafts = await this.account.listDrafts();
-    console.log('DraftsPage -> ngOnInit', this.drafts);
+    await this.account.listDrafts();
+    console.log('DraftsPage -> ngOnInit', this.account.drafts);
   }
 
   async viewDraft(index) {
-    this.currentDraft = this.drafts[index];
+    this.currentDraft = this.account.drafts[index];
     this.viewMode = ViewMode.View;
   }
 
   async saveNew() {
     this.currentDraft = await this.account.saveNewDraft(this.currentDraft);
-    this.drafts = this.account.drafts;
     this.viewMode = ViewMode.ModalSaved;
   }
 
   async save() {
     this.currentDraft = await this.account.saveDraft(this.currentDraft);
-    this.drafts = this.account.drafts;
     this.viewMode = ViewMode.ModalSaved;
   }
 

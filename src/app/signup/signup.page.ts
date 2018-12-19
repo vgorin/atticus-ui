@@ -10,6 +10,23 @@ import { UserAccount } from '../user.account.provider';
 export class SignupPage implements OnInit {
   public viewMode = ViewMode.Step1;
 
+  public verify_password;
+
+  constructor(
+      public alertController: AlertController,
+      public toastController: ToastController,
+      private account: UserAccount
+  ) { }
+
+  ionViewCanEnter(): Promise<any> {
+    return new Promise<any>( (resolve, reject) => {
+      return this.account.init().then( resolve ).catch( reject );
+    });
+  }
+
+  ngOnInit(): void {
+  }
+
   async displayEmptyEmailAlert() {
     const alert = await this.alertController.create({
       header: 'Error',
@@ -64,33 +81,19 @@ export class SignupPage implements OnInit {
   }
 
   async setViewMode(viewMode) {
-    if (this.viewMode == ViewMode.Step1 && viewMode == ViewMode.Step2) {
-      if (!this.account.email) {
+    if (this.viewMode === ViewMode.Step1 && viewMode === ViewMode.Step2) {
+      if (!this.account.auth.email) {
         await this.displayEmptyEmailAlert();
-      }
-      else if (!this.account.password) {
+      } else if (!this.account.auth.password) {
         await this.displayEmptyPasswordAlert();
-      }
-      else if (this.account.password !== this.account.verify_password) {
+      } else if (this.account.auth.password !== this.verify_password) {
         await this.displayPasswordMismatchAlert();
-      }
-      else {
+      } else {
         this.viewMode = ViewMode.Step2;
       }
-    }
-    else if (this.viewMode == ViewMode.Step2 && viewMode == ViewMode.Step1) {
+    } else if (this.viewMode === ViewMode.Step2 && viewMode === ViewMode.Step1) {
       this.viewMode = ViewMode.Step1;
     }
-  }
-
-  constructor(
-      public alertController: AlertController,
-      public toastController: ToastController,
-      private account: UserAccount
-  ) { }
-
-  async ionViewCanEnter(): Promise<any> {
-    return await this.account.init();
   }
 
   createUser() {
@@ -103,8 +106,6 @@ export class SignupPage implements OnInit {
         });
   }
 
-  ngOnInit(): void {
-  }
 }
 
 enum ViewMode {

@@ -31,7 +31,7 @@ export class DealPage implements OnInit {
 
   async sign() {
     try {
-      await this.account.dealAccept(this.deal);
+      await this.account.dealAccept(this.account.dealToView);
       this.viewMode = ViewMode.ModalProposalSigned;
     } catch (err) {
       this.displayError(err, 'Signature error!');
@@ -49,7 +49,7 @@ export class DealPage implements OnInit {
 
   async sendCounter() {
     try {
-      await this.account.sendCounter(this.deal, this.counterContract);
+      await this.account.sendCounter(this.account.dealToView, this.counterContract);
       this.viewMode = ViewMode.ModalCounterSent;
     } catch (err) {
       this.displayError(err, 'Send counter error!');

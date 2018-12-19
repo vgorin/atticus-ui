@@ -26,14 +26,14 @@ export class ProposalsPage implements OnInit {
   async ngOnInit() {
     await this.account.loadProposals();
     this.proposals = this.account.proposals;
-    console.log("viewMode", this.viewMode);
+    console.log('viewMode', this.viewMode);
   }
 
   async openDeal(index) {
     const deal = this.proposals[index];
     await this.account.setDealToView(deal);
     console.log('setDealToView', deal);
-    this.router.navigateByUrl('/deal/' + [this.account.account_id, deal.contracter_id].join('/') );
+    this.router.navigateByUrl('/deal/' + [this.account.user.account_id, deal.contracter_id].join('/') );
   }
 }
 

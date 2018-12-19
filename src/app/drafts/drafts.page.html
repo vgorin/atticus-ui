@@ -200,7 +200,7 @@
       <section id="drafts" class="list stack" [hidden]="viewMode != 1">
         <div>
           <div id="accordion">
-            <div class="tab" *ngFor="let draft of drafts; let i = index" [attr.data-index]="i">
+            <div class="tab" *ngFor="let draft of account.drafts; let i = index" [attr.data-index]="i">
               <h3><button (click)="viewDraft(i)"><i class="fas fa-file"></i> {{ draft.memo }}</button></h3>
             </div>
           </div>
@@ -512,9 +512,9 @@
       <section>
         <div>
           <div>
-            <h1>Proposal Sent to {{this.sendToAccount.legal_name}}</h1>
+            <h1>Proposal Sent to {{sendToAccount.legal_name}}</h1>
             <p>{{currentDraft.memo}}</p>
-	    <figure><img src="./assets/images/users/{{this.sendToAccount.account_id}}.png"></figure>
+	    <figure><img src="./assets/images/users/{{sendToAccount.account_id}}.png"></figure>
           </div>
           <section>
             <nav class="action">
