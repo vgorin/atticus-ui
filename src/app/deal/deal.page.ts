@@ -27,6 +27,7 @@ export class DealPage implements OnInit {
   async ngOnInit() {
     await this.account.getDealToView();
     console.log('deal to view', this.account.dealToView);
+    await this.account.init();
   }
 
   async sign() {

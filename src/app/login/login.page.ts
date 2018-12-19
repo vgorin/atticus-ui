@@ -23,7 +23,8 @@ export class LoginPage implements OnInit {
     return await this.account.init();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    return await this.account.init();
   }
 
   dismiss() {

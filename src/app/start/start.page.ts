@@ -18,7 +18,8 @@ export class StartPage implements OnInit {
     return await this.account.init();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.account.init();
     const auth = this.account.auth || { email : null };
     if ( auth.email ) {
       return this.router.navigateByUrl('/contracts');

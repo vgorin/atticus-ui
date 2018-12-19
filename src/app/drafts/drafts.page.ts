@@ -43,6 +43,7 @@ export class DraftsPage implements OnInit {
 
   async ngOnInit() {
     await this.account.listDrafts();
+    await this.account.init();
     console.log('DraftsPage -> ngOnInit', this.account.drafts);
   }
 

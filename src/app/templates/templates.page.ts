@@ -29,7 +29,7 @@ export class TemplatesPage implements OnInit {
 
   async ngOnInit() {
     this.templates = await this.account.listTemplates();
-    console.log('DraftsPage -> ngOnInit', this.templates);
+    return await this.account.init();
   }
 
   async viewTemplate(index) {

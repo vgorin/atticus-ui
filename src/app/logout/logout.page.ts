@@ -18,10 +18,9 @@ export class LogoutPage implements OnInit {
     return await this.account.init();
   }
 
-  ngOnInit() {
-    this.account.logOut().then( () => {
-      return this.router.navigateByUrl('/');
-    });
+  async ngOnInit() {
+    await this.account.logOut();
+    await this.router.navigateByUrl('/');
   }
 
 }

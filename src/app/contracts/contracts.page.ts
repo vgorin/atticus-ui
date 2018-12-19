@@ -23,6 +23,7 @@ export class ContractsPage implements OnInit {
 
   async ngOnInit() {
     this.activeDeals = await this.account.getActiveDeals();
+    await this.account.init();
   }
 
   async viewActiveDeal(index) {

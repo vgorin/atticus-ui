@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { OnInit } from '@angular/core';
 
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class UserAccount {
+export class UserAccount implements OnInit {
   private backend_host = 'http://172.104.123.14:28081';
   // private backend_host = 'http://46.219.125.69:5000';
 
@@ -30,6 +31,17 @@ export class UserAccount {
     this.proposals = [];
     this.contracts = [];
     this.dealToView = {};
+  }
+
+  async ngOnInit() {
+    await this.init();
+    //const data = this._request('/account/1?includeTemplates=true&includeContracts=true&includeDeals=true', 'get', null, null);
+    //this.templates = data.templates;
+    //await this.store();
+  }
+
+  ionViewCanEnter(): Promise<any> {
+    return this.init();
   }
 
   async init() {
