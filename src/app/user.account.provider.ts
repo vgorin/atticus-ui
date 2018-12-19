@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserAccount {
-  // private backend_host = 'http://172.104.123.14:28081';
-  private backend_host = 'http://46.219.125.69:5000';
+  private backend_host = 'http://172.104.123.14:28081';
+  // private backend_host = 'http://46.219.125.69:5000';
 
   public auth;
   public user;
@@ -33,7 +33,7 @@ export class UserAccount {
   }
 
   async init() {
-    await this.restore();
+    return await this.restore();
   }
 
   public newTemplatesCount(): number {
@@ -52,15 +52,18 @@ export class UserAccount {
     return this.contracts ? this.contracts.length : 0;
   }
 
-  async _request(sub_url, method, json, options) {
-    if ( !(this.auth || {}).email ) {
-      console.log('Error - email is not set');
-      return null;
-    }
+  public _request(sub_url, method, json, options) {
+    // if create account - skip validation
+    if ( !( '/account' === sub_url && /post/i.test(method) ) ) {
+      if ( !(this.auth || {}).email ) {
+        console.log('Error - email is not set', this.auth);
+        return null;
+      }
 
-    if ( !(this.auth || {}).password ) {
-      console.log('Error - password is not set');
-      return null;
+      if ( !(this.auth || {}).password ) {
+        console.log('Error - password is not set', this.auth);
+        return null;
+      }
     }
 
     const url = [
@@ -100,9 +103,10 @@ export class UserAccount {
     if (!this.http[method]) {
       console.log('Error: No such HTTP method :', {url, method, json, options});
     }
-    const response = await this.http[method].apply(this.http, args).toPromise();
-    console.log('HTTP_RESPONSE:', {sub_url, method, options, response});
-    return response;
+    return this.http[method].apply(this.http, args).toPromise().then( (response) => {
+      console.log('HTTP_RESPONSE:', {sub_url, method, options, response});
+      return response;
+    });
   }
 
   async store() {
@@ -113,11 +117,15 @@ export class UserAccount {
   }
 
   async restore() {
-    const userData = await this.storage.get('user');
+    const userData = await this.storage.get('user') || {};
     console.log('RESTORED', userData);
     Object.keys(userData).forEach( (key) => {
       this[key] = userData[key];
     });
+  }
+
+  async clear() {
+    return await this.storage.remove('user');
   }
 
   async getUser() {
@@ -132,9 +140,14 @@ export class UserAccount {
   }
 
   async createUser() {
-    const user = await this._request('/account', 'post', this.user, null);
-    console.log('createUser', user);
+    await this._request('/account', 'post', this.user, null);
+    this.auth = {
+      email : this.user.email,
+      password : this.user.password
+    };
+    this.user = null;
     await this.getUser();
+    await this.store();
   }
 
   async logIn() {

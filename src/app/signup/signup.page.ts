@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { UserAccount } from '../user.account.provider';
 
 @Component({
@@ -13,18 +14,18 @@ export class SignupPage implements OnInit {
   public verify_password;
 
   constructor(
+      private router: Router,
       public alertController: AlertController,
       public toastController: ToastController,
       private account: UserAccount
   ) { }
 
-  ionViewCanEnter(): Promise<any> {
-    return new Promise<any>( (resolve, reject) => {
-      return this.account.init().then( resolve ).catch( reject );
-    });
+  async ionViewCanEnter(): Promise<any> {
+    return await this.account.init();
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): void {
+    return await this.account.clear();
   }
 
   async displayEmptyEmailAlert() {
@@ -82,11 +83,11 @@ export class SignupPage implements OnInit {
 
   async setViewMode(viewMode) {
     if (this.viewMode === ViewMode.Step1 && viewMode === ViewMode.Step2) {
-      if (!this.account.auth.email) {
+      if (!this.account.user.email) {
         await this.displayEmptyEmailAlert();
-      } else if (!this.account.auth.password) {
+      } else if (!this.account.user.password) {
         await this.displayEmptyPasswordAlert();
-      } else if (this.account.auth.password !== this.verify_password) {
+      } else if (this.account.user.password !== this.verify_password) {
         await this.displayPasswordMismatchAlert();
       } else {
         this.viewMode = ViewMode.Step2;
@@ -96,14 +97,14 @@ export class SignupPage implements OnInit {
     }
   }
 
-  createUser() {
-    this.account.createUser()
-        .then(data => {
-          this.displayUserRegisteredToast();
-        })
-        .catch(error => {
-          this.displayUserRegistrationFailedError();
-        });
+  async createUser() {
+    try {
+      await this.account.createUser();
+      await this.displayUserRegisteredToast();
+      await this.router.navigateByUrl('/');
+    } catch (e) {
+      await this.displayUserRegistrationFailedError();
+    }
   }
 
 }
